@@ -14,5 +14,8 @@
   "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme",
   "dependencies": {
     "electron-prebuilt": "0.37.4"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1"
   }
 }
