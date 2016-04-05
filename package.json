@@ -2,10 +2,17 @@
   "name": "interceptor",
   "version": "0.0.0",
   "description": "An app for intercepting requests and modifying the response contents.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/connorwyatt/interceptor.git"
   },
   "author": "Connor Wyatt <connorwyatt1@gmail.com>",
-  "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme"
+  "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme",
+  "dependencies": {
+    "electron-prebuilt": "0.37.4"
+  }
 }
