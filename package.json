@@ -1,0 +1,11 @@
+{
+  "name": "interceptor",
+  "version": "0.0.0",
+  "description": "An app for intercepting requests and modifying the response contents.",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/connorwyatt/interceptor.git"
+  },
+  "author": "Connor Wyatt <connorwyatt1@gmail.com>",
+  "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme"
+}
