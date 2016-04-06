@@ -13,9 +13,12 @@
   "author": "Connor Wyatt <connorwyatt1@gmail.com>",
   "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme",
   "dependencies": {
-    "electron-prebuilt": "0.37.4"
+    "electron-prebuilt": "0.37.4",
+    "lodash": "4.8.2"
   },
   "devDependencies": {
-    "gulp": "3.9.1"
+    "del": "2.2.0",
+    "gulp": "3.9.1",
+    "run-sequence": "1.1.5"
   }
 }
