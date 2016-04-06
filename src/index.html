@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Interceptor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interceptor</title>
+  <script src="node_modules/angular2/bundles/angular2-polyfills.min.js"></script>
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script src="config.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.min.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.min.js"></script>
+  <script src="node_modules/angular2/bundles/http.min.js"></script>
+  <script src="node_modules/angular2/bundles/router.min.js"></script>
+  <script>
+    System.import('app');
+  </script>
 </head>
 <body>
-    <h1>Interceptor</h1>
-    <p>An app for intercepting requests and modifying the response contents.</p>
+  <in-app></in-app>
 </body>
 </html>

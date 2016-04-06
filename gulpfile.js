@@ -1,9 +1,9 @@
 'use strict';
 
-
 const gulp = require('gulp'),
   runSequence = require('run-sequence'),
-  del = require('del');
+  del = require('del'),
+  typescript = require('gulp-typescript');
 
 const config = require('./gulpConfig');
 
@@ -17,7 +17,12 @@ gulp.task('development', () => {
   return runSequence(
     'clean',
     [
+      'compileTypescript',
       'moveStaticFiles'
+    ],
+    [
+      'compileTypescriptWatch',
+      'moveStaticFilesWatch'
     ]
   );
 });
@@ -34,10 +39,35 @@ gulp.task('production', () => {
 });
 
 gulp.task('clean', () => {
-  return del(envConfig.buildDirectory);
+  return del(envConfig.paths.buildDirectory);
+});
+
+gulp.task('compileTypescript', () => {
+  let tsConfig = typescript.createProject(envConfig.paths.tsConfig);
+
+  return gulp.src([
+      envConfig.paths.typescriptFiles,
+      'src/node_modules/angular2/typings/browser.d.ts',
+      '!' + envConfig.paths.nodeModulesFiles
+    ])
+    .pipe(typescript(tsConfig))
+    .js
+    .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
 gulp.task('moveStaticFiles', () => {
   return gulp.src(envConfig.paths.staticFiles)
-    .pipe(gulp.dest(envConfig.buildDirectory));
+    .pipe(gulp.dest(envConfig.paths.buildDirectory));
+});
+
+gulp.task('compileTypescriptWatch', () => {
+  return gulp.watch([
+    envConfig.paths.typescriptFiles,
+    'src/node_modules/angular2/typings/browser.d.ts',
+    '!' + envConfig.paths.nodeModulesFiles
+  ], ['compileTypescript']);
+});
+
+gulp.task('moveStaticFilesWatch', () => {
+  return gulp.watch(envConfig.paths.staticFiles, ['moveStaticFiles']);
 });

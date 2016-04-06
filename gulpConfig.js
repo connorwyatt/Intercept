@@ -6,16 +6,23 @@ const buildPrefix = '.builds/';
 
 const defaults = {
   paths: {
-    staticFiles: 'src/**/*'
+    nodeModulesFiles: 'src/node_modules/**/*',
+    staticFiles: 'src/**/!(*.ts)',
+    typescriptFiles: 'src/**/@(*.ts)',
+    tsConfig: 'src/tsconfig.json'
   }
 };
 
 const DEVELOPMENT = {
-  buildDirectory: `${buildPrefix}dev/`
+  paths: {
+    buildDirectory: `${buildPrefix}dev/`
+  }
 };
 
 const PRODUCTION = {
-  buildDirectory: `${buildPrefix}prod/`
+  paths: {
+    buildDirectory: `${buildPrefix}prod/`
+  }
 };
 
 module.exports = {

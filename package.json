@@ -2,9 +2,8 @@
   "name": "interceptor",
   "version": "0.0.0",
   "description": "An app for intercepting requests and modifying the response contents.",
-  "main": "src/app.js",
   "scripts": {
-    "start": "./node_modules/.bin/electron ."
+    "startDev": "./node_modules/.bin/electron ./.builds/dev/"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "del": "2.2.0",
     "gulp": "3.9.1",
+    "gulp-typescript": "^2.12.2",
     "run-sequence": "1.1.5"
   }
 }
