@@ -1,3 +1,3 @@
 'use strict';
 
-require('./ui/electron');
+require('./node/server');

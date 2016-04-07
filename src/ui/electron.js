@@ -1,6 +1,7 @@
 'use strict';
 
 const electron = require('electron'),
+  url = require('url'),
   app = electron.app,
   BrowserWindow = electron.BrowserWindow;
 
@@ -12,12 +13,24 @@ app.on('window-all-closed', function() {
   }
 });
 
-app.on('ready', function() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+function startElectronApp(port) {
+  app.on('ready', function() {
+    mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+    let uiUrl = url.format({
+      protocol: 'http',
+      hostname: 'localhost',
+      port: port
+    });
 
-  mainWindow.on('closed', function() {
-    mainWindow = null;
+    mainWindow.loadURL(uiUrl);
+
+    mainWindow.on('closed', function() {
+      mainWindow = null;
+    });
   });
-});
+}
+
+module.exports = {
+  startElectronApp: startElectronApp
+};
