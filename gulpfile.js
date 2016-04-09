@@ -3,6 +3,7 @@
 const gulp = require('gulp'),
   runSequence = require('run-sequence'),
   del = require('del'),
+  changed = require('gulp-changed'),
   typescript = require('gulp-typescript');
 
 const config = require('./gulpConfig');
@@ -18,7 +19,8 @@ gulp.task('development', () => {
     'clean',
     [
       'compileTypescript',
-      'moveStaticFiles'
+      'moveStaticFiles',
+      'moveDependencies'
     ],
     [
       'compileTypescriptWatch',
@@ -48,15 +50,22 @@ gulp.task('compileTypescript', () => {
   return gulp.src([
       envConfig.paths.typescriptFiles,
       'src/node_modules/angular2/typings/browser.d.ts',
-      '!' + envConfig.paths.nodeModulesFiles
+      '!' + envConfig.paths.uiNodeModulesFiles
     ])
+    .pipe(changed(envConfig.paths.buildDirectory, { extension: '.js' }))
     .pipe(typescript(tsConfig))
     .js
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
 gulp.task('moveStaticFiles', () => {
-  return gulp.src(envConfig.paths.staticFiles)
+  return gulp.src([envConfig.paths.staticFiles, '!' + envConfig.paths.nodeNodeModulesFiles, '!' + envConfig.paths.uiNodeModulesFiles])
+    .pipe(changed(envConfig.paths.buildDirectory))
+    .pipe(gulp.dest(envConfig.paths.buildDirectory));
+});
+
+gulp.task('moveDependencies', () => {
+  return gulp.src([envConfig.paths.nodeNodeModulesFiles, envConfig.paths.uiNodeModulesFiles])
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
@@ -64,7 +73,7 @@ gulp.task('compileTypescriptWatch', () => {
   return gulp.watch([
     envConfig.paths.typescriptFiles,
     'src/node_modules/angular2/typings/browser.d.ts',
-    '!' + envConfig.paths.nodeModulesFiles
+    '!' + envConfig.paths.uiNodeModulesFiles
   ], ['compileTypescript']);
 });
 

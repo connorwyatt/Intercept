@@ -6,7 +6,8 @@ const buildPrefix = '.builds/';
 
 const defaults = {
   paths: {
-    nodeModulesFiles: 'src/ui/node_modules/**/*',
+    nodeNodeModulesFiles: 'src/node/node_modules/**/*',
+    uiNodeModulesFiles: 'src/ui/node_modules/**/*',
     staticFiles: 'src/**/!(*.ts)',
     typescriptFiles: 'src/**/@(*.ts)',
     tsConfig: 'src/ui/tsconfig.json'
