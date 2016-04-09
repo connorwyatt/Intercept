@@ -1,10 +1,10 @@
 'use strict';
 
 const http = require('http'),
-  logger = require('./services/logger'),
-  Proxy = require('./services/proxy');
+  logger = require('../shared/services/logger'),
+  ProxyService = require('./services/proxyService');
 
-let server = http.createServer(Proxy.proxyRequest);
+let server = http.createServer(ProxyService.proxyRequest);
 
 server.listen(5000); // TODO Make this read from settings
 server.on('error', onError);

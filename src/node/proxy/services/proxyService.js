@@ -2,7 +2,7 @@
 
 const http = require('http');
 
-class Proxy {
+class ProxyService {
   static proxyRequest(request, response) {
     let proxyRequest = http.request({
       hostname: 'localhost', // TODO Make this read from settings
@@ -51,4 +51,4 @@ class Proxy {
   }
 }
 
-module.exports = Proxy;
+module.exports = ProxyService;

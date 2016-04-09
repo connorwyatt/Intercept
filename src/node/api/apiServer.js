@@ -2,9 +2,9 @@
 
 const http = require('http'),
   express = require('express'),
-  expressApp = require('./app'),
-  electronApp = require('../ui/electron'),
-  logger = require('./services/logger');
+  expressApp = require('../app'),
+  electronApp = require('../../ui/electron'),
+  logger = require('../shared/services/logger');
 
 let server = http.createServer(expressApp);
 
