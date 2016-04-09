@@ -20,7 +20,7 @@ function onError(error) {
 function onListening() {
   let address = server.address();
 
-  logger.info(`Listening on port ${address.port}`);
+  logger.info(`API server listening on port ${address.port}`);
 
   electronApp.startElectronApp(address.port);
 }
