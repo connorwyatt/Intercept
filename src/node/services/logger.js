@@ -26,6 +26,10 @@ class Logger {
     });
   }
 
+  debug(message) {
+    this.logger.debug(message);
+  }
+
   info(message) {
     this.logger.info(message);
   }
@@ -35,7 +39,7 @@ class Logger {
   }
 
   error(message) {
-    this.logger.warn(message);
+    this.logger.error(message);
   }
 }
 
