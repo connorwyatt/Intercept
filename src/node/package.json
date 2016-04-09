@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "4.13.4",
+    "nedb": "1.8.0",
     "winston": "2.2.0"
   }
 }
