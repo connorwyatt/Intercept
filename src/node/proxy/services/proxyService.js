@@ -1,6 +1,7 @@
 'use strict';
 
-const http = require('http');
+const http = require('http'),
+  logger = require('../../shared/services/logger');
 
 class ProxyService {
   static proxyRequest(request, response) {
@@ -11,17 +12,17 @@ class ProxyService {
       method: request.method,
       headers: request.headers
     }, (proxyResponse) => {
-      Proxy.handleProxyResponse(proxyResponse, response);
+      ProxyService.$handleProxyResponse(proxyResponse, response);
     });
 
-    Proxy.mimicRequest(request, proxyRequest);
+    ProxyService.$mimicRequest(request, proxyRequest);
 
     proxyRequest.addListener('error', (err) => {
-      Proxy.errorHandler(err, response);
+      ProxyService.$errorHandler(err, response);
     });
   }
 
-  static mimicRequest(request, proxyRequest) {
+  static $mimicRequest(request, proxyRequest) {
     request.addListener('data', (chunk) => {
       proxyRequest.write(chunk, 'binary');
     });
@@ -31,7 +32,7 @@ class ProxyService {
     });
   }
 
-  static handleProxyResponse(proxyResponse, response) {
+  static $handleProxyResponse(proxyResponse, response) {
     proxyResponse.addListener('data', (chunk) => {
       response.write(chunk, 'binary');
     });
@@ -43,11 +44,49 @@ class ProxyService {
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
   }
 
-  static errorHandler(error, response) {
-      response.statusCode = 502;
-      response.write(`<h1>Interceptor - Error</h1>`);
-      response.write(`<p>${error.toString()}</p>`);
-      response.end();
+  static $errorHandler(error, response) {
+    response.statusCode = 502;
+    response.write(`<h1>Interceptor - Error</h1>`);
+    response.write(`<p>${error.toString()}</p>`);
+    response.end();
+  }
+
+  static createServer(port) {
+    ProxyService.server = http.Server(function(request, response) {
+      ProxyService.proxyRequest(request, response);
+    });
+
+    ProxyService.server.listen(port || 5000); // TODO Make this read from settings
+
+    ProxyService.server.on('error', (error) => {
+      logger.error(error);
+    });
+
+    ProxyService.server.on('close', () => {
+      logger.info('Proxy server that was scheduled for close has been closed');
+    });
+
+    ProxyService.server.on('listening', () => {
+      let address = ProxyService.server.address();
+
+      logger.info(`Proxy server listening on port ${address.port}`);
+    });
+
+    return ProxyService.server;
+  }
+
+  static $destroyServer() {
+    ProxyService.server.close();
+    logger.info('Proxy server has been scheduled for close');
+  }
+
+  static changePort(port) {
+    if (ProxyService.server) {
+      ProxyService.$destroyServer();
+      ProxyService.createServer(port);
+    } else {
+      logger.error('Attempted to change proxy server port when no server was running');
+    }
   }
 }
 
