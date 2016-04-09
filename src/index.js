@@ -1,4 +1,4 @@
 'use strict';
 
 require('./node/proxyServer');
-require('./node/server');
+require('./node/apiServer');
