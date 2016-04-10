@@ -2,8 +2,7 @@
 
 const http = require('http'),
   settings = require('./settings'),
-  logger = require('../../shared/services/logger'),
-  ProxySettings = require('../../shared/entities/proxySettings');
+  logger = require('../../shared/services/logger');
 
 class ProxyService {
   static proxyRequest(request, response) {
@@ -90,15 +89,11 @@ class ProxyService {
     logger.info('Proxy server has been scheduled for close');
   }
 
-  static changeProxySettings(settings) {
-    let proxySettings = new ProxySettings(settings);
-
-    settings.setProxySettings(proxySettings).then(() => {
-      if (ProxyService.server) {
-        ProxyService.$destroyServer();
-      }
-      ProxyService.createServer();
-    });
+  static restartProxyServer() {
+    if (ProxyService.server) {
+      ProxyService.$destroyServer();
+    }
+    ProxyService.createServer();
   }
 }
 
