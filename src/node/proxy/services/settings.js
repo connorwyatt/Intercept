@@ -2,7 +2,7 @@
 
 const DataStore = require('nedb'),
   validateJs = require('validate.js'),
-  settingsConstraints = require('../validation/settingsConstraints'),
+  proxySettingsConstraints = require('./../validation/proxySettingsConstraints'),
   logger = require('../../shared/services/logger'),
   FilenameService = require('../../shared/services/filenameService'),
   TargetHostSettings = require('../../shared/entities/targetHostSettings');
@@ -101,7 +101,7 @@ class Settings {
 
   setProxyPort(port) {
     return new Promise((resolve, reject) => {
-      let errors = validateJs.single(port, settingsConstraints.proxyPort);
+      let errors = validateJs.single(port, proxySettingsConstraints.proxyPort);
 
       if (errors) {
         reject(errors);
