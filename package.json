@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "An app for intercepting requests and modifying the response contents.",
   "scripts": {
+    "installDependencies": "npm i && cd src/node/ && npm i && cd ../ui && npm i",
     "startDev": "./node_modules/.bin/electron ./.builds/dev/"
   },
   "repository": {
