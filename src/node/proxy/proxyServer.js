@@ -1,5 +1,8 @@
 'use strict';
 
-const ProxyService = require('./services/proxyService');
+const settings = require('./services/settings'),
+  ProxyService = require('./services/proxyService');
 
-ProxyService.createServer();
+settings.init().then(() => {
+  ProxyService.createServer();
+});

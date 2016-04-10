@@ -1,6 +1,7 @@
 'use strict';
 
 const http = require('http'),
+  settings = require('./settings'),
   logger = require('../../shared/services/logger');
 
 class ProxyService {
@@ -51,28 +52,30 @@ class ProxyService {
     response.end();
   }
 
-  static createServer(port) {
-    ProxyService.server = http.Server(function(request, response) {
-      ProxyService.proxyRequest(request, response);
+  static createServer() {
+    settings.getProxyPort().then((port) => {
+      if (port) {
+        ProxyService.server = http.Server(function(request, response) {
+          ProxyService.proxyRequest(request, response);
+        });
+
+        ProxyService.server.listen(port);
+
+        ProxyService.server.on('error', (error) => {
+          logger.error(error);
+        });
+
+        ProxyService.server.on('close', () => {
+          logger.info('Proxy server that was scheduled for close has been closed');
+        });
+
+        ProxyService.server.on('listening', () => {
+          let address = ProxyService.server.address();
+
+          logger.info(`Proxy server listening on port ${address.port}`);
+        });
+      }
     });
-
-    ProxyService.server.listen(port || 5000); // TODO Make this read from settings
-
-    ProxyService.server.on('error', (error) => {
-      logger.error(error);
-    });
-
-    ProxyService.server.on('close', () => {
-      logger.info('Proxy server that was scheduled for close has been closed');
-    });
-
-    ProxyService.server.on('listening', () => {
-      let address = ProxyService.server.address();
-
-      logger.info(`Proxy server listening on port ${address.port}`);
-    });
-
-    return ProxyService.server;
   }
 
   static $destroyServer() {
@@ -82,8 +85,10 @@ class ProxyService {
 
   static changePort(port) {
     if (ProxyService.server) {
-      ProxyService.$destroyServer();
-      ProxyService.createServer(port);
+      settings.setProxyPort(port).then(() => {
+        ProxyService.$destroyServer();
+        ProxyService.createServer();
+      });
     } else {
       logger.error('Attempted to change proxy server port when no server was running');
     }
