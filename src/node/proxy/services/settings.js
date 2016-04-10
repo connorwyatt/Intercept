@@ -1,7 +1,6 @@
 'use strict';
 
 const DataStore = require('nedb'),
-  validateJs = require('validate.js'),
   proxySettingsConstraints = require('./../validation/proxySettingsConstraints'),
   logger = require('../../shared/services/logger'),
   FilenameService = require('../../shared/services/filenameService');
@@ -116,41 +115,35 @@ class Settings {
     });
   }
 
-  getProxyPort() {
+  getProxySettings() {
     return new Promise((resolve, reject) => {
       this.$getSettings().then((settings) => {
-        let port;
-
-        if (settings && settings.proxy) {
-          port = settings.proxy.port;
-        }
-
-        resolve(port);
+        resolve(settings.proxy);
       }, (err) => {
         reject(err);
       });
     });
   }
 
-  setProxyPort(port) {
+  setProxySettings(proxySettings) {
     return new Promise((resolve, reject) => {
-      let errors = validateJs.single(port, proxySettingsConstraints.proxyPort);
+      try {
+        proxySettings.validate();
 
-      if (errors) {
-        reject(errors);
-      } else {
         this.$dataStore.update(
           { _id: Settings.$defaultId },
-          { $set: { proxy: { port: port } } },
+          { $set: { proxy: { port: proxySettings.port } } },
           { returnUpdatedDocs: true },
-          (err, count, doc) => {
+          (err, count, settings) => {
             if (err) {
               logger.error(err);
               reject(err);
             } else {
-              resolve(doc.proxyPort);
+              resolve(settings.proxy);
             }
           });
+      } catch (error) {
+        reject(error);
       }
     });
   }

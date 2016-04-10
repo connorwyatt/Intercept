@@ -1,7 +1,7 @@
 'use strict';
 
-const settingsConstraints = {
-  proxyPort: {
+const proxySettingsConstraints = {
+  port: {
     presence: true,
     numericality: {
       noStrings: true
@@ -9,4 +9,4 @@ const settingsConstraints = {
   }
 };
 
-module.exports = settingsConstraints;
+module.exports = proxySettingsConstraints;

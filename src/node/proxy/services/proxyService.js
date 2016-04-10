@@ -2,15 +2,16 @@
 
 const http = require('http'),
   settings = require('./settings'),
-  logger = require('../../shared/services/logger');
+  logger = require('../../shared/services/logger'),
+  ProxySettings = require('../../shared/entities/proxySettings');
 
 class ProxyService {
   static proxyRequest(request, response) {
-    settings.getTargetHostSettings().then((hostConfig) => {
-      if (hostConfig.hostname && hostConfig.port) {
+    settings.getTargetHostSettings().then((targetHostSettings) => {
+      if (targetHostSettings.hostname && targetHostSettings.port) {
         let proxyRequest = http.request({
-          hostname: hostConfig.hostname,
-          port: hostConfig.port,
+          hostname: targetHostSettings.hostname,
+          port: targetHostSettings.port,
           path: request.url,
           method: request.method,
           headers: request.headers
@@ -59,13 +60,13 @@ class ProxyService {
   }
 
   static createServer() {
-    settings.getProxyPort().then((port) => {
-      if (port) {
+    settings.getProxySettings().then((proxySettings) => {
+      if (proxySettings.port) {
         ProxyService.server = http.Server(function(request, response) {
           ProxyService.proxyRequest(request, response);
         });
 
-        ProxyService.server.listen(port);
+        ProxyService.server.listen(proxySettings.port);
 
         ProxyService.server.on('error', (error) => {
           logger.error(error);
@@ -89,8 +90,10 @@ class ProxyService {
     logger.info('Proxy server has been scheduled for close');
   }
 
-  static changePort(port) {
-    settings.setProxyPort(port).then(() => {
+  static changeProxySettings(proxySettings) {
+    let proxySettings = new ProxySettings(proxySettings);
+
+    settings.setProxySettings(proxySettings).then(() => {
       if (ProxyService.server) {
         ProxyService.$destroyServer();
       }
