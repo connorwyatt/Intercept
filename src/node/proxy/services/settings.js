@@ -7,7 +7,7 @@ const DataStore = require('nedb'),
   FilenameService = require('../../shared/services/filenameService');
 
 class Settings {
-  static get defaultId() {
+  static get $defaultId() {
     return '$SETTINGS';
   }
 
@@ -44,7 +44,7 @@ class Settings {
                 reject(err);
               });
             } else {
-              if (docs[0]._id === Settings.defaultId) {
+              if (docs[0]._id === Settings.$defaultId) {
                 resolve();
               } else {
                 logger.warn(`There is already a settings record with an incorrect ID: ${docs[0]._id}, only one is allowed. Resetting settings`);
@@ -65,7 +65,7 @@ class Settings {
 
   getProxyPort() {
     return new Promise((resolve, reject) => {
-      this.$dataStore.findOne({ _id: Settings.defaultId }, (err, doc) => {
+      this.$dataStore.findOne({ _id: Settings.$defaultId }, (err, doc) => {
         if (err) {
           logger.error(err);
           reject(err);
@@ -84,7 +84,7 @@ class Settings {
         reject(errors);
       } else {
         this.$dataStore.update(
-          { _id: Settings.defaultId },
+          { _id: Settings.$defaultId },
           { $set: { proxyPort: port } },
           { returnUpdatedDocs: true },
           (err, count, doc) => {
@@ -119,7 +119,7 @@ class Settings {
 
   insertDefaultRecord() {
     return new Promise((resolve, reject) => {
-      this.$dataStore.insert({ _id: Settings.defaultId }, (err) => {
+      this.$dataStore.insert({ _id: Settings.$defaultId }, (err) => {
         if (err) {
           logger.error(err);
           reject(err);
