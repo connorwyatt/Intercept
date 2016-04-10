@@ -6,7 +6,7 @@ const http = require('http'),
 
 class ProxyService {
   static proxyRequest(request, response) {
-    settings.getTargetHostConfig().then((hostConfig) => {
+    settings.getTargetHostSettings().then((hostConfig) => {
       if (hostConfig.hostname && hostConfig.port) {
         let proxyRequest = http.request({
           hostname: hostConfig.hostname,

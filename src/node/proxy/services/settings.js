@@ -2,7 +2,7 @@
 
 const DataStore = require('nedb'),
   validateJs = require('validate.js'),
-  settingsConstraints = require('./settingsConstraints'),
+  settingsConstraints = require('../validation/settingsConstraints'),
   logger = require('../../shared/services/logger'),
   FilenameService = require('../../shared/services/filenameService');
 
@@ -75,7 +75,7 @@ class Settings {
     });
   }
 
-  getTargetHostConfig() {
+  getTargetHostSettings() {
     return new Promise((resolve, reject) => {
       this.$getSettings().then((settings) => {
         resolve({
@@ -85,7 +85,6 @@ class Settings {
       }, (err) => {
         reject(err);
       });
-
     });
   }
 
@@ -153,5 +152,4 @@ class Settings {
   }
 }
 
-module
-  .exports = new Settings();
+module.exports = new Settings();

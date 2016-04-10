@@ -2,10 +2,13 @@
 
 const express = require('express'),
   path = require('path'),
-  expressApp = express();
+  expressApp = express(),
+  apiRouter = require('./routes/apiRouter');
 
-let uiAppLocation = path.join(__dirname, '../ui');
+expressApp.disable('x-powered-by');
 
-expressApp.use(express.static(uiAppLocation));
+expressApp.use('/api', apiRouter);
+
+expressApp.use(express.static(process.env.UI_ROOT));
 
 module.exports = expressApp;
