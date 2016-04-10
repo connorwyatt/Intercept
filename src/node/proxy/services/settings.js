@@ -4,8 +4,7 @@ const DataStore = require('nedb'),
   validateJs = require('validate.js'),
   proxySettingsConstraints = require('./../validation/proxySettingsConstraints'),
   logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService'),
-  TargetHostSettings = require('../../shared/entities/targetHostSettings');
+  FilenameService = require('../../shared/services/filenameService');
 
 class Settings {
   static get $defaultId() {
