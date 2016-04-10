@@ -28,8 +28,14 @@ targetHostSettingsRouter.route('')
   .put((request, response) => {
     let requestBody = new TargetHostSettings(request.body);
 
-    settings.setTargetHostSettings(requestBody).then((targetHostSettings) => {
-      response.send(targetHostSettings);
+    settings.setTargetHostSettings(requestBody).then((settings) => {
+      let targetHostSettings = new TargetHostSettings(settings);
+
+      let to = new TargetHostSettingsTO(targetHostSettings);
+
+      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+
+      response.send(apiResponseBuilder.get());
     }, (err) => {
       if (err instanceof ValidationException) {
         let apiResponseBuilder = new APIResponseBuilder(null, null, err.formattedErrors);
