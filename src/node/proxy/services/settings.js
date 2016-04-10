@@ -30,6 +30,7 @@ class Settings {
               logger.error(err);
               reject(err);
             } else if (docs.length === 0) {
+              logger.info('Initialising settings');
               this.insertDefaultRecord().then(() => {
                 resolve();
               }, (err) => {
@@ -78,10 +79,7 @@ class Settings {
   getTargetHostSettings() {
     return new Promise((resolve, reject) => {
       this.$getSettings().then((settings) => {
-        resolve({
-          hostname: settings.targetHostname,
-          port: settings.targetPort
-        });
+        resolve(settings.targetHost);
       }, (err) => {
         reject(err);
       });
@@ -97,20 +95,19 @@ class Settings {
           { _id: Settings.$defaultId },
           {
             $set: {
-              targetHostname: targetHostSettings.hostname,
-              targetPort: targetHostSettings.port
+              targetHost: {
+                hostname: targetHostSettings.hostname,
+                port: targetHostSettings.port
+              }
             }
           },
           { returnUpdatedDocs: true },
-          (err, count, doc) => {
+          (err, count, settings) => {
             if (err) {
               logger.error(err);
               reject(err);
             } else {
-              resolve({
-                hostname: doc.targetHostname,
-                port: doc.targetPort
-              });
+              resolve(settings.targetHost);
             }
           });
       } catch (exception) {
@@ -122,7 +119,13 @@ class Settings {
   getProxyPort() {
     return new Promise((resolve, reject) => {
       this.$getSettings().then((settings) => {
-        resolve(settings.proxyPort);
+        let port;
+
+        if (settings && settings.proxy) {
+          port = settings.proxy.port;
+        }
+
+        resolve(port);
       }, (err) => {
         reject(err);
       });
@@ -138,7 +141,7 @@ class Settings {
       } else {
         this.$dataStore.update(
           { _id: Settings.$defaultId },
-          { $set: { proxyPort: port } },
+          { $set: { proxy: { port: port } } },
           { returnUpdatedDocs: true },
           (err, count, doc) => {
             if (err) {
@@ -171,14 +174,16 @@ class Settings {
 
   insertDefaultRecord() {
     return new Promise((resolve, reject) => {
-      this.$dataStore.insert({ _id: Settings.$defaultId }, (err) => {
-        if (err) {
-          logger.error(err);
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
+      this.$dataStore.insert(
+        { _id: Settings.$defaultId, proxy: {}, targetHost: {} },
+        (err) => {
+          if (err) {
+            logger.error(err);
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
     });
   }
 }
