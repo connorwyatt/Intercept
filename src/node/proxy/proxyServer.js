@@ -5,4 +5,5 @@ const settings = require('./services/settings'),
 
 settings.init().then(() => {
   ProxyService.createServer();
+  ProxyService.changePort(5000);
 });

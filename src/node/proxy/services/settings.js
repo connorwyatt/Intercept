@@ -33,8 +33,7 @@ class Settings {
               this.insertDefaultRecord().then(() => {
                 resolve();
               }, (err) => {
-                logger.error(err);
-                reject();
+                reject(err);
               });
             } else if (docs.length > 1) {
               logger.warn(`Only 1 settings record is allowed, ${docs.length} were found. Resetting settings`);
@@ -63,15 +62,39 @@ class Settings {
     });
   }
 
-  getProxyPort() {
+  $getSettings() {
     return new Promise((resolve, reject) => {
       this.$dataStore.findOne({ _id: Settings.$defaultId }, (err, doc) => {
         if (err) {
           logger.error(err);
           reject(err);
         } else {
-          resolve(doc.proxyPort);
+          resolve(doc);
         }
+      });
+    });
+  }
+
+  getTargetHostConfig() {
+    return new Promise((resolve, reject) => {
+      this.$getSettings().then((settings) => {
+        resolve({
+          hostname: settings.targetHostname,
+          port: settings.targetPort
+        });
+      }, (err) => {
+        reject(err);
+      });
+
+    });
+  }
+
+  getProxyPort() {
+    return new Promise((resolve, reject) => {
+      this.$getSettings().then((settings) => {
+        resolve(settings.proxyPort);
+      }, (err) => {
+        reject(err);
       });
     });
   }
@@ -109,7 +132,6 @@ class Settings {
           this.insertDefaultRecord().then(() => {
             resolve();
           }, (err) => {
-            logger.error(err);
             reject(err);
           });
         }
@@ -131,4 +153,5 @@ class Settings {
   }
 }
 
-module.exports = new Settings();
+module
+  .exports = new Settings();

@@ -6,20 +6,26 @@ const http = require('http'),
 
 class ProxyService {
   static proxyRequest(request, response) {
-    let proxyRequest = http.request({
-      hostname: 'localhost', // TODO Make this read from settings
-      port: 3000, // TODO Make this read from settings
-      path: request.url,
-      method: request.method,
-      headers: request.headers
-    }, (proxyResponse) => {
-      ProxyService.$handleProxyResponse(proxyResponse, response);
-    });
+    settings.getTargetHostConfig().then((hostConfig) => {
+      if (hostConfig.hostname && hostConfig.port) {
+        let proxyRequest = http.request({
+          hostname: hostConfig.hostname,
+          port: hostConfig.port,
+          path: request.url,
+          method: request.method,
+          headers: request.headers
+        }, (proxyResponse) => {
+          ProxyService.$handleProxyResponse(proxyResponse, response);
+        });
 
-    ProxyService.$mimicRequest(request, proxyRequest);
+        ProxyService.$mimicRequest(request, proxyRequest);
 
-    proxyRequest.addListener('error', (err) => {
-      ProxyService.$errorHandler(err, response);
+        proxyRequest.addListener('error', (err) => {
+          ProxyService.$errorHandler(err, response);
+        });
+      } else {
+        ProxyService.$errorHandler('The hostname and port number have not been configured. Please configure them before attempting to access the proxy server.', response);
+      }
     });
   }
 
@@ -84,14 +90,12 @@ class ProxyService {
   }
 
   static changePort(port) {
-    if (ProxyService.server) {
-      settings.setProxyPort(port).then(() => {
+    settings.setProxyPort(port).then(() => {
+      if (ProxyService.server) {
         ProxyService.$destroyServer();
-        ProxyService.createServer();
-      });
-    } else {
-      logger.error('Attempted to change proxy server port when no server was running');
-    }
+      }
+      ProxyService.createServer();
+    });
   }
 }
 
