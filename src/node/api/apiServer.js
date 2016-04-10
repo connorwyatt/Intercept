@@ -2,7 +2,7 @@
 
 const http = require('http'),
   express = require('express'),
-  expressApp = require('../app'),
+  expressApp = require('./expressApp'),
   electronApp = require('../../ui/electron'),
   logger = require('../shared/services/logger');
 
