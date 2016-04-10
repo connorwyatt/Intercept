@@ -1,18 +1,24 @@
 'use strict';
 
 const express = require('express'),
-  settings = require('../../../../proxy/services/settings');
+  settings = require('../../../../proxy/services/settings'),
+  APIResponseBuilder = require('../../../services/apiResponseBuilder'),
+  TargetHostSettingsTO = require('../../../transferObjects/targetHostSettingsTO');
 
-let targetConfigRouter = express.Router();
+let targetHostSettingsRouter = express.Router();
 
-targetConfigRouter.route('')
+targetHostSettingsRouter.route('')
 
   .get((request, response) => {
-    settings.getTargetHostSettings().then((targetHostConfig) => {
-      response.send(targetHostConfig);
+    settings.getTargetHostSettings().then((targetHostSettings) => {
+      let to = new TargetHostSettingsTO(targetHostSettings);
+
+      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+
+      response.send(apiResponseBuilder.get());
     }, () => {
       response.status(500).end();
     });
   });
 
-module.exports = targetConfigRouter;
+module.exports = targetHostSettingsRouter;

@@ -4,7 +4,8 @@ const DataStore = require('nedb'),
   validateJs = require('validate.js'),
   settingsConstraints = require('../validation/settingsConstraints'),
   logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService');
+  FilenameService = require('../../shared/services/filenameService'),
+  TargetHostSettings = require('../../shared/entities/targetHostSettings');
 
 class Settings {
   static get $defaultId() {
@@ -78,10 +79,10 @@ class Settings {
   getTargetHostSettings() {
     return new Promise((resolve, reject) => {
       this.$getSettings().then((settings) => {
-        resolve({
+        resolve(new TargetHostSettings({
           hostname: settings.targetHostname,
           port: settings.targetPort
-        });
+        }));
       }, (err) => {
         reject(err);
       });
