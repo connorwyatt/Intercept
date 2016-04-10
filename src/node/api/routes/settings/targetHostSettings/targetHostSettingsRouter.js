@@ -4,7 +4,8 @@ const express = require('express'),
   settings = require('../../../../proxy/services/settings'),
   APIResponseBuilder = require('../../../services/apiResponseBuilder'),
   TargetHostSettings = require('../../../../shared/entities/targetHostSettings'),
-  TargetHostSettingsTO = require('../../../transferObjects/targetHostSettingsTO');
+  TargetHostSettingsTO = require('../../../transferObjects/targetHostSettingsTO'),
+  ValidationException = require('../../../../shared/throwables/validationException');
 
 let targetHostSettingsRouter = express.Router();
 
@@ -21,6 +22,22 @@ targetHostSettingsRouter.route('')
       response.send(apiResponseBuilder.get());
     }, () => {
       response.status(500).end();
+    });
+  })
+
+  .put((request, response) => {
+    let requestBody = new TargetHostSettings(request.body);
+
+    settings.setTargetHostSettings(requestBody).then((targetHostSettings) => {
+      response.send(targetHostSettings);
+    }, (err) => {
+      if (err instanceof ValidationException) {
+        let apiResponseBuilder = new APIResponseBuilder(null, null, err.formattedErrors);
+
+        response.status(400).send(apiResponseBuilder.get());
+      } else {
+        response.status(500).end();
+      }
     });
   });
 

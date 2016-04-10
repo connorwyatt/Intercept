@@ -4,7 +4,8 @@ const DataStore = require('nedb'),
   validateJs = require('validate.js'),
   proxySettingsConstraints = require('./../validation/proxySettingsConstraints'),
   logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService');
+  FilenameService = require('../../shared/services/filenameService'),
+  TargetHostSettings = require('../../shared/entities/targetHostSettings');
 
 class Settings {
   static get $defaultId() {
@@ -85,6 +86,37 @@ class Settings {
       }, (err) => {
         reject(err);
       });
+    });
+  }
+
+  setTargetHostSettings(targetHostSettings) {
+    return new Promise((resolve, reject) => {
+      try {
+        targetHostSettings.validate();
+
+        this.$dataStore.update(
+          { _id: Settings.$defaultId },
+          {
+            $set: {
+              targetHostname: targetHostSettings.hostname,
+              targetPort: targetHostSettings.port
+            }
+          },
+          { returnUpdatedDocs: true },
+          (err, count, doc) => {
+            if (err) {
+              logger.error(err);
+              reject(err);
+            } else {
+              resolve({
+                hostname: doc.targetHostname,
+                port: doc.targetPort
+              });
+            }
+          });
+      } catch (exception) {
+        reject(exception);
+      }
     });
   }
 
