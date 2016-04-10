@@ -90,8 +90,8 @@ class ProxyService {
     logger.info('Proxy server has been scheduled for close');
   }
 
-  static changeProxySettings(proxySettings) {
-    let proxySettings = new ProxySettings(proxySettings);
+  static changeProxySettings(settings) {
+    let proxySettings = new ProxySettings(settings);
 
     settings.setProxySettings(proxySettings).then(() => {
       if (ProxyService.server) {
