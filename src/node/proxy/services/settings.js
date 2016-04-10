@@ -58,7 +58,7 @@ class Settings {
           });
         }
 
-        this.$dataStore.persistence.setAutocompactionInterval(1000);
+        this.$dataStore.persistence.setAutocompactionInterval(30000);
       });
     });
   }
