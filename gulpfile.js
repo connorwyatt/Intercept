@@ -4,6 +4,7 @@ const gulp = require('gulp'),
   runSequence = require('run-sequence'),
   del = require('del'),
   changed = require('gulp-changed'),
+  sourcemaps = require('gulp-sourcemaps'),
   typescript = require('gulp-typescript');
 
 const config = require('./gulpConfig');
@@ -53,8 +54,10 @@ gulp.task('compileTypescript', () => {
       '!' + envConfig.paths.uiNodeModulesFiles
     ])
     .pipe(changed(envConfig.paths.buildDirectory, { extension: '.js' }))
+    .pipe(sourcemaps.init())
     .pipe(typescript(tsConfig))
     .js
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
