@@ -15,7 +15,13 @@ app.on('window-all-closed', function() {
 
 function startElectronApp(port) {
   app.on('ready', function() {
-    mainWindow = new BrowserWindow({ width: 1200, height: 900 });
+    mainWindow = new BrowserWindow({
+      width: 1200,
+      height: 900,
+      webPreferences: {
+        nodeIntegration: false
+      }
+    });
 
     let uiUrl = url.format({
       protocol: 'http',
