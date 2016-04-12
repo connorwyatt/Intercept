@@ -25,7 +25,7 @@ export class InDashboard implements OnInit {
   }
 
   private getProxySettings() {
-    this.http.get('/api/settings/proxy')
+    this.http.get('/settings/proxy')
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
         this.proxySettingsResolved = true;
@@ -35,7 +35,7 @@ export class InDashboard implements OnInit {
   }
 
   private getTargetHostSettings() {
-    this.http.get('/api/settings/targetHost')
+    this.http.get('/settings/targetHost')
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
         this.targetHostSettingsResolved = true;
@@ -47,7 +47,7 @@ export class InDashboard implements OnInit {
   private onSubmitProxySettings(form: NgForm) {
     this.proxySettingsSubmitting = true;
 
-    this.http.put('/api/settings/proxy', form.value)
+    this.http.put('/settings/proxy', form.value)
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
       }, (error) => {
@@ -60,7 +60,7 @@ export class InDashboard implements OnInit {
   private onSubmitTargetHostSettings(form: NgForm) {
     this.targetHostSettingsSubmitting = true;
 
-    this.http.put('/api/settings/targetHost', form.value)
+    this.http.put('/settings/targetHost', form.value)
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
       }, (error) => {

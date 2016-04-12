@@ -1,9 +1,11 @@
+import { Injectable } from 'angular2/core';
 import { Http, Headers, RequestOptionsArgs } from 'angular2/http';
 import { Observable } from 'rxjs/Observable';
 
+@Injectable()
 export class InHttp {
   private http: Http;
-  private baseUrl: string = '/api/';
+  private baseUrl: string = '/api';
 
   constructor(http: Http) {
     this.http = http;
