@@ -1,1 +1,36 @@
-DASHBOARD
+<h1>Dashboard</h1>
+
+<form *ngIf="proxySettingsResolved" (ngSubmit)="onSubmitProxySettings(proxySettingsForm)" #proxySettingsForm="ngForm">
+  <h2>Proxy Settings</h2>
+
+  <div>
+    <label for="proxySettingsPort">Port:</label>
+    <input type="number" id="proxySettingsPort" [(ngModel)]="proxySettings.port" ngControl="port"/>
+  </div>
+
+  <div>
+    <button type="submit">Save</button>
+  </div>
+
+  <p *ngIf="proxySettingsSubmitting">Submitting...</p>
+</form>
+
+<form *ngIf="targetHostSettingsResolved" (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)" #targetHostSettingsForm="ngForm">
+  <h2>Target Host Settings</h2>
+
+  <div>
+    <label for="targetHostSettingsHostname">Hostname:</label>
+    <input type="text" id="targetHostSettingsHostname" [(ngModel)]="targetHostSettings.hostname" ngControl="hostname"/>
+  </div>
+
+  <div>
+    <label for="targetHostSettingsPort">Port:</label>
+    <input type="number" id="targetHostSettingsPort" [(ngModel)]="targetHostSettings.port" ngControl="port"/>
+  </div>
+
+  <div>
+    <button type="submit">Save</button>
+  </div>
+
+  <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
+</form>
