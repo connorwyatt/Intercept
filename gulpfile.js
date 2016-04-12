@@ -77,9 +77,9 @@ gulp.task('compileTypescriptWatch', () => {
     envConfig.paths.typescriptFiles,
     'src/node_modules/angular2/typings/browser.d.ts',
     '!' + envConfig.paths.uiNodeModulesFiles
-  ], ['compileTypescript']);
+  ], { interval: 1000 }, ['compileTypescript']);
 });
 
 gulp.task('moveStaticFilesWatch', () => {
-  return gulp.watch(envConfig.paths.staticFiles, ['moveStaticFiles']);
+  return gulp.watch(envConfig.paths.staticFiles, { interval: 1000 }, ['moveStaticFiles']);
 });
