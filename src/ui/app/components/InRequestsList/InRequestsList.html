@@ -1,0 +1,22 @@
+<h2>Requests List</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Time</th>
+    <th>Method</th>
+    <th>Status Code</th>
+    <th>URL</th>
+    <th>Latency</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="#request of requests | inReverse" [style.color]="hasError(request)">
+    <td>{{ request.timestamp | date : 'short' }}</td>
+    <td>{{ request.method }}</td>
+    <td>{{ request.statusCode }}</td>
+    <td>{{ 'http://' + request.hostname + ':' + request.port + request.url }}</td>
+    <td>{{ request.latency }}</td>
+  </tr>
+  </tbody>
+</table>
