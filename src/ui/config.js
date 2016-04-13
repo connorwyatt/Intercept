@@ -10,6 +10,7 @@ System.config({
   },
 
   map: {
-    'es6-shim': 'node_modules/es6-shim/es6-shim'
+    'es6-shim': 'node_modules/es6-shim/es6-shim',
+    'socket.io': 'node_modules/socket.io-client/socket.io'
   }
 });

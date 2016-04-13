@@ -4,6 +4,7 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import { APP_BASE_HREF, ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import { InApp } from './InApp';
 import { InHttp } from './services/InHttp';
+import { InSocket } from './services/InSocket';
 import 'es6-shim';
 import 'rxjs/Rx';
 
@@ -12,5 +13,6 @@ bootstrap(InApp, [
   ROUTER_PROVIDERS,
   provide(LocationStrategy, { useClass: HashLocationStrategy }),
   provide(APP_BASE_HREF, { useValue: '/' }),
-  InHttp
+  InHttp,
+  InSocket
 ]);
