@@ -1,13 +1,25 @@
 'use strict';
 
 const http = require('http'),
+  crypto = require('crypto'),
   settings = require('./settings'),
-  logger = require('../../shared/services/logger');
+  logger = require('../../shared/services/logger'),
+  ioAppManager = require('../../api/services/ioAppManager'),
+  RequestStartTO = require('../../api/transferObjects/requestStartTO'),
+  RequestEndTO = require('../../api/transferObjects/requestEndTO');
 
 class ProxyService {
   static proxyRequest(request, response) {
     settings.getTargetHostSettings().then((targetHostSettings) => {
       if (targetHostSettings.hostname && targetHostSettings.port) {
+        request.startTimestamp = new Date();
+
+        request.id = crypto.randomBytes(20).toString('hex');
+
+        let requestStartTO = new RequestStartTO(request, targetHostSettings.hostname, targetHostSettings.port);
+
+        ioAppManager.getIoApp().of('/requests').emit('requestStart', JSON.stringify(requestStartTO));
+
         let proxyRequest = http.request({
           hostname: targetHostSettings.hostname,
           port: targetHostSettings.port,
@@ -15,7 +27,7 @@ class ProxyService {
           method: request.method,
           headers: request.headers
         }, (proxyResponse) => {
-          ProxyService.$handleProxyResponse(proxyResponse, response);
+          ProxyService.$handleProxyResponse(request, proxyResponse, response);
         });
 
         ProxyService.$mimicRequest(request, proxyRequest);
@@ -39,13 +51,17 @@ class ProxyService {
     });
   }
 
-  static $handleProxyResponse(proxyResponse, response) {
+  static $handleProxyResponse(request, proxyResponse, response) {
     proxyResponse.addListener('data', (chunk) => {
       response.write(chunk, 'binary');
     });
 
     proxyResponse.addListener('end', () => {
       response.end();
+
+      let requestEndTO = new RequestEndTO(request, response);
+
+      ioAppManager.getIoApp().of('/requests').emit('requestEnd', JSON.stringify(requestEndTO));
     });
 
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
