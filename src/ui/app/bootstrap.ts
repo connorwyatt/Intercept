@@ -5,6 +5,7 @@ import { APP_BASE_HREF, ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy
 import { InApp } from './InApp';
 import { InHttp } from './services/InHttp';
 import { InSocket } from './services/InSocket';
+import { InRequestsHelper } from './services/InRequestsHelper';
 import 'es6-shim';
 import 'rxjs/Rx';
 
@@ -14,5 +15,6 @@ bootstrap(InApp, [
   provide(LocationStrategy, { useClass: HashLocationStrategy }),
   provide(APP_BASE_HREF, { useValue: '/' }),
   InHttp,
-  InSocket
+  InSocket,
+  InRequestsHelper
 ]);
