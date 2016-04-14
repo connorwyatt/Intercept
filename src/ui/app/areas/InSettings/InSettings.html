@@ -1,4 +1,4 @@
-<h1>Dashboard</h1>
+<h1>Settings</h1>
 
 <form *ngIf="proxySettingsResolved" (ngSubmit)="onSubmitProxySettings(proxySettingsForm)" #proxySettingsForm="ngForm">
   <h2>Proxy Settings</h2>
@@ -34,5 +34,3 @@
 
   <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
 </form>
-
-<in-requests-list [requests]="requests"></in-requests-list>

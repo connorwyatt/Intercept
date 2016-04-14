@@ -1,15 +1,12 @@
 import { Component, OnInit } from 'angular2/core';
 import { NgForm } from 'angular2/common';
-import { InHttp } from '../services/InHttp';
-import { InSocket } from '../services/InSocket';
-import { InRequestsList } from '../components/InRequestsList/InRequestsList.component';
+import { InHttp } from '../../services/InHttp';
 
 @Component({
-  selector: 'in-dashboard',
-  templateUrl: 'app/areas/InDashboard.html',
-  directives: [[InRequestsList]]
+  selector: 'in-settings',
+  templateUrl: 'app/areas/InSettings/InSettings.html'
 })
-export class InDashboard implements OnInit {
+export class InSettings implements OnInit {
   private http: InHttp;
   private proxySettings: Object;
   private proxySettingsResolved: Boolean;
@@ -17,18 +14,14 @@ export class InDashboard implements OnInit {
   private targetHostSettingsResolved: Boolean;
   private proxySettingsSubmitting: Boolean;
   private targetHostSettingsSubmitting: Boolean;
-  private requests: Array<IRequest> = [];
-  private socket: InSocket;
 
-  constructor(http: InHttp, socket: InSocket) {
+  constructor(http: InHttp) {
     this.http = http;
-    this.socket = socket;
   }
 
   ngOnInit() {
     this.getProxySettings();
     this.getTargetHostSettings();
-    this.listenForRequests();
   }
 
   private getProxySettings() {
@@ -77,25 +70,5 @@ export class InDashboard implements OnInit {
       }, () => {
         this.targetHostSettingsSubmitting = false;
       });
-  }
-
-  private listenForRequests() {
-    let connection = this.socket.connect('/requests');
-
-    connection.get('requestStart')
-      .map((requestStart: IRequest) => {
-        requestStart.timestamp = new Date(<String> requestStart.timestamp);
-      })
-      .subscribe((requestStart: IRequest) => {
-        this.requests.push(requestStart);
-      });
-
-    connection.get('requestEnd').subscribe((requestEnd: IRequest) => {
-      let request = this.requests.find((request: IRequest) => {
-        return request.id === requestEnd.id;
-      });
-
-      Object.assign(request, requestEnd);
-    });
   }
 }
