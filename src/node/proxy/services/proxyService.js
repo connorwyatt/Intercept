@@ -33,10 +33,10 @@ class ProxyService {
         ProxyService.$mimicRequest(request, proxyRequest);
 
         proxyRequest.addListener('error', (err) => {
-          ProxyService.$errorHandler(err, response);
+          ProxyService.$errorHandler(err, request, response);
         });
       } else {
-        ProxyService.$errorHandler('The hostname and port number have not been configured. Please configure them before attempting to access the proxy server.', response);
+        ProxyService.$errorHandler('The hostname and port number have not been configured. Please configure them before attempting to access the proxy server.', request, response);
       }
     });
   }
@@ -67,11 +67,15 @@ class ProxyService {
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
   }
 
-  static $errorHandler(error, response) {
+  static $errorHandler(error, request, response) {
     response.statusCode = 502;
     response.write(`<h1>Interceptor - Error</h1>`);
     response.write(`<p>${error.toString()}</p>`);
     response.end();
+
+    let requestEndTO = new RequestEndTO(request, response);
+
+    ioAppManager.getIoApp().of('/requests').emit('requestEnd', JSON.stringify(requestEndTO));
   }
 
   static createServer() {
