@@ -17,7 +17,7 @@ export class InDashboard implements OnInit {
   private targetHostSettingsResolved: Boolean;
   private proxySettingsSubmitting: Boolean;
   private targetHostSettingsSubmitting: Boolean;
-  private requests: Array<Object> = [];
+  private requests: Array<IRequest> = [];
   private socket: InSocket;
 
   constructor(http: InHttp, socket: InSocket) {
@@ -81,13 +81,17 @@ export class InDashboard implements OnInit {
 
   private listenForRequests() {
     let connection = this.socket.connect('/requests');
-    connection.get('requestStart').subscribe((requestStart) => {
-      requestStart.timestamp = new Date(requestStart.timestamp);
 
-      this.requests.push(requestStart);
-    });
-    connection.get('requestEnd').subscribe((requestEnd) => {
-      let request = this.requests.find((request) => {
+    connection.get('requestStart')
+      .map((requestStart: IRequest) => {
+        requestStart.timestamp = new Date(<String> requestStart.timestamp);
+      })
+      .subscribe((requestStart: IRequest) => {
+        this.requests.push(requestStart);
+      });
+
+    connection.get('requestEnd').subscribe((requestEnd: IRequest) => {
+      let request = this.requests.find((request: IRequest) => {
         return request.id === requestEnd.id;
       });
 

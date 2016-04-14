@@ -9,9 +9,9 @@ import { InReversePipe } from '../../pipes/InReverse.pipe';
 })
 export class InRequestsList {
   @Input()
-  private requests: Array<Object>;
+  private requests: Array<IRequest>;
 
-  private hasError(request: Object) {
+  private hasError(request: IRequest) {
     if (request && request.statusCode) {
       if (request.statusCode >= 400 && request.statusCode < 600) {
         return 'red';
