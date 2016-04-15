@@ -30,9 +30,7 @@ function startElectronApp(port) {
     });
 
     mainWindow.loadURL(uiUrl);
-
-    mainWindow.webContents.openDevTools();
-
+    
     mainWindow.on('closed', function() {
       mainWindow = null;
     });
