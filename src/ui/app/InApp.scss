@@ -1,0 +1,43 @@
+@import 'styles/theme';
+
+$InApp-header-bar-height: $grid-size * 8;
+$InApp-navigation-bar-width: $grid-size * 8;
+
+.InApp {
+  &-fillerCell {
+    background-color: $color-sky-blue;
+    height: $InApp-header-bar-height;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: $InApp-navigation-bar-width;
+    z-index: 90;
+  }
+
+  &-headerBar {
+    height: $InApp-header-bar-height;
+    left: $InApp-navigation-bar-width;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  &-navigationBar {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    top: $InApp-header-bar-height;
+    width: $InApp-navigation-bar-width;
+    z-index: 100;
+  }
+
+  &-mainView {
+    bottom: 0;
+    left: $InApp-navigation-bar-width;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: $InApp-header-bar-height;
+  }
+}

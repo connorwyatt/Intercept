@@ -1,0 +1,6 @@
+@import 'grid';
+
+@mixin typography-header() {
+  font-size: $text-grid-size * 6;
+  font-weight: 200;
+}

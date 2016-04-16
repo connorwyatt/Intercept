@@ -52,7 +52,7 @@ gulp.task('compileScss', () => {
   return gulp.src([
       envConfig.paths.scssFiles
     ])
-    .pipe(changed(envConfig.paths.buildDirectory, { extension: '.css' }))
+    .pipe(changed(envConfig.paths.buildDirectory))
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())

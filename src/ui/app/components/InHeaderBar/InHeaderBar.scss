@@ -1,0 +1,18 @@
+@import '../../styles/theme';
+
+.InHeaderBar {
+  &-container {
+    align-items: center;
+    background-color: $color-white;
+    box-shadow: $shadow-light;
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+    padding: $grid-size * 2;
+    width: 100%;
+  }
+
+  &-appName {
+    @include typography-header;
+  }
+}
