@@ -8,8 +8,9 @@ const defaults = {
   paths: {
     nodeNodeModulesFiles: 'src/@(node)/node_modules/**/*',
     uiNodeModulesFiles: 'src/@(ui)/node_modules/**/*',
-    staticFiles: 'src/**/!(*.ts)',
-    typescriptFiles: 'src/**/@(*.ts)',
+    scssFiles: 'src/@(ui)/app/**/@(*.scss)',
+    staticFiles: 'src/**/!(*.ts|*.scss)',
+    typescriptFiles: 'src/@(ui)/app/**/@(*.ts)',
     tsConfig: 'src/ui/tsconfig.json'
   }
 };

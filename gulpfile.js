@@ -5,6 +5,7 @@ const gulp = require('gulp'),
   del = require('del'),
   changed = require('gulp-changed'),
   sourcemaps = require('gulp-sourcemaps'),
+  sass = require('gulp-sass'),
   typescript = require('gulp-typescript');
 
 const config = require('./gulpConfig');
@@ -19,11 +20,13 @@ gulp.task('development', () => {
   return runSequence(
     'clean',
     [
+      'compileScss',
       'compileTypescript',
       'moveStaticFiles',
       'moveDependencies'
     ],
     [
+      'compileScssWatch',
       'compileTypescriptWatch',
       'moveStaticFilesWatch'
     ]
@@ -45,13 +48,23 @@ gulp.task('clean', () => {
   return del(envConfig.paths.buildDirectory);
 });
 
+gulp.task('compileScss', () => {
+  return gulp.src([
+      envConfig.paths.scssFiles
+    ])
+    .pipe(changed(envConfig.paths.buildDirectory, { extension: '.css' }))
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(envConfig.paths.buildDirectory));
+});
+
 gulp.task('compileTypescript', () => {
   let tsConfig = typescript.createProject(envConfig.paths.tsConfig);
 
   return gulp.src([
       envConfig.paths.typescriptFiles,
-      'src/node_modules/angular2/typings/browser.d.ts',
-      '!' + envConfig.paths.uiNodeModulesFiles
+      'src/node_modules/angular2/typings/browser.d.ts'
     ])
     .pipe(changed(envConfig.paths.buildDirectory, { extension: '.js' }))
     .pipe(sourcemaps.init())
@@ -72,11 +85,16 @@ gulp.task('moveDependencies', () => {
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
+gulp.task('compileScssWatch', () => {
+  return gulp.watch([
+    envConfig.paths.scssFiles
+  ], { interval: 1000 }, ['compileScss']);
+});
+
 gulp.task('compileTypescriptWatch', () => {
   return gulp.watch([
     envConfig.paths.typescriptFiles,
-    'src/node_modules/angular2/typings/browser.d.ts',
-    '!' + envConfig.paths.uiNodeModulesFiles
+    'src/node_modules/angular2/typings/browser.d.ts'
   ], { interval: 1000 }, ['compileTypescript']);
 });
 
