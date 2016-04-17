@@ -1,5 +1,7 @@
 <div class="InNavigationBar-container">
-  <in-navigation-bar-tile class="InNavigationBar-tile"
-                          [link]="['Dashboard']"
-                          [label]="'Dashboard'"></in-navigation-bar-tile>
+  <in-navigation-bar-tile *ngFor="#link of links"
+                          class="InNavigationBar-tile"
+                          [link]="link.link"
+                          [label]="link.label"
+                          [icon]="link.icon"></in-navigation-bar-tile>
 </div>

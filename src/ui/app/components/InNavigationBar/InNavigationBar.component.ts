@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from 'angular2/core';
+import { Component, ViewEncapsulation, Input } from 'angular2/core';
 import { InNavigationBarTile } from './InNavigationBarTile/InNavigationBarTile.component';
+import { IInLink } from '../../interfaces/IInLink';
 
 declare const __moduleName: string;
 
@@ -15,4 +16,6 @@ declare const __moduleName: string;
   encapsulation: ViewEncapsulation.Native
 })
 export class InNavigationBar {
+  @Input()
+  private links: Array<IInLink>;
 }

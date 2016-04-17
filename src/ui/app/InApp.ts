@@ -4,6 +4,7 @@ import { InHeaderBar } from './components/InHeaderBar/InHeaderBar.component';
 import { InNavigationBar } from './components/InNavigationBar/InNavigationBar.component';
 import { InDashboard } from './areas/InDashboard/InDashboard';
 import { InSettings } from './areas/InSettings/InSettings';
+import { IInLink } from './interfaces/IInLink';
 
 declare const __moduleName: string;
 
@@ -23,4 +24,16 @@ declare const __moduleName: string;
   { path: '/settings', name: 'Settings', component: InSettings }
 ])
 export class InApp {
+  private links: Array<IInLink> = [
+    {
+      link: ['Dashboard'],
+      label: 'Dashboard',
+      icon: 'dashboard'
+    },
+    {
+      link: ['Settings'],
+      label: 'Settings',
+      icon: 'settings'
+    }
+  ];
 }
