@@ -1,16 +1,17 @@
 <div class="InDashboard">
-  <article class="InCard InCard--color InDashboard-card">
+  <article class="InCard InCard--color InDashboard-card"
+  *ngIf="proxySettingsResolved && targetHostSettingsResolved">
     <header class="InCard-header">
       <h2 class="InCard-heading">Information</h2>
     </header>
     <div class="InCard-content">
       <div class="InCard-columnHalfWidth">
         <h3 class="InCard-subheading">Proxy Server</h3>
-        <p class="InCard-paragraph">Proxy is running on port 5000.</p>
+        <p class="InCard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
       </div>
       <div class="InCard-columnHalfWidth">
         <h3 class="InCard-subheading">Proxy Target</h3>
-        <p class="InCard-paragraph">Proxy target is localhost on port 3000.</p>
+        <p class="InCard-paragraph">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
       </div>
     </div>
   </article>
