@@ -3,7 +3,7 @@ import { InCard } from '../../components/InCard/InCard.component';
 import { InRequestsList } from '../../components/InRequestsList/InRequestsList.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 
-declare const __moduleName: String;
+declare const __moduleName: string;
 
 @Component({
   moduleId: __moduleName,
