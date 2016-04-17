@@ -19,7 +19,9 @@
   &:hover,
   &:focus {
     background-color: $color-deep-sky-blue;
+  }
 
+  &:hover {
     .InNavigationBarTile {
       &-popupContainer {
         left: calc(100% + #{$grid-size});
@@ -46,7 +48,7 @@
   &-popup {
     background-color: $color-dark-blue;
     border-radius: $grid-size;
-    box-shadow: $shadow-light;
+    box-shadow: $shadow-dark;
     color: $color-white;
     padding: $grid-size;
 

@@ -1,4 +1,6 @@
 @import 'colors';
 
-$shadow-light: 0 0 3px $color-shadow;
+$shadow-light: 0 0 3px $color-shadow-light;
 $shadow-light-inset: $shadow-light inset;
+$shadow-dark: 0 0 5px $color-shadow-dark;
+$shadow-dark-inset: $shadow-dark inset;
