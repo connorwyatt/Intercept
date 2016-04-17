@@ -1,10 +1,19 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit, ViewEncapsulation } from 'angular2/core';
 import { NgForm } from 'angular2/common';
 import { InHttp } from '../../services/InHttp';
 
+declare const __moduleName: string;
+
 @Component({
+  moduleId: __moduleName,
   selector: 'in-settings',
-  templateUrl: 'app/areas/InSettings/InSettings.html'
+  templateUrl: 'InSettings.html',
+  styleUrls: [
+    '../../styles/core.css',
+    '../../components/InCard/InCard.css',
+    '../../components/InGrid/InGrid.css'
+  ],
+  encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {
   private http: InHttp;
