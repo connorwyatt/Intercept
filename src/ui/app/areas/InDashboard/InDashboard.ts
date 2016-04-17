@@ -1,8 +1,11 @@
 import { Component, ViewEncapsulation, OnInit } from 'angular2/core';
 import { InCard } from '../../components/InCard/InCard.component';
+import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
 import { InRequestsList } from '../../components/InRequestsList/InRequestsList.component';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
+import { IInRequest } from '../../interfaces/IInRequest';
+import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
 
 declare const __moduleName: string;
 
@@ -17,7 +20,7 @@ declare const __moduleName: string;
     'InDashboard.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InRequestsList]]
+  directives: [[InCard, InStatusIndicator, InRequestsList]]
 })
 export class InDashboard implements OnInit {
   private requestsHelper: InRequestsHelper;
@@ -27,8 +30,20 @@ export class InDashboard implements OnInit {
   private targetHostSettings: Object;
   private targetHostSettingsResolved: boolean;
 
-  private get requests() {
+  private get requests(): Array<IInRequest> {
     return this.requestsHelper.getRequests();
+  }
+
+  private get proxyStatus(): InStatusIndication {
+    let proxyStatus: InStatusIndication;
+    
+    if (this.proxySettings.port > 0) {
+      proxyStatus = InStatusIndication.Positive;
+    } else {
+      proxyStatus = InStatusIndication.Negative;
+    }
+
+    return proxyStatus;
   }
 
   constructor(requestsHelper: InRequestsHelper,

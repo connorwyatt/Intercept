@@ -6,10 +6,14 @@
     <div in-card-content class="InDashboard-columns">
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Server</h3>
-        <p *ngIf="proxySettings.port"
-           class="InDashboard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
-        <p *ngIf="!proxySettings.port"
-           class="InDashboard-paragraph">Proxy is not currently running.</p>
+        <div class="InDashboard-statusParagraph">
+          <in-status-indicator class="InDashboard-status"
+                               [status]="proxyStatus"></in-status-indicator>
+          <p *ngIf="proxySettings.port"
+             class="InDashboard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
+          <p *ngIf="!proxySettings.port"
+             class="InDashboard-paragraph">Proxy is not currently running.</p>
+        </div>
       </div>
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Target</h3>

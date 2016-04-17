@@ -19,4 +19,22 @@
     @include typography-paragraph;
     color: $color-text-inverted;
   }
+
+  &-statusParagraph {
+    align-items: center;
+    display: flex;
+
+    .InDashboard {
+      &-status {
+        flex: 0 0 $grid-size;
+        height: $grid-size;
+        margin-right: $grid-size;
+        width: $grid-size;
+      }
+
+      &-paragraph {
+        flex: 1 1 auto;
+      }
+    }
+  }
 }
