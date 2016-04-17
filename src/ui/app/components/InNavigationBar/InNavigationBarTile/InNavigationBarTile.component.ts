@@ -1,5 +1,6 @@
 import { Component, Input, ViewEncapsulation } from 'angular2/core';
 import { Router } from 'angular2/router';
+import { InIcon } from '../../InIcon/InIcon.component';
 
 declare const __moduleName: string;
 
@@ -11,14 +12,18 @@ declare const __moduleName: string;
     '../../../styles/core.css',
     'InNavigationBarTile.css'
   ],
+  directives: [[InIcon]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InNavigationBarTile {
   @Input()
-  private link: Array<String>;
+  private link: Array<string>;
 
   @Input()
-  private label: String;
+  private label: string;
+
+  @Input()
+  private icon: string;
 
   private get isRouteActive() {
     return this.router.isRouteActive(this.router.generate(this.link));
