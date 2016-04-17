@@ -1,11 +1,13 @@
 import { Component, ViewEncapsulation, OnInit } from 'angular2/core';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
-import { InRequestsList } from '../../components/InRequestsList/InRequestsList.component';
+import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
+import { InTable } from '../../components/InTable/InTable.component';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { IInRequest } from '../../interfaces/IInRequest';
-import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
+import { IInTableField } from '../../components/InTable/IInTableField';
+import { InReversePipe } from '../../pipes/InReverse.pipe';
 
 declare const __moduleName: string;
 
@@ -20,7 +22,8 @@ declare const __moduleName: string;
     'InDashboard.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InStatusIndicator, InRequestsList]]
+  directives: [[InCard, InStatusIndicator, InTable]],
+  pipes: [InReversePipe]
 })
 export class InDashboard implements OnInit {
   private requestsHelper: InRequestsHelper;
@@ -29,6 +32,11 @@ export class InDashboard implements OnInit {
   private proxySettingsResolved: boolean;
   private targetHostSettings: Object;
   private targetHostSettingsResolved: boolean;
+  private requestsFields: Array<IInTableField> = [
+    { fieldname: 'method', label: 'Method' },
+    { fieldname: 'statusCode', label: 'Status Code' },
+    { fieldname: 'url', label: 'URL' }
+  ];
 
   private get requests(): Array<IInRequest> {
     return this.requestsHelper.getRequests();
@@ -36,7 +44,7 @@ export class InDashboard implements OnInit {
 
   private get proxyStatus(): InStatusIndication {
     let proxyStatus: InStatusIndication;
-    
+
     if (this.proxySettings.port > 0) {
       proxyStatus = InStatusIndication.Positive;
     } else {
@@ -75,5 +83,13 @@ export class InDashboard implements OnInit {
       }, (error) => {
         console.error(error);
       });
+  }
+
+  private requestsRowClass(model: Object): string {
+    if (model.statusCode >= 400 && model.statusCode < 600) {
+      return 'negative';
+    } else {
+      return 'positive';
+    }
   }
 }

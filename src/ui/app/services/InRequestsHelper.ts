@@ -39,4 +39,8 @@ export class InRequestsHelper {
   public getRequests(): Array<IInRequest> {
     return this.requests;
   }
+
+  public clearRequests(): void {
+    this.requests = [];
+  }
 }

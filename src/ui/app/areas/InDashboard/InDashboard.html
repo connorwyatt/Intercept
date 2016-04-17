@@ -27,8 +27,8 @@
 
   <in-card class="InGrid-item">
     <span in-card-heading>Requests</span>
-    <div in-card-content>
-      <in-requests-list [requests]="requests"></in-requests-list>
+    <div in-card-content class="InDashboard-tableContainer">
+      <in-table [fields]="requestsFields" [data]="requests | inReverse | slice : 0 : 100" [rowClass]="requestsRowClass"></in-table>
     </div>
   </in-card>
 </div>

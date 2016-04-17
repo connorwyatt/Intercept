@@ -1,0 +1,38 @@
+@import '../../styles/theme';
+
+.InTable {
+  border-collapse: collapse;
+  border-radius: $border-radius-standard;
+  overflow: hidden;
+  width: 100%;
+
+  &-row {
+    &:nth-child(odd) {
+      background-color: $color-white-steam;
+    }
+
+    &.is-positive {
+      color: $color-green;
+    }
+
+    &.is-negative {
+      color: $color-red;
+    }
+  }
+
+  &-headerRow {
+    background-color: $color-sky-blue;
+    color: $color-white;
+  }
+
+  &-cell {
+    @include typography-paragraph;
+    padding: 0 $grid-size-text * 2;
+  }
+
+  &-headerCell {
+    @extend .InTable-cell;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+}

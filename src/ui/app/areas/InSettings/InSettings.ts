@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from 'angular2/core';
 import { NgForm } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InHttp } from '../../services/InHttp';
+import { InRequestsHelper } from '../../services/InRequestsHelper';
 
 declare const __moduleName: string;
 
@@ -19,6 +20,7 @@ declare const __moduleName: string;
 })
 export class InSettings implements OnInit {
   private http: InHttp;
+  private requestsHelper: InRequestsHelper;
   private proxySettings: Object;
   private proxySettingsResolved: Boolean;
   private targetHostSettings: Object;
@@ -26,8 +28,10 @@ export class InSettings implements OnInit {
   private proxySettingsSubmitting: Boolean;
   private targetHostSettingsSubmitting: Boolean;
 
-  constructor(http: InHttp) {
+  constructor(http: InHttp,
+              requestsHelper: InRequestsHelper) {
     this.http = http;
+    this.requestsHelper = requestsHelper;
   }
 
   ngOnInit() {
@@ -61,6 +65,7 @@ export class InSettings implements OnInit {
     this.http.put('/settings/proxy', form.value)
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
+        this.requestsHelper.clearRequests();
       }, (error) => {
         console.error(error);
         this.proxySettingsSubmitting = false;
@@ -75,6 +80,7 @@ export class InSettings implements OnInit {
     this.http.put('/settings/targetHost', form.value)
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
+        this.requestsHelper.clearRequests();
       }, (error) => {
         console.error(error);
         this.targetHostSettingsSubmitting = false;
