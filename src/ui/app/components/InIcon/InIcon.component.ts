@@ -8,10 +8,9 @@ declare const __moduleName: string;
   selector: 'in-icon',
   template: '<span class="InIcon" [innerHTML]="svg"></span>',
   styleUrls: [
-    '../../styles/core.css',
     'InIcon.css'
   ],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.None
 })
 export class InIcon implements OnChanges {
   @Input()
