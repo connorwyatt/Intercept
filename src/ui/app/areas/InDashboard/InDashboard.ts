@@ -12,7 +12,7 @@ declare const __moduleName: String;
   styleUrls: [
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
-    'InDashboard.css'
+    '../../components/InGrid/InGrid.css'
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[InRequestsList]]

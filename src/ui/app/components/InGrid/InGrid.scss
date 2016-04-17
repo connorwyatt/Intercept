@@ -1,13 +1,13 @@
 @import '../../styles/theme';
 
-.InDashboard {
+.InGrid {
   margin: 0 auto;
   max-width: $application-max-width;
   padding: $grid-size * 3;
   padding-bottom: 0;
   width: 100%;
 
-  &-card {
+  &-item {
     margin-bottom: $grid-size * 3;
   }
 }
