@@ -1,33 +1,30 @@
 <div class="InGrid">
-  <article class="InCard InCard--color InGrid-item"
+  <in-card [theme]="'color'"
+           class="InGrid-item"
            *ngIf="proxySettingsResolved && targetHostSettingsResolved">
-    <header class="InCard-header">
-      <h2 class="InCard-heading">Information</h2>
-    </header>
-    <div class="InCard-content">
-      <div class="InCard-columnHalfWidth">
-        <h3 class="InCard-subheading">Proxy Server</h3>
+    <span in-card-heading>Information</span>
+    <div in-card-content class="InDashboard-columns">
+      <div class="InDashboard-columnHalfWidth">
+        <h3 class="InDashboard-subheading">Proxy Server</h3>
         <p *ngIf="proxySettings.port"
-           class="InCard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
+           class="InDashboard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
         <p *ngIf="!proxySettings.port"
-           class="InCard-paragraph">Proxy is not currently running.</p>
+           class="InDashboard-paragraph">Proxy is not currently running.</p>
       </div>
-      <div class="InCard-columnHalfWidth">
-        <h3 class="InCard-subheading">Proxy Target</h3>
+      <div class="InDashboard-columnHalfWidth">
+        <h3 class="InDashboard-subheading">Proxy Target</h3>
         <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
-           class="InCard-paragraph">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
+           class="InDashboard-paragraph">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
         <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
-           class="InCard-paragraph">Proxy target has not been set.</p>
+           class="InDashboard-paragraph">Proxy target has not been set.</p>
       </div>
     </div>
-  </article>
+  </in-card>
 
-  <article class="InCard InGrid-item">
-    <header class="InCard-header">
-      <h2 class="InCard-heading">Requests</h2>
-    </header>
-    <div class="InCard-content">
+  <in-card class="InGrid-item">
+    <span in-card-heading>Requests</span>
+    <div in-card-content>
       <in-requests-list [requests]="requests"></in-requests-list>
     </div>
-  </article>
+  </in-card>
 </div>

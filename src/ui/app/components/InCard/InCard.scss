@@ -16,20 +16,12 @@
         color: $color-text-heading-inverted;
         padding-bottom: 0;
       }
-
-      &-subheader {
-        color: $color-text-heading;
-      }
-
-      &-paragraph {
-        color: $color-text-inverted;
-      }
     }
   }
 
   &-header {
     background-color: $color-deep-sky-blue;
-    padding: $grid-size;
+    padding: $grid-size * 2;
   }
 
   &-heading {
@@ -37,25 +29,7 @@
     color: $color-text-heading-inverted;
   }
 
-  &-subheading {
-    @include typography-subheading;
-    color: $color-text-heading-inverted;
-  }
-
-  &-paragraph {
-    @include typography-paragraph;
-    color: $color-text;
-    margin-top: $grid-size-text;
-  }
-
   &-content {
-    display: flex;
-    padding: $grid-size;
-  }
-
-  &-column {
-    &HalfWidth {
-      flex: 1 1 50%;
-    }
+    padding: $grid-size * 2;
   }
 }

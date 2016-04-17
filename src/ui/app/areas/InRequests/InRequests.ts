@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { InCard } from '../../components/InCard/InCard.component';
 import { InRequestsList } from '../../components/InRequestsList/InRequestsList.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 
@@ -14,7 +15,7 @@ declare const __moduleName: String;
     '../../components/InGrid/InGrid.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InRequestsList]]
+  directives: [[InCard, InRequestsList]]
 })
 export class InRequests {
   private requestsHelper: InRequestsHelper;

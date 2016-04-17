@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from 'angular2/core';
 import { NgForm } from 'angular2/common';
+import { InCard } from '../../components/InCard/InCard.component';
 import { InHttp } from '../../services/InHttp';
 
 declare const __moduleName: string;
@@ -13,6 +14,7 @@ declare const __moduleName: string;
     '../../components/InCard/InCard.css',
     '../../components/InGrid/InGrid.css'
   ],
+  directives: [[InCard]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {

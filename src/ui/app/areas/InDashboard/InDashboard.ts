@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from 'angular2/core';
+import { InCard } from '../../components/InCard/InCard.component';
 import { InRequestsList } from '../../components/InRequestsList/InRequestsList.component';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
@@ -12,10 +13,11 @@ declare const __moduleName: String;
   styleUrls: [
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
-    '../../components/InGrid/InGrid.css'
+    '../../components/InGrid/InGrid.css',
+    'InDashboard.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InRequestsList]]
+  directives: [[InCard, InRequestsList]]
 })
 export class InDashboard implements OnInit {
   private requestsHelper: InRequestsHelper;

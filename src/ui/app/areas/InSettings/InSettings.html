@@ -1,9 +1,7 @@
 <div class="InGrid">
-  <article class="InCard InGrid-item">
-    <header class="InCard-header">
-      <h2 class="InCard-heading">Proxy Settings</h2>
-    </header>
-    <div class="InCard-content">
+  <in-card class="InGrid-item">
+    <span in-card-heading>Proxy Server Settings</span>
+    <div in-card-content>
       <form *ngIf="proxySettingsResolved"
             (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
             #proxySettingsForm="ngForm">
@@ -22,13 +20,11 @@
         <p *ngIf="proxySettingsSubmitting">Submitting...</p>
       </form>
     </div>
-  </article>
+  </in-card>
 
-  <article class="InCard InGrid-item">
-    <header class="InCard-header">
-      <h2 class="InCard-heading">Proxy Target Settings</h2>
-    </header>
-    <div class="InCard-content">
+  <in-card class="InGrid-item">
+    <span in-card-heading>Proxy Target Settings</span>
+    <div in-card-content>
       <form *ngIf="targetHostSettingsResolved"
             (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
             #targetHostSettingsForm="ngForm">
@@ -55,5 +51,5 @@
         <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
       </form>
     </div>
-  </article>
+  </in-card>
 </div>

@@ -8,6 +8,7 @@
   width: 100%;
 
   &-item {
+    display: block;
     margin-bottom: $grid-size * 3;
   }
 }

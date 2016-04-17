@@ -1,0 +1,22 @@
+@import '../../styles/theme';
+
+.InDashboard {
+  &-columns {
+    display: flex;
+  }
+
+  &-column {
+    &HalfWidth {
+      flex: 1 1 50%;
+    }
+  }
+
+  &-subheading {
+    @include typography-subheading;
+  }
+
+  &-paragraph {
+    @include typography-paragraph;
+    color: $color-text-inverted;
+  }
+}

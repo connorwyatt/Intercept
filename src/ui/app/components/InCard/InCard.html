@@ -1,0 +1,10 @@
+<article class="InCard" [ngClass]="'InCard--' + theme">
+  <header class="InCard-header">
+    <h2 class="InCard-heading">
+      <ng-content select="[in-card-heading]"></ng-content>
+    </h2>
+  </header>
+  <div class="InCard-content">
+    <ng-content select="[in-card-content]"></ng-content>
+  </div>
+</article>
