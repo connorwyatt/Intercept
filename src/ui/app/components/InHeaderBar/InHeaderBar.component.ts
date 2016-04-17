@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { InIcon } from '../InIcon/InIcon.component';
 
 declare const __moduleName: string;
 
@@ -10,6 +11,7 @@ declare const __moduleName: string;
     '../../styles/core.css',
     'InHeaderBar.css'
   ],
+  directives: [[InIcon]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InHeaderBar {
