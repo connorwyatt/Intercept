@@ -1,6 +1,7 @@
 import { Component, Input } from 'angular2/core';
 import { DatePipe } from 'angular2/common';
 import { InReversePipe } from '../../pipes/InReverse.pipe';
+import { IInRequest } from '../../interfaces/IInRequest';
 
 @Component({
   selector: 'in-requests-list',
@@ -9,9 +10,9 @@ import { InReversePipe } from '../../pipes/InReverse.pipe';
 })
 export class InRequestsList {
   @Input()
-  private requests: Array<IRequest>;
+  private requests: Array<IInRequest>;
 
-  private hasError(request: IRequest) {
+  private hasError(request: IInRequest) {
     if (request && request.statusCode) {
       if (request.statusCode >= 400 && request.statusCode < 600) {
         return 'red';

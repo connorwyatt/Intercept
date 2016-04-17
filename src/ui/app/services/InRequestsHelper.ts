@@ -1,10 +1,11 @@
 import { Injectable } from 'angular2/core';
 import { InSocket } from './InSocket';
+import { IInRequest } from '../interfaces/IInRequest';
 
 @Injectable()
 export class InRequestsHelper {
   private socket: InSocket;
-  private requests: Array<IRequest> = [];
+  private requests: Array<IInRequest> = [];
 
   constructor(socket: InSocket) {
     this.socket = socket;
@@ -16,18 +17,18 @@ export class InRequestsHelper {
     let connection = this.socket.connect('/requests');
 
     connection.get('requestStart')
-      .map((requestStart: IRequest) => {
-        requestStart.timestamp = new Date(<String> requestStart.timestamp);
+      .map((requestStart: IInRequest) => {
+        requestStart.timestamp = new Date(<string> requestStart.timestamp);
 
         return requestStart;
       })
-      .subscribe((requestStart: IRequest) => {
+      .subscribe((requestStart: IInRequest) => {
         this.requests.push(requestStart);
       });
 
     connection.get('requestEnd')
-      .subscribe((requestEnd: IRequest) => {
-        let request = this.requests.find((request: IRequest) => {
+      .subscribe((requestEnd: IInRequest) => {
+        let request = this.requests.find((request: IInRequest) => {
           return request.id === requestEnd.id;
         });
 
@@ -35,7 +36,7 @@ export class InRequestsHelper {
       });
   }
 
-  public getRequests(): Array<IRequest> {
+  public getRequests(): Array<IInRequest> {
     return this.requests;
   }
 }
