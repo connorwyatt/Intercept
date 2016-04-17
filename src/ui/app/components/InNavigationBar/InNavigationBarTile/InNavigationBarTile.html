@@ -1,0 +1,9 @@
+<button class="InNavigationBarTile"
+        (click)="navigate()"
+        [class.is-active]="isRouteActive">
+  <span class="InNavigationBarTile-popupContainer">
+    <span class="InNavigationBarTile-popup">
+      {{ label }}
+    </span>
+  </span>
+</button>

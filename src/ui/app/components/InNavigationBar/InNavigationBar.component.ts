@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { InNavigationBarTile } from './InNavigationBarTile/InNavigationBarTile.component';
 
 declare const __moduleName: string;
 
@@ -10,8 +11,8 @@ declare const __moduleName: string;
     '../../styles/core.css',
     'InNavigationBar.css'
   ],
+  directives: [[InNavigationBarTile]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InNavigationBar {
-
 }

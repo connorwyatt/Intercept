@@ -7,4 +7,10 @@
     height: 100%;
     width: 100%;
   }
+
+  &-tile {
+    display: block;
+    height: $grid-size * 8;
+    width: 100%;
+  }
 }
