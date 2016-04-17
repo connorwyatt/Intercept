@@ -1,0 +1,8 @@
+@import '../../styles/theme';
+
+.InRequests {
+  &-paragraph {
+    @include typography-paragraph;
+    color: $color-text;
+  }
+}

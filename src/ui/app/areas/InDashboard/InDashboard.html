@@ -10,17 +10,17 @@
           <in-status-indicator class="InDashboard-status"
                                [status]="proxyStatus"></in-status-indicator>
           <p *ngIf="proxySettings.port"
-             class="InDashboard-paragraph">Proxy is running on port {{ proxySettings.port }}.</p>
+             class="InDashboard-paragraphInverted">Proxy is running on port {{ proxySettings.port }}.</p>
           <p *ngIf="!proxySettings.port"
-             class="InDashboard-paragraph">Proxy is not currently running.</p>
+             class="InDashboard-paragraphInverted">Proxy is not currently running.</p>
         </div>
       </div>
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Target</h3>
         <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
-           class="InDashboard-paragraph">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
+           class="InDashboard-paragraphInverted">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
         <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
-           class="InDashboard-paragraph">Proxy target has not been set.</p>
+           class="InDashboard-paragraphInverted">Proxy target has not been set.</p>
       </div>
     </div>
   </in-card>
@@ -28,7 +28,8 @@
   <in-card class="InGrid-item">
     <span in-card-heading>Requests</span>
     <div in-card-content class="InDashboard-tableContainer">
-      <in-table [fields]="requestsFields" [data]="requests | inReverse | slice : 0 : 100" [rowClass]="requestsRowClass"></in-table>
+      <in-table *ngIf="requests.length > 0" [fields]="requestsFields" [data]="requests | inReverse | slice : 0 : 100" [rowClass]="requestsRowClass"></in-table>
+      <p *ngIf="requests.length === 0" class="InDashboard-paragraph">There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.</p>
     </div>
   </in-card>
 </div>

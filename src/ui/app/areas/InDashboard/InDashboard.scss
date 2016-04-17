@@ -17,6 +17,11 @@
 
   &-paragraph {
     @include typography-paragraph;
+    color: $color-text;
+  }
+
+  &-paragraphInverted {
+    @extend .InDashboard-paragraph;
     color: $color-text-inverted;
   }
 
