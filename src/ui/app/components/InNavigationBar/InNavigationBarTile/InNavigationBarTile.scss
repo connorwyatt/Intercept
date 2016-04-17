@@ -16,8 +16,7 @@
   }
 
   &:hover,
-  &:focus,
-  &:active {
+  &:focus {
     background-color: $color-deep-sky-blue;
 
     .InNavigationBarTile {

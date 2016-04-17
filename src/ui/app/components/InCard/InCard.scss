@@ -1,0 +1,61 @@
+@import '../../styles/theme';
+
+.InCard {
+  background-color: $color-white;
+  border-radius: $border-radius-standard;
+  box-shadow: $shadow-light;
+  overflow: hidden;
+
+  &--color {
+    background-color: $color-deep-sky-blue;
+    color: $color-text-heading-inverted;
+
+    .InCard {
+      &-header {
+        background: $color-deep-sky-blue;
+        color: $color-text-heading-inverted;
+        padding-bottom: 0;
+      }
+
+      &-subheader {
+        color: $color-text-heading;
+      }
+
+      &-paragraph {
+        color: $color-text-inverted;
+      }
+    }
+  }
+
+  &-header {
+    background-color: $color-deep-sky-blue;
+    padding: $grid-size;
+  }
+
+  &-heading {
+    @include typography-heading;
+    color: $color-text-heading-inverted;
+  }
+
+  &-subheading {
+    @include typography-subheading;
+    color: $color-text-heading-inverted;
+  }
+
+  &-paragraph {
+    @include typography-paragraph;
+    color: $color-text;
+    margin-top: $grid-size-text;
+  }
+
+  &-content {
+    display: flex;
+    padding: $grid-size;
+  }
+
+  &-column {
+    &HalfWidth {
+      flex: 1 1 50%;
+    }
+  }
+}

@@ -7,4 +7,9 @@ $color-deep-sky-blue: rgb(21, 158, 193);
 $color-dark-blue: rgb(13, 94, 115);
 $color-cyan: rgb(25, 251, 255);
 
+$color-text-heading: $color-black;
+$color-text-heading-inverted: $color-white;
+$color-text: transparentize($color-black, 0.3);
+$color-text-inverted: transparentize($color-white, 0.3);
+
 $color-shadow: transparentize($color-black, .8);

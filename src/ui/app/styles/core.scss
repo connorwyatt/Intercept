@@ -2,19 +2,7 @@
 @import 'font';
 @import 'reset';
 
-html {
-  box-sizing: border-box;
-}
-
 body {
   background-color: $color-white-smoke;
   font-family: 'Lato', sans-serif;
-}
-
-* {
-  box-sizing: inherit;
-}
-
-button {
-  font-family: inherit;
 }
