@@ -41,7 +41,7 @@ export class InRequests {
     this.requestsHelper = requestsHelper;
   }
 
-  private requestsRowClass(model: Object): string {
+  private requestsRowClass(model: IInRequest): string {
     if (model.statusCode >= 400 && model.statusCode < 600) {
       return 'negative';
     } else {
