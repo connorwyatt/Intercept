@@ -17,7 +17,7 @@ targetHostSettingsRouter.route('')
 
       let to = new TargetHostSettingsTO(targetHostSettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null, null);
 
       response.send(apiResponseBuilder.get());
     }, () => {
@@ -33,12 +33,12 @@ targetHostSettingsRouter.route('')
 
       let to = new TargetHostSettingsTO(targetHostSettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null, null);
 
       response.send(apiResponseBuilder.get());
     }, (err) => {
       if (err instanceof ValidationException) {
-        let apiResponseBuilder = new APIResponseBuilder(null, null, err.formattedErrors);
+        let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, null, null, err.formattedErrors);
 
         response.status(400).send(apiResponseBuilder.get());
       } else {

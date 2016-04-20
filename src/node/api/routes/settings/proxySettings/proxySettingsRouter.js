@@ -18,7 +18,7 @@ proxySettingsRouter.route('')
 
       let to = new ProxySettingsTO(proxySettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null, null);
 
       response.send(apiResponseBuilder.get());
     }, () => {
@@ -36,12 +36,12 @@ proxySettingsRouter.route('')
 
       let to = new ProxySettingsTO(proxySettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null, null);
 
       response.send(apiResponseBuilder.get());
     }, (err) => {
       if (err instanceof ValidationException) {
-        let apiResponseBuilder = new APIResponseBuilder(null, null, err.formattedErrors);
+        let apiResponseBuilder = new APIResponseBuilder(ProxySettings, null, null, err.formattedErrors);
 
         response.status(400).send(apiResponseBuilder.get());
       } else {

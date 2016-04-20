@@ -1,7 +1,8 @@
 'use strict';
 
 class APIResponseBuilder {
-  constructor(transferObject, metadata, messages) {
+  constructor(entityConstructor, transferObject, metadata, messages) {
+    this.$entityConstructor = entityConstructor;
     this.$transferObject = transferObject;
     this.$metadata = metadata;
     this.$messages = messages;
@@ -11,9 +12,7 @@ class APIResponseBuilder {
     let response = {};
 
     if (this.$transferObject) {
-      let outerEntity = this.$transferObject.$outerEntity;
-
-      delete this.$transferObject.$outerEntity;
+      let outerEntity = this.$entityConstructor.name;
 
       response.data = {};
       response.data[outerEntity] = this.$transferObject;
