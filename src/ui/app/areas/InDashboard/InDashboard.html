@@ -1,9 +1,9 @@
 <div class="InGrid">
   <in-card [theme]="'color'"
+           [heading]="'Information'"
            class="InGrid-item"
            *ngIf="proxySettingsResolved && targetHostSettingsResolved">
-    <span in-card-heading>Information</span>
-    <div in-card-content class="InDashboard-columns">
+    <div class="InDashboard-columns">
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Server</h3>
         <div class="InDashboard-statusParagraph">
@@ -18,18 +18,26 @@
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Target</h3>
         <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
-           class="InDashboard-paragraphInverted">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.</p>
+           class="InDashboard-paragraphInverted">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.
+        </p>
         <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
-           class="InDashboard-paragraphInverted">Proxy target has not been set.</p>
+           class="InDashboard-paragraphInverted">Proxy target has not been set.
+        </p>
       </div>
     </div>
   </in-card>
 
-  <in-card class="InGrid-item">
-    <span in-card-heading>Requests</span>
-    <div in-card-content class="InDashboard-tableContainer">
-      <in-table *ngIf="requests.length > 0" [fields]="requestsFields" [data]="requests | inReverse | slice : 0 : 100" [rowClass]="requestsRowClass"></in-table>
-      <p *ngIf="requests.length === 0" class="InDashboard-paragraph">There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.</p>
+  <in-card [heading]="'Requests'"
+           class="InGrid-item">
+    <div class="InDashboard-tableContainer">
+      <in-table *ngIf="requests.length > 0"
+                [fields]="requestsFields"
+                [data]="requests | inReverse | slice : 0 : 100"
+                [rowClass]="requestsRowClass"></in-table>
+      <p *ngIf="requests.length === 0"
+         class="InDashboard-paragraph">
+        There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.
+      </p>
     </div>
   </in-card>
 </div>

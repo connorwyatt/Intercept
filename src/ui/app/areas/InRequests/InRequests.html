@@ -1,9 +1,13 @@
 <div class="InGrid">
-  <in-card class="InGrid-item">
-    <span in-card-heading>Requests</span>
-    <div in-card-content>
-      <in-table *ngIf="requests.length > 0" [fields]="requestsFields" [data]="requests | inReverse" [rowClass]="requestsRowClass"></in-table>
-      <p *ngIf="requests.length === 0" class="InRequests-paragraph">There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.</p>
-    </div>
+  <in-card [heading]="'Requests'"
+           class="InGrid-item">
+    <in-table *ngIf="requests.length > 0"
+              [fields]="requestsFields"
+              [data]="requests | inReverse"
+              [rowClass]="requestsRowClass"></in-table>
+    <p *ngIf="requests.length === 0"
+       class="InRequests-paragraph">
+      There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.
+    </p>
   </in-card>
 </div>

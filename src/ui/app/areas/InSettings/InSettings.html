@@ -1,55 +1,50 @@
 <div class="InGrid">
-  <in-card class="InGrid-item">
-    <span in-card-heading>Proxy Server Settings</span>
-    <div in-card-content>
-      <form *ngIf="proxySettingsResolved"
-            (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
-            #proxySettingsForm="ngForm">
-        <div>
-          <label for="proxySettingsPort">Port:</label>
-          <input type="number"
-                 id="proxySettingsPort"
-                 [(ngModel)]="proxySettings.port"
-                 ngControl="port"/>
-        </div>
+  <in-card [heading]="'Proxy Server Settings'" class="InGrid-item">
+    <form *ngIf="proxySettingsResolved"
+          (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
+          #proxySettingsForm="ngForm">
+      <div>
+        <label for="proxySettingsPort">Port:</label>
+        <input type="number"
+               id="proxySettingsPort"
+               [(ngModel)]="proxySettings.port"
+               ngControl="port"/>
+      </div>
 
-        <div>
-          <button type="submit">Save</button>
-        </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
 
-        <p *ngIf="proxySettingsSubmitting">Submitting...</p>
-      </form>
-    </div>
+      <p *ngIf="proxySettingsSubmitting">Submitting...</p>
+    </form>
   </in-card>
 
-  <in-card class="InGrid-item">
-    <span in-card-heading>Proxy Target Settings</span>
-    <div in-card-content>
-      <form *ngIf="targetHostSettingsResolved"
-            (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
-            #targetHostSettingsForm="ngForm">
-        <div>
-          <label for="targetHostSettingsHostname">Hostname:</label>
-          <input type="text"
-                 id="targetHostSettingsHostname"
-                 [(ngModel)]="targetHostSettings.hostname"
-                 ngControl="hostname"/>
-        </div>
+  <in-card [heading]="'Proxy Target Settings'"
+           class="InGrid-item">
+    <form *ngIf="targetHostSettingsResolved"
+          (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
+          #targetHostSettingsForm="ngForm">
+      <div>
+        <label for="targetHostSettingsHostname">Hostname:</label>
+        <input type="text"
+               id="targetHostSettingsHostname"
+               [(ngModel)]="targetHostSettings.hostname"
+               ngControl="hostname"/>
+      </div>
 
-        <div>
-          <label for="targetHostSettingsPort">Port:</label>
-          <input type="number"
-                 id="targetHostSettingsPort"
-                 [(ngModel)]="targetHostSettings.port"
-                 ngControl="port"/>
-        </div>
+      <div>
+        <label for="targetHostSettingsPort">Port:</label>
+        <input type="number"
+               id="targetHostSettingsPort"
+               [(ngModel)]="targetHostSettings.port"
+               ngControl="port"/>
+      </div>
 
-        <div>
-          <button type="submit">Save</button>
-        </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
 
-        <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
-      </form>
-    </div>
+      <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
+    </form>
   </in-card>
 </div>

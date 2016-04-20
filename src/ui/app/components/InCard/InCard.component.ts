@@ -15,4 +15,7 @@ declare const __moduleName: string;
 export class InCard {
   @Input()
   private theme: string;
+  
+  @Input()
+  private heading: string;
 }
