@@ -15,7 +15,12 @@ class APIResponseBuilder {
       let outerEntity = this.$entityConstructor.name;
 
       response.data = {};
-      response.data[outerEntity] = this.$transferObject;
+
+      if (typeof this.$transferObject.getTransferObject === 'function') {
+        response.data[outerEntity] = this.$transferObject.getTransferObject();
+      } else {
+        response.data[outerEntity] = this.$transferObject;
+      }
     }
 
     if (this.$metadata) {
