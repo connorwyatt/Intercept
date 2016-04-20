@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { DatePipe } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
@@ -20,32 +21,41 @@ declare const __moduleName: string;
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[InCard, InTable]],
-  pipes: [InReversePipe]
+  pipes: [InReversePipe],
+  providers: [DatePipe]
 })
 export class InRequests {
+  private datePipe: DatePipe;
   private requestsHelper: InRequestsHelper;
   private requestsFields: Array<IInTableField> = [
-    { fieldname: 'timestamp', label: 'Time' },
+    {
+      fieldname: 'timestamp', label: 'Time', getValue: (model: IInRequest) => {
+        return this.datePipe.transform(model.timestamp, ['medium']);
+      }
+    },
     { fieldname: 'method', label: 'Method' },
     { fieldname: 'statusCode', label: 'Status Code' },
     { fieldname: 'url', label: 'URL' },
     { fieldname: 'latency', label: 'Latency' }
   ];
 
-
   private get requests(): Array<IInRequest> {
     return this.requestsHelper.getRequests();
   }
 
-  constructor(requestsHelper: InRequestsHelper) {
+  constructor(datePipe: DatePipe,
+              requestsHelper: InRequestsHelper) {
+    this.datePipe = datePipe;
     this.requestsHelper = requestsHelper;
   }
 
   private requestsRowClass(model: IInRequest): string {
-    if (model.statusCode >= 400 && model.statusCode < 600) {
-      return 'negative';
-    } else {
-      return 'positive';
+    if (model.statusCode) {
+      if (model.statusCode >= 400 && model.statusCode < 600) {
+        return 'negative';
+      } else {
+        return 'positive';
+      }
     }
   }
 }

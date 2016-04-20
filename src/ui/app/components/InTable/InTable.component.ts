@@ -32,6 +32,10 @@ export class InTable {
 
   private getFieldViewValue(field: IInTableField,
                             model: Object): any {
-    return model[field.fieldname];
+    if (field.getValue && typeof field.getValue === 'function') {
+      return field.getValue(model);
+    } else {
+      return model[field.fieldname];
+    }
   }
 }
