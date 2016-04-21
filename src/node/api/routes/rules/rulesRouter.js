@@ -6,7 +6,8 @@ const express = require('express'),
   Rule = require('../../../shared/entities/rule'),
   RuleTO = require('../../transferObjects/ruleTO'),
   RuleListTO = require('../../transferObjects/ruleListTO'),
-  ResourceNotExistException = require('../../../shared/throwables/resourceNotExistException');
+  ResourceNotExistException = require('../../../shared/throwables/resourceNotExistException'),
+  ValidationException = require('../../../shared/throwables/validationException');
 
 let rulesRouter = express.Router();
 
@@ -52,6 +53,27 @@ rulesRouter.route('/:ruleId')
         response.send(apiResponseBuilder.get());
       }, (err) => {
         if (err instanceof ResourceNotExistException) {
+          response.status(404).end();
+        } else {
+          response.status(500).end();
+        }
+      });
+  })
+
+  .put((request, response) => {
+    let requestBody = new Rule(request.body);
+
+    rules.updateRuleById(request.params.ruleId, requestBody)
+      .then((rule) => {
+        let to = new RuleTO(rule);
+
+        let apiResponseBuilder = new APIResponseBuilder(Rule, to, null, null);
+
+        response.send(apiResponseBuilder.get());
+      }, (err) => {
+        if (err instanceof ValidationException) {
+          response.status(400).end();
+        } else if (err instanceof ResourceNotExistException) {
           response.status(404).end();
         } else {
           response.status(500).end();

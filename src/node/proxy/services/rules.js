@@ -90,6 +90,27 @@ class Rules {
     });
   }
 
+  updateRuleById(id, rule) {
+    return new Promise((resolve, reject) => {
+      try {
+        this.$dataStore.update({ _id: id }, rule, { returnUpdatedDocs: true }, (err, numUpdated, doc) => {
+          if (err) {
+            logger.error(err);
+            reject(err);
+          } else if (!numUpdated) {
+            let error = new ResourceNotExistException();
+
+            reject(error);
+          } else {
+            resolve(doc);
+          }
+        });
+      } catch (exception) {
+        reject(exception);
+      }
+    });
+  }
+
   deleteRuleById(id) {
     return new Promise((resolve, reject) => {
       this.$dataStore.remove({ _id: id }, (err, numRemoved) => {
