@@ -9,7 +9,10 @@ class Rule extends BaseEntity {
   constructor(data) {
     super();
     Object.assign(this, data);
-    this.$constraints = ruleConstraints;
+  }
+  
+  getConstraints() {
+    return ruleConstraints;
   }
 
   getBody() {

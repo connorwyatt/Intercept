@@ -8,8 +8,10 @@ class BaseEntity {
   }
 
   validate() {
-    if (this.$constraints) {
-      let err = validateJs.validate(this, this.$constraints);
+    let constraints = this.getConstraints();
+
+    if (constraints) {
+      let err = validateJs.validate(this, constraints);
 
       if (err) {
         throw new ValidationException(err);

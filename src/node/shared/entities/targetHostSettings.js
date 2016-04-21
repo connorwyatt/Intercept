@@ -8,7 +8,10 @@ class TargetHostSettings extends BaseEntity {
     super();
     this.hostname = data.hostname;
     this.port = data.port;
-    this.$constraints = targetHostSettingsConstraints;
+  }
+
+  getConstraints() {
+    return targetHostSettingsConstraints;
   }
 }
 

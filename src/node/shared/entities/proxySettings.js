@@ -7,7 +7,10 @@ class ProxySettings extends BaseEntity {
   constructor(data) {
     super();
     this.port = data.port;
-    this.$constraints = proxySettingsConstraints;
+  }
+
+  getConstraints() {
+    return proxySettingsConstraints;
   }
 }
 
