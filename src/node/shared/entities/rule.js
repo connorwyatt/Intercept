@@ -1,12 +1,16 @@
 'use strict';
 
-const BaseEntity = require('./baseEntity');
+const BaseEntity = require('./baseEntity'),
+  AutoResponse = require('./autoResponse'),
+  ruleConstraints = require('../../proxy/validation/ruleConstraints');
 
 class Rule extends BaseEntity {
-  constructor(request, response) {
+  constructor(data) {
     super();
-    this.$request = request;
-    this.$response = response;
+    this.url = data.url;
+    this.method = data.method;
+    this.autoResponse = new AutoResponse(data.autoResponse);
+    this.$constraints = ruleConstraints;
   }
 }
 

@@ -5,6 +5,7 @@ const http = require('http'),
   settings = require('./settings'),
   logger = require('../../shared/services/logger'),
   ioAppManager = require('../../api/services/ioAppManager'),
+  autoResponder = require('../services/autoResponder'),
   RequestStartTO = require('../../api/transferObjects/requestStartTO'),
   RequestEndTO = require('../../api/transferObjects/requestEndTO');
 
@@ -82,7 +83,16 @@ class ProxyService {
     settings.getProxySettings().then((proxySettings) => {
       if (proxySettings.port) {
         ProxyService.server = http.Server(function(request, response) {
-          ProxyService.proxyRequest(request, response);
+          autoResponder.getMatchingRule(request).then((rule) => {
+            if (rule) {
+              autoResponder.respond(rule, response);
+            } else {
+              ProxyService.proxyRequest(request, response);
+            }
+          }, (err) => {
+            logger.error(err);
+            ProxyService.$errorHandler(err, request, response);
+          });
         });
 
         ProxyService.server.listen(proxySettings.port);
