@@ -1,16 +1,46 @@
 'use strict';
 
 const BaseEntity = require('./baseEntity'),
-  AutoResponse = require('./autoResponse'),
+  fs = require('fs'),
+  logger = require('../services/logger'),
   ruleConstraints = require('../../proxy/validation/ruleConstraints');
 
 class Rule extends BaseEntity {
   constructor(data) {
     super();
-    this.url = data.url;
-    this.method = data.method;
-    this.autoResponse = new AutoResponse(data.autoResponse);
+    Object.assign(this, data);
     this.$constraints = ruleConstraints;
+  }
+
+  getBody() {
+    return new Promise((resolve, reject) => {
+      if (this.body) {
+        resolve(this.body);
+      } else if (this.file) {
+        fs.readFile(this.file, 'UTF8', (err, file) => {
+          if (err) {
+            logger.error(err);
+            reject(err);
+          } else {
+            resolve(file);
+          }
+        });
+      }
+    });
+  }
+
+  getLatency() {
+    return this.latency || 0;
+  }
+
+  getHeaders() {
+    let headers = Object.assign({}, this.headers);
+
+    if (this.type) {
+      headers['Content-Type'] = this.type;
+    }
+
+    return headers;
   }
 }
 

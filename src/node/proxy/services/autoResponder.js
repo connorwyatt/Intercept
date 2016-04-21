@@ -20,9 +20,29 @@ class AutoResponder {
   }
 
   respond(rule, response) {
-    rule.autoResponse.getBody().then((body) => {
-      response.write(body);
+    let bodyPromise = rule.getBody(),
+      latencyPromise = this.getLatencyPromise(rule.getLatency());
+
+    this.setHeaders(rule, response);
+
+    Promise.all([bodyPromise, latencyPromise]).then((data) => {
+      response.write(data[0]);
       response.end();
+    });
+  }
+
+  getLatencyPromise(latency) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, latency);
+    });
+  }
+
+  setHeaders(rule, response) {
+    let headers = rule.getHeaders(),
+      headerNames = Object.keys(headers);
+
+    headerNames.forEach((header) => {
+      response.setHeader(header, headers[header]);
     });
   }
 }
