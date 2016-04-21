@@ -5,7 +5,8 @@ const express = require('express'),
   APIResponseBuilder = require('../../services/apiResponseBuilder'),
   Rule = require('../../../shared/entities/rule'),
   RuleTO = require('../../transferObjects/ruleTO'),
-  RuleListTO = require('../../transferObjects/ruleListTO');
+  RuleListTO = require('../../transferObjects/ruleListTO'),
+  ResourceNotExistException = require('../../../shared/throwables/resourceNotExistException');
 
 let rulesRouter = express.Router();
 
@@ -51,6 +52,19 @@ rulesRouter.route('/:ruleId')
         response.send(apiResponseBuilder.get());
       }, () => {
         response.status(500).end();
+      });
+  })
+
+  .delete((request, response) => {
+    rules.deleteRuleById(request.params.ruleId)
+      .then(() => {
+        response.status(204).end();
+      }, (err) => {
+        if (err instanceof ResourceNotExistException) {
+          response.status(404).end();
+        } else {
+          response.status(500).end();
+        }
       });
   });
 

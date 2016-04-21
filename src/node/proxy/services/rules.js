@@ -2,7 +2,8 @@
 
 const DataStore = require('nedb'),
   logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService');
+  FilenameService = require('../../shared/services/filenameService'),
+  ResourceNotExistException = require('../../shared/throwables/resourceNotExistException');
 
 class Rules {
   init() {
@@ -82,6 +83,23 @@ class Rules {
       } catch (exception) {
         reject(exception);
       }
+    });
+  }
+
+  deleteRuleById(id) {
+    return new Promise((resolve, reject) => {
+      this.$dataStore.remove({ _id: id }, (err, numRemoved) => {
+        if (err) {
+          logger.error(err);
+          reject(err);
+        } else if(!numRemoved) {
+          let error = new ResourceNotExistException();
+
+          reject(error);
+        } else {
+          resolve();
+        }
+      });
     });
   }
 }
