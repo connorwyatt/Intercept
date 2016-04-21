@@ -19,7 +19,6 @@ class Rules {
           logger.error(err);
           reject(err);
         } else {
-          this.$dataStore.insert({ url: '/test', method: 'GET', latency: 1274, file: '/Users/wyattc/performance.json', type: 'application/json' });
           resolve();
         }
 
