@@ -33,7 +33,7 @@ rulesRouter.route('')
 
         let apiResponseBuilder = new APIResponseBuilder(Rule, to, null, null);
 
-        response.send(apiResponseBuilder.get());
+        response.status(201).send(apiResponseBuilder.get());
       }, () => {
         response.status(500).end();
       });
