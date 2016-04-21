@@ -23,6 +23,8 @@ class AutoResponder {
     let bodyPromise = rule.getBody(),
       latencyPromise = this.getLatencyPromise(rule.getLatency());
 
+    response.statusCode = rule.getStatusCode();
+
     this.setHeaders(rule, response);
 
     Promise.all([bodyPromise, latencyPromise]).then((data) => {

@@ -42,6 +42,10 @@ class Rule extends BaseEntity {
 
     return headers;
   }
+
+  getStatusCode() {
+    return this.statusCode || 200;
+  }
 }
 
 module.exports = Rule;
