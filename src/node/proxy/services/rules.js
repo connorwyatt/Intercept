@@ -27,6 +27,19 @@ class Rules {
     });
   }
 
+  getRuleById(id) {
+    return new Promise((resolve, reject) => {
+      this.$dataStore.findOne({ _id: id }, (err, doc) => {
+        if (err) {
+          logger.error(err);
+          reject(err);
+        } else {
+          resolve(doc);
+        }
+      });
+    });
+  }
+
   getMatchingRule(request) {
     return new Promise((resolve, reject) => {
       this.$dataStore.findOne({ url: request.url }, (err, doc) => {
