@@ -22,6 +22,21 @@ rulesRouter.route('')
       }, () => {
         response.status(500).end();
       });
+  })
+
+  .post((request, response) => {
+    let requestBody = new Rule(request.body);
+
+    rules.createNewRule(requestBody)
+      .then((rule) => {
+        let to = new RuleTO(rule);
+
+        let apiResponseBuilder = new APIResponseBuilder(Rule, to, null, null);
+
+        response.send(apiResponseBuilder.get());
+      }, () => {
+        response.status(500).end();
+      });
   });
 
 rulesRouter.route('/:ruleId')
