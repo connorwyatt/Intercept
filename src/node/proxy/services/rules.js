@@ -96,7 +96,7 @@ class Rules {
         if (err) {
           logger.error(err);
           reject(err);
-        } else if(!numRemoved) {
+        } else if (!numRemoved) {
           let error = new ResourceNotExistException();
 
           reject(error);
