@@ -34,6 +34,10 @@ class Rules {
         if (err) {
           logger.error(err);
           reject(err);
+        } else if (!doc) {
+          let error = new ResourceNotExistException();
+
+          reject(error);
         } else {
           resolve(doc);
         }

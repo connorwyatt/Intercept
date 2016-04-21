@@ -50,8 +50,12 @@ rulesRouter.route('/:ruleId')
         let apiResponseBuilder = new APIResponseBuilder(Rule, to, null, null);
 
         response.send(apiResponseBuilder.get());
-      }, () => {
-        response.status(500).end();
+      }, (err) => {
+        if (err instanceof ResourceNotExistException) {
+          response.status(404).end();
+        } else {
+          response.status(500).end();
+        }
       });
   })
 
