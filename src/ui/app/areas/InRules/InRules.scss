@@ -1,0 +1,8 @@
+@import '../../styles/theme';
+
+.InRules {
+  &-paragraph {
+    @include typography-paragraph;
+    color: $color-text;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="InGrid">
+  <in-card [heading]="'Rules'"
+           *ngIf="rulesResolved"
+           class="InGrid-item">
+    <in-table *ngIf="rules.length > 0"
+              [fields]="rulesFields"
+              [data]="rules"></in-table>
+    <div *ngIf="rules.length === 0">
+      <p class="InRules-paragraph">
+        There are currently no rules to show.
+      </p>
+    </div>
+  </in-card>
+</div>
