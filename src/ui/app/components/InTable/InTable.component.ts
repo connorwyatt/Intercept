@@ -23,7 +23,7 @@ export class InTable {
   private rowClass: (model: Object) => string;
 
   @Output()
-  private rowClick: EventEmitter = new EventEmitter<Object>();
+  private rowClick: EventEmitter<Object> = new EventEmitter<Object>();
 
   private getRowClass(model: Object): string {
     if (typeof this.rowClass === 'function') {
