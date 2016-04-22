@@ -1,4 +1,4 @@
-import { Component, Input } from 'angular2/core';
+import { Component, EventEmitter, Input, Output } from 'angular2/core';
 import { IInTableField } from './IInTableField';
 
 declare const __moduleName: string;
@@ -22,6 +22,9 @@ export class InTable {
   @Input()
   private rowClass: (model: Object) => string;
 
+  @Output()
+  private rowClick: EventEmitter = new EventEmitter<Object>();
+
   private getRowClass(model: Object): string {
     if (typeof this.rowClass === 'function') {
       return 'is-' + this.rowClass(model);
@@ -37,5 +40,9 @@ export class InTable {
     } else {
       return model[field.fieldname];
     }
+  }
+
+  private onRowClick(model: Object) {
+    this.rowClick.emit(model);
   }
 }

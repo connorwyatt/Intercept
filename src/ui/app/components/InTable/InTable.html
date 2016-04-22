@@ -10,7 +10,8 @@
   <tbody>
   <tr class="InTable-row"
       *ngFor="#model of data"
-      [ngClass]="getRowClass(model)">
+      [ngClass]="getRowClass(model)"
+      (click)="onRowClick(model)">
     <td class="InTable-cell"
         *ngFor="#field of fields">
       {{ getFieldViewValue(field, model) }}
