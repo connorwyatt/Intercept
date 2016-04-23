@@ -4,6 +4,7 @@ $InButton-border-width: 1px;
 
 @mixin InButton-state-styles($color) {
   background-color: $color;
+  transition: background-color 200ms ease-in-out;
 
   &:hover,
   &:focus {
