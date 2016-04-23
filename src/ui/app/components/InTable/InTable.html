@@ -9,8 +9,9 @@
   </thead>
   <tbody>
   <tr class="InTable-row"
-      *ngFor="#model of data"
+      [class.is-highlightable]="showHighlightStyles"
       [ngClass]="getRowClass(model)"
+      *ngFor="#model of data"
       (click)="onRowClick(model)">
     <td class="InTable-cell"
         *ngFor="#field of fields">

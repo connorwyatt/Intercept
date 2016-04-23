@@ -20,6 +20,9 @@ export class InTable {
   private data: Array<Object>;
 
   @Input()
+  private showHighlightStyles: boolean;
+
+  @Input()
   private rowClass: (model: Object) => string;
 
   @Output()

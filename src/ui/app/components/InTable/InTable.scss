@@ -9,6 +9,15 @@
   &-row {
     &:nth-child(odd) {
       background-color: $color-white-steam;
+
+      &.is-highlightable {
+        transition: background-color 400ms ease-in-out;
+
+        &:hover {
+          background-color: mix($color-white-steam, $color-sky-blue, 90%);
+          cursor: pointer;
+        }
+      }
     }
 
     &.is-positive {
@@ -18,6 +27,17 @@
     &.is-negative {
       color: $color-red;
     }
+
+    &.is-highlightable {
+      transition: background-color 400ms ease-in-out;
+
+      &:hover {
+        background-color: mix($color-white, $color-sky-blue, 90%);
+        cursor: pointer;
+      }
+    }
+
+    background-color: $color-white;
   }
 
   &-headerRow {
