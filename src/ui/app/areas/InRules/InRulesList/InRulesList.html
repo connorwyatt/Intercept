@@ -5,6 +5,7 @@
     <in-table *ngIf="rules.length > 0"
               [fields]="rulesFields"
               [data]="rules"
+              [showHighlightStyles]="true"
               (rowClick)="navigateToRule($event)"></in-table>
     <div *ngIf="rules.length === 0">
       <p class="InRulesList-paragraph">
