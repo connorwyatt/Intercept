@@ -68,4 +68,11 @@ export class InRulesDetails implements OnActivate {
         });
     }
   }
+
+  private onDelete() {
+    this.http.delete(`/rules/${this.routeParams.get('ruleId')}`)
+      .subscribe(() => {
+        this.router.navigate(['List']);
+      });
+  }
 }

@@ -67,6 +67,9 @@
 
       <div>
         <button type="submit">Save</button>
+        <button type="button"
+                *ngIf="!isNew"
+                (click)="onDelete()">Delete</button>
       </div>
     </form>
   </in-card>
