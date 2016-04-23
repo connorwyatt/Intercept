@@ -4,6 +4,7 @@ import { InCard } from '../../../components/InCard/InCard.component';
 import { InHttp } from '../../../services/InHttp';
 import { NgForm } from 'angular2/common';
 import { IN_INPUTS } from '../../../components/InInput/InInputs';
+import { IInSelectOption } from '../../../interfaces/IInSelectOption';
 
 declare const __moduleName: string;
 
@@ -27,8 +28,16 @@ export class InRulesDetails implements OnActivate {
   private routeParams: RouteParams;
   private rule: Object;
   private ruleResolved: boolean;
-  private methods: Array<string> = ['GET', 'PUT', 'POST', 'DELETE'];
-  private types: Array<string> = ['application/json', 'plain/text'];
+  private methods: Array<IInSelectOption> = [
+    { id: 'GET', value: 'GET' },
+    { id: 'PUT', value: 'PUT' },
+    { id: 'POST', value: 'POST' },
+    { id: 'DELETE', value: 'DELETE' }
+  ];
+  private types: Array<IInSelectOption> = [
+    { id: 'application/json', value: 'JSON' },
+    { id: 'plain/text', value: 'Plain Text' }
+  ];
 
   private get isNew(): boolean {
     return this.routeParams.get('ruleId') === 'new';

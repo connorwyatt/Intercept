@@ -13,12 +13,13 @@
       </div>
 
       <div>
-        <label for="ruleMethod">Method:</label>
-        <select id="ruleMethod"
-                [(ngModel)]="rule.method"
-                ngControl="method">
-          <option *ngFor="#method of methods" [value]="method">{{ method }}</option>
-        </select>
+        <in-input type="select"
+                  ngControl="method"
+                  [(ngModel)]="rule.method"
+                  [field]="'method'"
+                  [label]="'Method'"
+                  [options]="methods"></in-input>
+
       </div>
 
       <h2>Response</h2>
@@ -49,12 +50,12 @@
       </div>
 
       <div>
-        <label for="ruleType">Type:</label>
-        <select id="ruleType"
-                [(ngModel)]="rule.type"
-                ngControl="type">
-          <option *ngFor="#type of types" [value]="type">{{ type }}</option>
-        </select>
+        <in-input type="select"
+                  ngControl="type"
+                  [(ngModel)]="rule.type"
+                  [field]="'type'"
+                  [label]="'Type'"
+                  [options]="types"></in-input>
       </div>
 
       <div>
