@@ -1,5 +1,7 @@
 @import '../../../styles/theme';
 
+$InNavigationBarTile-popup-color: $color-grey-aluminium;
+
 .InNavigationBarTile {
   align-items: center;
   background-color: $color-sky-blue;
@@ -46,7 +48,7 @@
   }
 
   &-popup {
-    background-color: $color-dark-blue;
+    background-color: $InNavigationBarTile-popup-color;
     border-radius: $grid-size;
     box-shadow: $shadow-dark;
     color: $color-white;
@@ -54,7 +56,7 @@
 
     &:before {
       border-bottom: $grid-size + 1 transparent solid;
-      border-right: $grid-size + 1 $color-dark-blue solid;
+      border-right: $grid-size + 1 $InNavigationBarTile-popup-color solid;
       border-top: $grid-size + 1 transparent solid;
       content: '';
       left: -$grid-size;
