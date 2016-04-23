@@ -4,11 +4,13 @@
            class="InGrid-item">
     <in-table *ngIf="rules.length > 0"
               [fields]="rulesFields"
-              [data]="rules"></in-table>
+              [data]="rules"
+              (rowClick)="navigateToRule($event)"></in-table>
     <div *ngIf="rules.length === 0">
-      <p class="InRules-paragraph">
+      <p class="InRulesList-paragraph">
         There are currently no rules to show.
       </p>
     </div>
+    <button (click)="navigateToRule()">NEW</button>
   </in-card>
 </div>

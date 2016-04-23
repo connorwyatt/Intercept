@@ -1,60 +1,17 @@
-import { Component, ViewEncapsulation, OnInit } from 'angular2/core';
-import { InCard } from '../../components/InCard/InCard.component';
-import { InTable } from '../../components/InTable/InTable.component';
-import { InHttp } from '../../services/InHttp';
-import { IInTableField } from '../../components/InTable/IInTableField';
-
-declare const __moduleName: string;
+import { Component, ViewEncapsulation } from 'angular2/core';
+import { RouteConfig, RouterOutlet } from 'angular2/router';
+import { InRulesList } from './InRulesList/InRulesList';
+import { InRulesDetails } from './InRulesDetails/InRulesDetails';
 
 @Component({
-  moduleId: __moduleName,
   selector: 'in-rules',
-  templateUrl: 'InRules.html',
-  styleUrls: [
-    '../../styles/core.css',
-    '../../components/InCard/InCard.css',
-    '../../components/InGrid/InGrid.css',
-    'InRules.css'
-  ],
+  template: '<router-outlet></router-outlet>',
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InTable]]
+  directives: [[RouterOutlet]]
 })
-export class InRules implements OnInit {
-  private http: InHttp;
-  private rulesFields: Array<IInTableField> = [
-    {
-      fieldname: 'url',
-      label: 'URL'
-    },
-    {
-      fieldname: 'method',
-      label: 'Method'
-    },
-    {
-      fieldname: 'file',
-      label: 'Filename'
-    },
-    {
-      fieldname: 'latency',
-      label: 'Latency'
-    },
-    {
-      fieldname: 'statusCode',
-      label: 'Status Code'
-    }
-  ];
-  private rules: Array<Object>;
-  private rulesResolved: boolean;
-
-  constructor(http: InHttp) {
-    this.http = http;
-  }
-
-  ngOnInit() {
-    this.http.get('/rules')
-      .subscribe((data) => {
-        this.rules = data.data.Rule;
-        this.rulesResolved = true;
-      });
-  }
+@RouteConfig([
+  { path: '', name: 'List', component: InRulesList, setAsDefault: true },
+  { path: '/:ruleId', name: 'Details', component: InRulesDetails }
+])
+export class InRules {
 }

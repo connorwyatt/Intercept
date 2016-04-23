@@ -24,7 +24,7 @@ declare const __moduleName: string;
 @RouteConfig([
   { path: '/dashboard', name: 'Dashboard', component: InDashboard, useAsDefault: true },
   { path: '/requests', name: 'Requests', component: InRequests },
-  { path: '/rules', name: 'Rules', component: InRules },
+  { path: '/rules/...', name: 'Rules', component: InRules },
   { path: '/settings', name: 'Settings', component: InSettings }
 ])
 export class InApp {
@@ -40,7 +40,7 @@ export class InApp {
       icon: 'requests'
     },
     {
-      link: ['Rules'],
+      link: ['Rules', 'List'],
       label: 'Rules',
       icon: 'rules'
     },

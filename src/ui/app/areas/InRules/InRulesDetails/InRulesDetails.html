@@ -1,0 +1,73 @@
+<div class="InGrid">
+  <in-card [heading]="isNew ? 'New Rule' : 'Edit Rule'"
+           *ngIf="ruleResolved"
+           class="InGrid-item">
+    <form (ngSubmit)="onSubmit(ruleDetailsForm)"
+          #ruleDetailsForm="ngForm">
+      <div>
+        <label for="ruleUrl">URL:</label>
+        <input type="text"
+               id="ruleUrl"
+               [(ngModel)]="rule.url"
+               ngControl="url"/>
+      </div>
+
+      <div>
+        <label for="ruleMethod">Method:</label>
+        <select id="ruleMethod"
+                [(ngModel)]="rule.method"
+                ngControl="method">
+          <option *ngFor="#method of methods" [value]="method">{{ method }}</option>
+        </select>
+      </div>
+
+      <h2>Response</h2>
+
+      <div>
+        <label for="ruleStatusCode">Status Code:</label>
+        <input type="number"
+               id="ruleStatusCode"
+               [(ngModel)]="rule.statusCode"
+               ngControl="statusCode"/>
+      </div>
+
+      <div>
+        <label for="ruleBody">Body:</label>
+        <textarea id="ruleBody"
+                  [(ngModel)]="rule.body"
+                  ngControl="body"></textarea>
+      </div>
+
+      <div>
+        <label for="ruleFile">File:</label>
+        {{ rule.file }}
+        <input type="file"
+               id="ruleFile"
+               (change)="setFile($event.target.files)"
+               [(ngModel)]="rule.file"
+               ngControl="file"/>
+      </div>
+
+      <div>
+        <label for="ruleType">Type:</label>
+        <select id="ruleType"
+                [(ngModel)]="rule.type"
+                ngControl="type">
+          <option *ngFor="#type of types" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="ruleLatency">Latency:</label>
+        <input type="number"
+               id="ruleLatency"
+               [(ngModel)]="rule.latency"
+               ngControl="latency"/>
+      </div>
+
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </in-card>
+</div>

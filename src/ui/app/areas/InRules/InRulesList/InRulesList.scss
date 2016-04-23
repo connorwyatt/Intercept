@@ -1,6 +1,6 @@
-@import '../../styles/theme';
+@import '../../../styles/theme';
 
-.InRules {
+.InRulesList {
   &-paragraph {
     @include typography-paragraph;
     color: $color-text;
