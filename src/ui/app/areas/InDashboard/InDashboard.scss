@@ -25,6 +25,10 @@
     color: $color-text-inverted;
   }
 
+  &-paragraphBold {
+    font-weight: bolder;
+  }
+
   &-statusParagraph {
     align-items: center;
     display: flex;

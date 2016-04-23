@@ -10,7 +10,7 @@
           <in-status-indicator class="InDashboard-status"
                                [status]="proxyStatus"></in-status-indicator>
           <p *ngIf="proxySettings.port"
-             class="InDashboard-paragraphInverted">Proxy is running on port {{ proxySettings.port }}.</p>
+             class="InDashboard-paragraphInverted">Proxy is running on port <span class="InDashboard-paragraphBold">{{ proxySettings.port }}</span>.</p>
           <p *ngIf="!proxySettings.port"
              class="InDashboard-paragraphInverted">Proxy is not currently running.</p>
         </div>
@@ -18,7 +18,7 @@
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Target</h3>
         <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
-           class="InDashboard-paragraphInverted">Proxy target is {{ targetHostSettings.hostname }} on port {{ targetHostSettings.port }}.
+           class="InDashboard-paragraphInverted">Proxy target is <span class="InDashboard-paragraphBold">{{ targetHostSettings.hostname }}</span> on port <span class="InDashboard-paragraphBold">{{ targetHostSettings.port }}</span>.
         </p>
         <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
            class="InDashboard-paragraphInverted">Proxy target has not been set.
