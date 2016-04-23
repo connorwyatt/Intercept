@@ -10,7 +10,7 @@ import { InRulesDetails } from './InRulesDetails/InRulesDetails';
   directives: [[RouterOutlet]]
 })
 @RouteConfig([
-  { path: '', name: 'List', component: InRulesList, setAsDefault: true },
+  { path: '', name: 'List', component: InRulesList, useAsDefault: true },
   { path: '/:ruleId', name: 'Details', component: InRulesDetails }
 ])
 export class InRules {

@@ -40,7 +40,7 @@ export class InApp {
       icon: 'requests'
     },
     {
-      link: ['Rules', 'List'],
+      link: ['Rules'],
       label: 'Rules',
       icon: 'rules'
     },
