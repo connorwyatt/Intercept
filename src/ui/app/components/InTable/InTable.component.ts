@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from 'angular2/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from 'angular2/core';
 import { IInTableField } from './IInTableField';
 
 declare const __moduleName: string;
@@ -10,7 +10,8 @@ declare const __moduleName: string;
   styleUrls: [
     '../../styles/core.css',
     'InTable.css'
-  ]
+  ],
+  encapsulation: ViewEncapsulation.Native
 })
 export class InTable {
   @Input()
