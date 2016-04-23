@@ -1,14 +1,20 @@
 'use strict';
 
-const DataStore = require('nedb'),
+const electronApp = require('electron').app,
+  path = require('path'),
+  DataStore = require('nedb'),
   logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService'),
   ResourceNotExistException = require('../../shared/throwables/resourceNotExistException');
 
 class Rules {
   init() {
     return new Promise((resolve, reject) => {
-      let filename = FilenameService.changeExtension(__filename, '.db');
+      let userData = electronApp.getPath('userData');
+
+      let filename = path.format({
+        dir: userData,
+        base: 'rules.db'
+      });
 
       this.$dataStore = new DataStore({
         filename: filename,

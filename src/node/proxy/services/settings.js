@@ -1,9 +1,10 @@
 'use strict';
 
-const DataStore = require('nedb'),
+const electronApp = require('electron').app,
+  path = require('path'),
+  DataStore = require('nedb'),
   proxySettingsConstraints = require('./../validation/proxySettingsConstraints'),
-  logger = require('../../shared/services/logger'),
-  FilenameService = require('../../shared/services/filenameService');
+  logger = require('../../shared/services/logger');
 
 class Settings {
   static get $defaultId() {
@@ -12,7 +13,12 @@ class Settings {
 
   init() {
     return new Promise((resolve, reject) => {
-      let filename = FilenameService.changeExtension(__filename, '.db');
+      let userData = electronApp.getPath('userData');
+
+      let filename = path.format({
+        dir: userData,
+        base: 'settings.db'
+      });
 
       this.$dataStore = new DataStore({
         filename: filename,
