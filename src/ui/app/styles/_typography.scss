@@ -15,11 +15,11 @@
 @mixin typography-subheading() {
   font-size: $grid-size-text * 5;
   font-weight: 300;
-  line-height: $grid-size-text * 8;
+  line-height: $grid-size-text * 7;
 }
 
 @mixin typography-paragraph() {
   font-size: $grid-size-text * 4;
   font-weight: 300;
-  line-height: $grid-size-text * 8;
+  line-height: $grid-size-text * 6;
 }
