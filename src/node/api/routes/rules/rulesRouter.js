@@ -41,6 +41,16 @@ rulesRouter.route('')
       });
   });
 
+rulesRouter.route('/resourcetemplate')
+
+  .get((request, response) => {
+    let to = new RuleTO({});
+
+    let apiResponseBuilder = new APIResponseBuilder(Rule, to, null, null);
+
+    response.send(apiResponseBuilder.get());
+  });
+
 rulesRouter.route('/:ruleId')
 
   .get((request, response) => {
