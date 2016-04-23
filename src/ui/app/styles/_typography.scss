@@ -1,9 +1,9 @@
 @import 'layout';
 
 @mixin typography-title() {
-  font-size: $grid-size-text * 8;
+  font-size: $grid-size-text * 6;
   font-weight: 100;
-  line-height: $grid-size-text * 8;
+  line-height: $grid-size-text * 6;
 }
 
 @mixin typography-heading() {

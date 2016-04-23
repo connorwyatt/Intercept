@@ -1,16 +1,17 @@
 @import '../../styles/theme';
+@import '../../InApp';
 
 .InNavigationBar {
   &-container {
     background-color: $color-sky-blue;
-    box-shadow: $shadow-dark;
+    box-shadow: $shadow-light;
     height: 100%;
     width: 100%;
   }
 
   &-tile {
     display: block;
-    height: $grid-size * 10;
+    height: $InApp-navigation-bar-width;
     width: 100%;
   }
 }
