@@ -16,11 +16,19 @@ $InNavigationBarTile-popup-color: $color-grey-slate;
     background-color: $color-deep-sky-blue;
     border-left: $color-cyan 2px solid;
     box-shadow: $shadow-light-inset;
+
+    .InNavigationBarTile-icon {
+      color: $color-text-heading-inverted;
+    }
   }
 
   &:hover,
   &:focus {
     background-color: $color-deep-sky-blue;
+
+    .InNavigationBarTile-icon {
+      color: $color-text-heading-inverted;
+    }
   }
 
   &:hover {
@@ -33,7 +41,7 @@ $InNavigationBarTile-popup-color: $color-grey-slate;
   }
 
   &-icon {
-    color: $color-white;
+    color: $color-text-inverted;
     display: block;
     height: $grid-size * 4;
     width: $grid-size * 4;
