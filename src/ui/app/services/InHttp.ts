@@ -17,6 +17,20 @@ export class InHttp {
   }
 
   public put(url: string, body: Array<any>|Object, options?: RequestOptionsArgs): Observable<Object> {
+    options = InHttp.addHeaders(options);
+
+    return this.http.put(this.baseUrl + url, InHttp.stringifyBody(body), options)
+      .map(data => data.json());
+  }
+
+  public post(url: string, body: Array<any>|Object, options?: RequestOptionsArgs): Observable<Object> {
+    options = InHttp.addHeaders(options);
+
+    return this.http.post(this.baseUrl + url, InHttp.stringifyBody(body), options)
+      .map(data => data.json());
+  }
+
+  private static addHeaders(options?: RequestOptionsArgs) {
     if (options) {
       if (options.headers) {
         if (!options.headers.has('Content-Type')) {
@@ -37,8 +51,7 @@ export class InHttp {
       };
     }
 
-    return this.http.put(this.baseUrl + url, InHttp.stringifyBody(body), options)
-      .map(data => data.json());
+    return options;
   }
 
   private static stringifyBody(body: Array<any>|Object): string {
