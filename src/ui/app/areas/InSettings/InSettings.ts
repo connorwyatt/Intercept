@@ -3,6 +3,7 @@ import { NgForm } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
+import { IN_INPUTS } from '../../components/InInput/InInputs';
 
 declare const __moduleName: string;
 
@@ -17,7 +18,7 @@ declare const __moduleName: string;
     '../../components/InButton/InButton.css',
     'InSettings.css'
   ],
-  directives: [[InCard]],
+  directives: [[IN_INPUTS, InCard]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {
