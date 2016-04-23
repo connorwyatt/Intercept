@@ -5,11 +5,11 @@
     <form (ngSubmit)="onSubmit(ruleDetailsForm)"
           #ruleDetailsForm="ngForm">
       <div>
-        <label for="ruleUrl">URL:</label>
-        <input type="text"
-               id="ruleUrl"
-               [(ngModel)]="rule.url"
-               ngControl="url"/>
+        <in-input type="text"
+                  ngControl="url"
+                  [(ngModel)]="rule.url"
+                  [field]="'url'"
+                  [label]="'URL'"></in-input>
       </div>
 
       <div>
@@ -24,11 +24,11 @@
       <h2>Response</h2>
 
       <div>
-        <label for="ruleStatusCode">Status Code:</label>
-        <input type="number"
-               id="ruleStatusCode"
-               [(ngModel)]="rule.statusCode"
-               ngControl="statusCode"/>
+        <in-input type="number"
+                  ngControl="statusCode"
+                  [(ngModel)]="rule.statusCode"
+                  [field]="'statusCode'"
+                  [label]="'Status Code'"></in-input>
       </div>
 
       <div>
@@ -58,11 +58,12 @@
       </div>
 
       <div>
-        <label for="ruleLatency">Latency:</label>
-        <input type="number"
-               id="ruleLatency"
-               [(ngModel)]="rule.latency"
-               ngControl="latency"/>
+        <in-input type="number"
+                  ngControl="latency"
+                  [(ngModel)]="rule.latency"
+                  [field]="'latency'"
+                  [label]="'Latency'"></in-input>
+
       </div>
 
       <div class="InRulesDetails-buttons">

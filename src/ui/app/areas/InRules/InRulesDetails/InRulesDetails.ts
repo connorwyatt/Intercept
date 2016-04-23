@@ -3,6 +3,7 @@ import { RouteParams, OnActivate, Router } from 'angular2/router';
 import { InCard } from '../../../components/InCard/InCard.component';
 import { InHttp } from '../../../services/InHttp';
 import { NgForm } from 'angular2/common';
+import { IN_INPUTS } from '../../../components/InInput/InInputs';
 
 declare const __moduleName: string;
 
@@ -18,7 +19,7 @@ declare const __moduleName: string;
     'InRulesDetails.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard]]
+  directives: [[IN_INPUTS, InCard]]
 })
 export class InRulesDetails implements OnActivate {
   private http: InHttp;
