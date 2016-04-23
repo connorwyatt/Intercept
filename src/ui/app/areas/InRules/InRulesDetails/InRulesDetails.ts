@@ -14,6 +14,7 @@ declare const __moduleName: string;
     '../../../styles/core.css',
     '../../../components/InCard/InCard.css',
     '../../../components/InGrid/InGrid.css',
+    '../../../components/InButton/InButton.css',
     'InRulesDetails.css'
   ],
   encapsulation: ViewEncapsulation.Native,

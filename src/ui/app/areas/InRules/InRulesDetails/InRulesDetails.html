@@ -65,9 +65,11 @@
                ngControl="latency"/>
       </div>
 
-      <div>
-        <button type="submit">Save</button>
-        <button type="button"
+      <div class="InRulesDetails-buttons">
+        <button class="InButton InButton--positive InRulesDetails-button"
+                type="submit">{{ isNew ? 'Create' : 'Save' }}</button>
+        <button class="InButton InButton--negative InRulesDetails-button"
+                type="button"
                 *ngIf="!isNew"
                 (click)="onDelete()">Delete</button>
       </div>

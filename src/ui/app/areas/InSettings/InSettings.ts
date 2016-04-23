@@ -13,7 +13,9 @@ declare const __moduleName: string;
   styleUrls: [
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
-    '../../components/InGrid/InGrid.css'
+    '../../components/InGrid/InGrid.css',
+    '../../components/InButton/InButton.css',
+    'InSettings.css'
   ],
   directives: [[InCard]],
   encapsulation: ViewEncapsulation.Native
