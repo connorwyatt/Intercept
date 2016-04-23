@@ -23,3 +23,9 @@
   font-weight: 300;
   line-height: $grid-size-text * 6;
 }
+
+@mixin typography-button() {
+  font-size: $grid-size-text * 4;
+  font-weight: 400;
+  line-height: 1;
+}

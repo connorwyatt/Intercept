@@ -1,0 +1,37 @@
+@import '../../styles/theme';
+
+$InButton-border-width: 1px;
+
+@mixin InButton-state-styles($color) {
+  background-color: $color;
+
+  &:hover,
+  &:focus {
+    background-color: darken($color, 4);
+  }
+
+  &:active {
+    background-color: darken($color, 8);
+  }
+}
+
+.InButton {
+  @include InButton-state-styles($color-grey-slate);
+  @include typography-button;
+  border-radius: $border-radius-standard;
+  color: $color-text-inverted;
+  line-height: 1;
+  padding: $grid-size $grid-size;
+
+  &--positive {
+    @include InButton-state-styles($color-green);
+  }
+
+  &--negative {
+    @include InButton-state-styles($color-red);
+  }
+
+  &--neutral {
+    @include InButton-state-styles($color-deep-sky-blue);
+  }
+}
