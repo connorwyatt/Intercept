@@ -27,6 +27,7 @@
   &-heading {
     @include typography-heading;
     color: $color-text-heading-inverted;
+    line-height: 1;
   }
 
   &-content {
