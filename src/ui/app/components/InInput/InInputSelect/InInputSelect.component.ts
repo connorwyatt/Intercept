@@ -18,6 +18,8 @@ const IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR = new Provider(
   templateUrl: 'InInputSelect.html',
   styleUrls: [
     '../../../styles/core.css',
+    '../InInput.css',
+    'InInputSelect.css'
   ],
   providers: [IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.Native

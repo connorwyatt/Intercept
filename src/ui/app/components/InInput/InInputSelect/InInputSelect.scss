@@ -1,0 +1,12 @@
+@import '../../../styles/theme';
+
+.InInput {
+  &-input {
+    -webkit-appearance: none;
+    background-image: url('app/components/InInput/InInputSelect/resources/InInputSelect-dropdown-arrow.svg');
+    background-position: right center;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-size: $grid-size * 3;
+  }
+}
