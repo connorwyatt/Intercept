@@ -1,0 +1,39 @@
+@import '../../styles/theme';
+
+.InForm {
+  &-section {
+    & + & {
+      margin-top: $grid-size * 2;
+      padding-top: $grid-size * 2;
+    }
+  }
+
+  &-sectionHeading {
+    @include typography-subheading;
+  }
+
+  &-item,
+  &-sectionHeading {
+    & ~ & {
+      margin-top: $grid-size * 2;
+    }
+  }
+
+  &-buttons {
+    margin-top: $grid-size * 2;
+  }
+
+  &-button {
+    margin-top: $grid-size * 2;
+    width: 100%;
+
+    @include media-ld {
+      margin-top: 0;
+      width: auto;
+
+      & + & {
+        margin-left: $grid-size * 2;
+      }
+    }
+  }
+}

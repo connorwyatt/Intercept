@@ -16,8 +16,8 @@ declare const __moduleName: string;
     '../../../styles/core.css',
     '../../../components/InCard/InCard.css',
     '../../../components/InGrid/InGrid.css',
-    '../../../components/InButton/InButton.css',
-    'InRulesDetails.css'
+    '../../../components/InForm/InForm.css',
+    '../../../components/InButton/InButton.css'
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[IN_INPUTS, InCard]]

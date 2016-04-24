@@ -3,47 +3,39 @@
 @mixin typography-title() {
   font-size: $grid-size-text * 6;
   font-weight: 100;
-  line-height: $grid-size-text * 6;
 }
 
 @mixin typography-heading() {
   font-size: $grid-size-text * 6;
   font-weight: 500;
-  line-height: $grid-size-text * 8;
 }
 
 @mixin typography-subheading() {
   font-size: $grid-size-text * 5;
   font-weight: 300;
-  line-height: $grid-size-text * 7;
 }
 
 @mixin typography-paragraph() {
   font-size: $grid-size-text * 4;
   font-weight: 300;
-  line-height: $grid-size-text * 6;
 }
 
 @mixin typography-normal() {
   font-size: $grid-size-text * 4;
   font-weight: 300;
-  line-height: 1;
 }
 
 @mixin typography-label() {
   font-size: $grid-size-text * 3;
   font-weight: 400;
-  line-height: 1;
 }
 
 @mixin typography-placeholder() {
   font-size: $grid-size-text * 4;
   font-weight: 400;
-  line-height: 1;
 }
 
 @mixin typography-button() {
   font-size: $grid-size-text * 4;
   font-weight: 400;
-  line-height: 1;
 }
