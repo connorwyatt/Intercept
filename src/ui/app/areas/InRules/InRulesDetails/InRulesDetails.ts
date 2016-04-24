@@ -68,7 +68,9 @@ export class InRulesDetails implements OnActivate {
   private onSubmit(form: NgForm): void {
     let formValues = Object.assign({}, form.value);
 
-    formValues.file = formValues.file.path;
+    if (formValues.file) {
+      formValues.file = formValues.file.path;
+    }
 
     if (this.isNew) {
       this.http.post('/rules', formValues)
