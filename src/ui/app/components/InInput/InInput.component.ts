@@ -4,9 +4,9 @@ export class InInput implements ControlValueAccessor {
   protected onChange = (_: any) => {};
   protected onTouched = () => {};
 
-  protected modelValue: string;
+  protected modelValue: any;
 
-  writeValue(value: string): void {
+  writeValue(value: any): void {
     this.modelValue = value;
   }
 

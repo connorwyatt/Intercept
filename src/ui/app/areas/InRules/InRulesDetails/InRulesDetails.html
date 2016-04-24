@@ -41,13 +41,12 @@
       </div>
 
       <div>
-        <label for="ruleFile">File:</label>
-        {{ rule.file }}
-        <input type="file"
-               id="ruleFile"
-               (change)="setFile($event.target.files)"
-               [(ngModel)]="rule.file"
-               ngControl="file"/>
+        <in-input type="file"
+                  ngControl="file"
+                  [ngModel]="rule.file"
+                  (ngModelChange)="rule.file = $event; updateFileType($event)"
+                  [field]="'file'"
+                  [label]="'File'"></in-input>
       </div>
 
       <div>
