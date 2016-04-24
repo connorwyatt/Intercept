@@ -33,10 +33,11 @@
       </div>
 
       <div>
-        <label for="ruleBody">Body:</label>
-        <textarea id="ruleBody"
+        <in-input type="textarea"
+                  ngControl="body"
                   [(ngModel)]="rule.body"
-                  ngControl="body"></textarea>
+                  [field]="'body'"
+                  [label]="'Body'"></in-input>
       </div>
 
       <div>
