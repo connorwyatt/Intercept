@@ -27,6 +27,12 @@ $InButton-border-width: 1px;
   min-width: $grid-size * 16;
   padding: $grid-size $grid-size;
 
+  &-icon {
+    display: inline-block;
+    height: $grid-size * 2;
+    width: $grid-size * 2;
+  }
+
   &--positive {
     @include InButton-state-styles($color-green);
   }

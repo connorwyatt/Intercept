@@ -61,22 +61,14 @@ export class InRulesDetails implements OnActivate {
       });
   }
 
-  private updateFileType(file: File): void {
-    this.rule.type = file.type;
-  }
-
   private onSubmit(form: NgForm): void {
-    let formValues = Object.assign({}, form.value);
-
-    formValues.file = formValues.file.path;
-
     if (this.isNew) {
-      this.http.post('/rules', formValues)
+      this.http.post('/rules', form.value)
         .subscribe((data) => {
           this.router.navigate(['Details', { ruleId: data.data.Rule.id }]);
         });
     } else {
-      this.http.put(`/rules/${this.routeParams.get('ruleId')}`, formValues)
+      this.http.put(`/rules/${this.routeParams.get('ruleId')}`, form.value)
         .subscribe((data) => {
           this.rule = data.data.Rule;
         });
