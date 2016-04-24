@@ -13,11 +13,13 @@
 
   &-subheading {
     @include typography-subheading;
+    margin-bottom: $grid-size;
   }
 
   &-paragraph {
     @include typography-paragraph;
     color: $color-text;
+    line-height: 1.25;
   }
 
   &-paragraphInverted {
