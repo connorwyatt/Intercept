@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, Provider } from 'angular2/core';
+import { Component, Input, forwardRef, Provider, ViewEncapsulation } from 'angular2/core';
 import { NG_VALUE_ACCESSOR } from 'angular2/common';
 import { InInput } from '../InInput.component';
 import { IInSelectOption } from '../../../interfaces/IInSelectOption';
@@ -16,7 +16,11 @@ const IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR = new Provider(
   moduleId: __moduleName,
   selector: 'in-input[type=select][ngControl]',
   templateUrl: 'InInputSelect.html',
-  providers: [IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR]
+  styleUrls: [
+    '../../../styles/core.css',
+  ],
+  providers: [IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.Native
 })
 export class InInputSelect extends InInput {
   @Input()

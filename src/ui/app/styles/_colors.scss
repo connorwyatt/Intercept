@@ -14,8 +14,11 @@ $color-green: rgb(90, 185, 45);
 
 $color-text-heading: $color-black;
 $color-text-heading-inverted: $color-white;
-$color-text: transparentize($color-black, 0.2);
-$color-text-inverted: transparentize($color-white, 0.2);
+$color-text: transparentize($color-black, .2);
+$color-text-inverted: transparentize($color-white, .2);
+$color-text-label: transparentize($color-black, .4);
+$color-text-label-inverted: transparentize($color-white, .4);
 
-$color-shadow-light: transparentize($color-black, .8);
+$color-shadow-light: transparentize($color-black, .9);
+$color-shadow-standard: transparentize($color-black, .8);
 $color-shadow-dark: transparentize($color-black, .6);

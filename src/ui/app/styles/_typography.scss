@@ -24,6 +24,24 @@
   line-height: $grid-size-text * 6;
 }
 
+@mixin typography-normal() {
+  font-size: $grid-size-text * 4;
+  font-weight: 300;
+  line-height: 1;
+}
+
+@mixin typography-label() {
+  font-size: $grid-size-text * 3;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin typography-placeholder() {
+  font-size: $grid-size-text * 4;
+  font-weight: 400;
+  line-height: 1;
+}
+
 @mixin typography-button() {
   font-size: $grid-size-text * 4;
   font-weight: 400;

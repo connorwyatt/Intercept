@@ -1,0 +1,44 @@
+@import '../../styles/theme';
+
+$InInput-label-height: $grid-size * 2;
+
+:host(.ng-valid.ng-touched) {
+  .InInput {
+    &-input {
+      border-color: mix($color-green, $color-white-smoke, 50%);
+    }
+  }
+}
+
+.InInput {
+  &-container {
+    padding-top: $InInput-label-height;
+    position: relative;
+  }
+
+  &-label {
+    @include typography-label;
+    color: $color-text-label;
+    left: 0;
+    padding-left: $grid-size;
+    position: absolute;
+    top: 0;
+  }
+
+  &-input {
+    @include typography-normal;
+    background-color: $color-white-steam;
+    border-bottom: 2px solid transparent;
+    border-radius: $border-radius-standard;
+    box-shadow: $shadow-light;
+    color: $color-text;
+    padding: $grid-size;
+    outline: none;
+    transition: border-color 400ms ease-in-out;
+    width: 100%;
+
+    &:focus {
+      border-color: mix($color-deep-sky-blue, $color-white-smoke, 50%);
+    }
+  }
+}
