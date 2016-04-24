@@ -17,6 +17,8 @@ const IN_INPUT_TEXTAREA_CONTROL_VALUE_ACCESSOR = new Provider(
   templateUrl: 'InInputTextarea.html',
   styleUrls: [
     '../../../styles/core.css',
+    '../InInput.css',
+    'InInputTextarea.css'
   ],
   providers: [IN_INPUT_TEXTAREA_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.Native
