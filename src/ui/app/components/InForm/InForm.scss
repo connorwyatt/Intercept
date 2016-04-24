@@ -24,8 +24,11 @@
   }
 
   &-button {
-    margin-top: $grid-size * 2;
     width: 100%;
+
+    & + & {
+      margin-top: $grid-size * 2;
+    }
 
     @include media-ld {
       margin-top: 0;
