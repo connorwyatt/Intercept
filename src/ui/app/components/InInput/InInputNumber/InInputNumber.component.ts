@@ -17,6 +17,7 @@ const IN_INPUT_NUMBER_CONTROL_VALUE_ACCESSOR = new Provider(
   templateUrl: 'InInputNumber.html',
   styleUrls: [
     '../../../styles/core.css',
+    '../InInput.css'
   ],
   providers: [IN_INPUT_NUMBER_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.Native
