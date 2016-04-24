@@ -1,10 +1,16 @@
 @import '../../styles/theme';
 
 .InTable {
-  border-collapse: collapse;
-  border-radius: $border-radius-standard;
-  overflow: hidden;
-  width: 100%;
+  &-scrollContainer {
+    border-radius: $border-radius-standard;
+    overflow: auto;
+    width: 100%;
+  }
+
+  &-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
   &-row {
     &:nth-child(odd) {
