@@ -1,0 +1,7 @@
+$media-ld: 768px;
+
+@mixin media-ld() {
+  @media (min-width: $media-ld) {
+    @content;
+  }
+}

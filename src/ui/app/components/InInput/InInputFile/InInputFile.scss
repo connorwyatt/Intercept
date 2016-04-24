@@ -1,0 +1,26 @@
+@import '../../../styles/theme';
+
+.InInput {
+  &-inputGroup {
+    display: flex;
+
+    .InInput {
+      &-input {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        flex: 1 1 auto;
+      }
+
+      &-button {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        flex: 0 0 auto;
+        min-width: $grid-size * 8;
+      }
+    }
+  }
+
+  &-filePicker {
+    display: none;
+  }
+}

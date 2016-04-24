@@ -1,2 +1,4 @@
-<label [attr.for]="field">{{ label }}</label>
-<textarea [attr.id]="field" [(ngModel)]="value" (blur)="onTouched()"></textarea>
+<div class="InInput-container">
+  <label class="InInput-label" [attr.for]="field">{{ label }}</label>
+  <textarea class="InInput-input" [attr.id]="field" [(ngModel)]="value" (blur)="onTouched()"></textarea>
+</div>

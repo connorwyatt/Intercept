@@ -1,2 +1,4 @@
-<label [attr.for]="field">{{ label }}</label>
-<input [attr.id]="field" type="text" [(ngModel)]="value" (blur)="onTouched()"/>
+<div class="InInput-container">
+  <label class="InInput-label" [attr.for]="field">{{ label }}</label>
+  <input class="InInput-input" [attr.id]="field" type="text" [(ngModel)]="value" (blur)="onTouched()"/>
+</div>

@@ -16,8 +16,8 @@ declare const __moduleName: string;
     '../../../styles/core.css',
     '../../../components/InCard/InCard.css',
     '../../../components/InGrid/InGrid.css',
-    '../../../components/InButton/InButton.css',
-    'InRulesDetails.css'
+    '../../../components/InForm/InForm.css',
+    '../../../components/InButton/InButton.css'
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[IN_INPUTS, InCard]]
@@ -61,24 +61,14 @@ export class InRulesDetails implements OnActivate {
       });
   }
 
-  private updateFileType(file: File): void {
-    this.rule.type = file.type;
-  }
-
   private onSubmit(form: NgForm): void {
-    let formValues = Object.assign({}, form.value);
-
-    if (formValues.file) {
-      formValues.file = formValues.file.path;
-    }
-
     if (this.isNew) {
-      this.http.post('/rules', formValues)
+      this.http.post('/rules', form.value)
         .subscribe((data) => {
           this.router.navigate(['Details', { ruleId: data.data.Rule.id }]);
         });
     } else {
-      this.http.put(`/rules/${this.routeParams.get('ruleId')}`, formValues)
+      this.http.put(`/rules/${this.routeParams.get('ruleId')}`, form.value)
         .subscribe((data) => {
           this.rule = data.data.Rule;
         });

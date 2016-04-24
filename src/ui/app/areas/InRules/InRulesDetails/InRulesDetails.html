@@ -4,73 +4,77 @@
            class="InGrid-item">
     <form (ngSubmit)="onSubmit(ruleDetailsForm)"
           #ruleDetailsForm="ngForm">
-      <div>
-        <in-input type="text"
-                  ngControl="url"
-                  [(ngModel)]="rule.url"
-                  [field]="'url'"
-                  [label]="'URL'"></in-input>
+      <div class="InForm-section">
+        <h2 class="InForm-sectionHeading">Match</h2>
+
+        <div class="InForm-item">
+          <in-input type="text"
+                    ngControl="url"
+                    [(ngModel)]="rule.url"
+                    [field]="'url'"
+                    [label]="'URL'"></in-input>
+        </div>
+
+        <div class="InForm-item">
+          <in-input type="select"
+                    ngControl="method"
+                    [(ngModel)]="rule.method"
+                    [field]="'method'"
+                    [label]="'Method'"
+                    [options]="methods"></in-input>
+        </div>
       </div>
 
-      <div>
-        <in-input type="select"
-                  ngControl="method"
-                  [(ngModel)]="rule.method"
-                  [field]="'method'"
-                  [label]="'Method'"
-                  [options]="methods"></in-input>
+      <div class="InForm-section">
+        <h2 class="InForm-sectionHeading">Response</h2>
 
+        <div class="InForm-item">
+          <in-input type="textarea"
+                    ngControl="body"
+                    [(ngModel)]="rule.body"
+                    [field]="'body'"
+                    [label]="'Body'"></in-input>
+        </div>
+
+        <div class="InForm-item">
+          <in-input type="file"
+                    ngControl="file"
+                    [ngModel]="rule.file"
+                    (ngModelChange)="rule.file = $event; updateFileType($event)"
+                    [field]="'file'"
+                    [label]="'File'"></in-input>
+        </div>
+
+        <div class="InForm-item">
+          <in-input type="select"
+                    ngControl="type"
+                    [(ngModel)]="rule.type"
+                    [field]="'type'"
+                    [label]="'Type'"
+                    [options]="types"></in-input>
+        </div>
+
+        <div class="InForm-item">
+          <in-input type="number"
+                    ngControl="statusCode"
+                    [(ngModel)]="rule.statusCode"
+                    [field]="'statusCode'"
+                    [label]="'Status Code'"></in-input>
+        </div>
+
+        <div class="InForm-item">
+          <in-input type="number"
+                    ngControl="latency"
+                    [(ngModel)]="rule.latency"
+                    [field]="'latency'"
+                    [label]="'Latency'"></in-input>
+        </div>
       </div>
 
-      <h2>Response</h2>
-
-      <div>
-        <in-input type="number"
-                  ngControl="statusCode"
-                  [(ngModel)]="rule.statusCode"
-                  [field]="'statusCode'"
-                  [label]="'Status Code'"></in-input>
-      </div>
-
-      <div>
-        <in-input type="textarea"
-                  ngControl="body"
-                  [(ngModel)]="rule.body"
-                  [field]="'body'"
-                  [label]="'Body'"></in-input>
-      </div>
-
-      <div>
-        <in-input type="file"
-                  ngControl="file"
-                  [ngModel]="rule.file"
-                  (ngModelChange)="rule.file = $event; updateFileType($event)"
-                  [field]="'file'"
-                  [label]="'File'"></in-input>
-      </div>
-
-      <div>
-        <in-input type="select"
-                  ngControl="type"
-                  [(ngModel)]="rule.type"
-                  [field]="'type'"
-                  [label]="'Type'"
-                  [options]="types"></in-input>
-      </div>
-
-      <div>
-        <in-input type="number"
-                  ngControl="latency"
-                  [(ngModel)]="rule.latency"
-                  [field]="'latency'"
-                  [label]="'Latency'"></in-input>
-
-      </div>
-
-      <div class="InRulesDetails-buttons">
-        <button class="InButton InButton--positive InRulesDetails-button"
+      <div class="InForm-buttons">
+        <button class="InButton InButton--positive InForm-button"
                 type="submit">{{ isNew ? 'Create' : 'Save' }}</button>
-        <button class="InButton InButton--negative InRulesDetails-button"
+        <button class="InButton InButton--negative InForm-button"
                 type="button"
                 *ngIf="!isNew"
                 (click)="onDelete()">Delete</button>

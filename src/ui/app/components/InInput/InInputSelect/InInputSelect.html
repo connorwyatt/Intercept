@@ -1,9 +1,11 @@
-<label [attr.for]="field">{{ label }}</label>
-<select [attr.id]="field"
-        [(ngModel)]="value"
-        (blur)="onTouched()">
-  <option *ngFor="#option of options"
-          [value]="option.id">
-    {{ option.value }}
-  </option>
-</select>
+<div class="InInput-container">
+  <label class="InInput-label" [attr.for]="field">{{ label }}</label>
+  <select class="InInput-input" [attr.id]="field"
+          [(ngModel)]="value"
+          (blur)="onTouched()">
+    <option *ngFor="#option of options"
+            [value]="option.id">
+      {{ option.value }}
+    </option>
+  </select>
+</div>

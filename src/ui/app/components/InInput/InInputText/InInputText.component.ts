@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, Provider } from 'angular2/core';
+import { Component, Input, forwardRef, Provider, ViewEncapsulation } from 'angular2/core';
 import { NG_VALUE_ACCESSOR } from 'angular2/common';
 import { InInput } from '../InInput.component';
 
@@ -15,7 +15,12 @@ const IN_INPUT_TEXT_CONTROL_VALUE_ACCESSOR = new Provider(
   moduleId: __moduleName,
   selector: 'in-input[type=text][ngControl]',
   templateUrl: 'InInputText.html',
-  providers: [IN_INPUT_TEXT_CONTROL_VALUE_ACCESSOR]
+  styleUrls: [
+    '../../../styles/core.css',
+    '../InInput.css'
+  ],
+  providers: [IN_INPUT_TEXT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.Native
 })
 export class InInputText extends InInput {
   @Input()
@@ -23,7 +28,7 @@ export class InInputText extends InInput {
 
   @Input()
   private label: string;
-  
+
   private get value(): string {
     return this.modelValue;
   }

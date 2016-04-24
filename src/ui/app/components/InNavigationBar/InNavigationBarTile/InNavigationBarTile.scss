@@ -15,7 +15,7 @@ $InNavigationBarTile-popup-color: $color-grey-slate;
   &.is-active {
     background-color: $color-deep-sky-blue;
     border-left: $color-cyan 2px solid;
-    box-shadow: $shadow-light-inset;
+    box-shadow: $shadow-standard-inset;
 
     .InNavigationBarTile-icon {
       color: $color-text-heading-inverted;

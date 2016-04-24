@@ -3,7 +3,7 @@
     <form *ngIf="proxySettingsResolved"
           (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
           #proxySettingsForm="ngForm">
-      <div>
+      <div class="InForm-item">
         <in-input type="number"
                   ngControl="port"
                   [(ngModel)]="proxySettings.port"
@@ -11,8 +11,8 @@
                   [label]="'Port'"></in-input>
       </div>
 
-      <div class="InSettings-buttons">
-        <button class="InButton InButton--positive" type="submit">Save</button>
+      <div class="InForm-buttons">
+        <button class="InButton InButton--positive InForm-button" type="submit">Save</button>
       </div>
 
       <p *ngIf="proxySettingsSubmitting">Submitting...</p>
@@ -24,7 +24,7 @@
     <form *ngIf="targetHostSettingsResolved"
           (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
           #targetHostSettingsForm="ngForm">
-      <div>
+      <div class="InForm-item">
         <in-input type="text"
                   ngControl="hostname"
                   [(ngModel)]="targetHostSettings.hostname"
@@ -32,7 +32,7 @@
                   [label]="'Hostname'"></in-input>
       </div>
 
-      <div>
+      <div class="InForm-item">
         <in-input type="number"
                   ngControl="port"
                   [(ngModel)]="targetHostSettings.port"
@@ -40,8 +40,8 @@
                   [label]="'Port'"></in-input>
       </div>
 
-      <div class="InSettings-buttons">
-        <button class="InButton InButton--positive" type="submit">Save</button>
+      <div class="InForm-buttons">
+        <button class="InButton InButton--positive InForm-button" type="submit">Save</button>
       </div>
 
       <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>

@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef, Provider } from 'angular2/core';
+import { Component, Input, forwardRef, Provider, ViewEncapsulation } from 'angular2/core';
 import { NG_VALUE_ACCESSOR } from 'angular2/common';
 import { InInput } from '../InInput.component';
 
@@ -15,7 +15,13 @@ const IN_INPUT_TEXTAREA_CONTROL_VALUE_ACCESSOR = new Provider(
   moduleId: __moduleName,
   selector: 'in-input[type=textarea][ngControl]',
   templateUrl: 'InInputTextarea.html',
-  providers: [IN_INPUT_TEXTAREA_CONTROL_VALUE_ACCESSOR]
+  styleUrls: [
+    '../../../styles/core.css',
+    '../InInput.css',
+    'InInputTextarea.css'
+  ],
+  providers: [IN_INPUT_TEXTAREA_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.Native
 })
 export class InInputTextarea extends InInput {
   @Input()
