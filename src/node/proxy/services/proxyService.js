@@ -70,7 +70,7 @@ class ProxyService {
 
   static $errorHandler(error, request, response) {
     response.statusCode = 502;
-    response.write(`<h1>Interceptor - Error</h1>`);
+    response.write(`<h1>Intercept - Error</h1>`);
     response.write(`<p>${error.toString()}</p>`);
     response.end();
 
