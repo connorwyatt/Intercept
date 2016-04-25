@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp'),
+  packager = require('electron-packager'),
   runSequence = require('run-sequence'),
   del = require('del'),
   changed = require('gulp-changed'),
@@ -39,9 +40,31 @@ gulp.task('production', () => {
   return runSequence(
     'clean',
     [
-      'moveStaticFiles'
+      'compileScss',
+      'compileTypescript',
+      'moveStaticFiles',
+      'moveDependencies'
+    ], [
+      'buildElectronApp'
     ]
   );
+});
+
+gulp.task('buildElectronApp', () => {
+  return packager({
+    dir: envConfig.paths.buildDirectory,
+    out: '.releases/',
+    arch: 'all',
+    platform: 'darwin',
+    'app-version': '1.0.0',
+    asar: false,
+    icon: './icons/logo',
+    overwrite: true
+  }, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
 });
 
 gulp.task('clean', () => {
