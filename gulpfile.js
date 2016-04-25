@@ -56,8 +56,7 @@ gulp.task('buildElectronApp', () => {
     out: '.releases/',
     arch: 'all',
     platform: 'darwin',
-    'app-version': '1.0.0',
-    asar: false,
+    asar: true,
     icon: './icons/logo',
     overwrite: true
   }, (err) => {
