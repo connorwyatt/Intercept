@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
-import { DatePipe } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InReversePipe } from '../../pipes/InReverse.pipe';
+import { InDatePipe } from '../../pipes/InDate.pipe';
 import { IInTableField } from '../../components/InTable/IInTableField';
 import { IInRequest } from '../../interfaces/IInRequest';
 
@@ -22,15 +22,15 @@ declare const __moduleName: string;
   encapsulation: ViewEncapsulation.Native,
   directives: [[InCard, InTable]],
   pipes: [InReversePipe],
-  providers: [DatePipe]
+  providers: [InDatePipe]
 })
 export class InRequests {
-  private datePipe: DatePipe;
+  private datePipe: InDatePipe;
   private requestsHelper: InRequestsHelper;
   private requestsFields: Array<IInTableField> = [
     {
       fieldname: 'timestamp', label: 'Time', getValue: (model: IInRequest) => {
-        return this.datePipe.transform(model.timestamp, ['medium']);
+        return this.datePipe.transform(<Date> model.timestamp);
       }
     },
     { fieldname: 'method', label: 'Method' },
@@ -43,7 +43,7 @@ export class InRequests {
     return this.requestsHelper.getRequests();
   }
 
-  constructor(datePipe: DatePipe,
+  constructor(datePipe: InDatePipe,
               requestsHelper: InRequestsHelper) {
     this.datePipe = datePipe;
     this.requestsHelper = requestsHelper;
