@@ -3,6 +3,8 @@
           *ngIf="heading">
     <h2 class="InCard-heading">{{ heading }}</h2>
   </header>
+  <in-messages *ngIf="messages?.length"
+               [messages]="messages"></in-messages>
   <div class="InCard-content">
     <ng-content></ng-content>
   </div>

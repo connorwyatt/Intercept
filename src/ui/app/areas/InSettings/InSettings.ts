@@ -3,7 +3,9 @@ import { NgForm } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
+import { InMessagesHelper } from '../../services/InMessagesHelper';
 import { IN_INPUTS } from '../../components/InInput/InInputs';
+import { IInMessage } from '../../interfaces/IInMessage';
 
 declare const __moduleName: string;
 
@@ -24,17 +26,22 @@ declare const __moduleName: string;
 export class InSettings implements OnInit {
   private http: InHttp;
   private requestsHelper: InRequestsHelper;
+  private messagesHelper: InMessagesHelper;
   private proxySettings: Object;
   private proxySettingsResolved: Boolean;
+  private proxySettingsMessages: Array<IInMessage>;
   private targetHostSettings: Object;
   private targetHostSettingsResolved: Boolean;
+  private targetHostSettingsMessages: Array<IInMessage>;
   private proxySettingsSubmitting: Boolean;
   private targetHostSettingsSubmitting: Boolean;
 
   constructor(http: InHttp,
-              requestsHelper: InRequestsHelper) {
+              requestsHelper: InRequestsHelper,
+              messagesHelper: InMessagesHelper) {
     this.http = http;
     this.requestsHelper = requestsHelper;
+    this.messagesHelper = messagesHelper;
   }
 
   ngOnInit() {
@@ -68,9 +75,13 @@ export class InSettings implements OnInit {
     this.http.put('/settings/proxy', form.value)
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
+        this.proxySettingsMessages = this.messagesHelper.flattenMessages(this.messagesHelper.getSaveMessage());
         this.requestsHelper.clearRequests();
-      }, (error) => {
-        console.error(error);
+      }, (err) => {
+        let errors = err.json();
+
+        this.proxySettingsMessages = this.messagesHelper.flattenMessages(errors.meta.messages);
+
         this.proxySettingsSubmitting = false;
       }, () => {
         this.proxySettingsSubmitting = false;
@@ -83,9 +94,13 @@ export class InSettings implements OnInit {
     this.http.put('/settings/targetHost', form.value)
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
+        this.targetHostSettingsMessages = this.messagesHelper.flattenMessages(this.messagesHelper.getSaveMessage());
         this.requestsHelper.clearRequests();
-      }, (error) => {
-        console.error(error);
+      }, (err) => {
+        let errors = err.json();
+
+        this.targetHostSettingsMessages = this.messagesHelper.flattenMessages(errors.meta.messages);
+
         this.targetHostSettingsSubmitting = false;
       }, () => {
         this.targetHostSettingsSubmitting = false;

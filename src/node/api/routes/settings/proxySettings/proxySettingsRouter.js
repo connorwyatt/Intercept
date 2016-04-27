@@ -6,7 +6,8 @@ const express = require('express'),
   APIResponseBuilder = require('../../../services/apiResponseBuilder'),
   ProxySettings = require('../../../../shared/entities/proxySettings'),
   ProxySettingsTO = require('../../../transferObjects/proxySettingsTO'),
-  ValidationException = require('../../../../shared/throwables/validationException');
+  ValidationException = require('../../../../shared/throwables/validationException'),
+  messagesHelper = require('../../../services/messagesHelper');
 
 let proxySettingsRouter = express.Router();
 
@@ -18,7 +19,7 @@ proxySettingsRouter.route('')
 
       let to = new ProxySettingsTO(proxySettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null);
 
       response.send(apiResponseBuilder.get());
     }, () => {
@@ -36,12 +37,14 @@ proxySettingsRouter.route('')
 
       let to = new ProxySettingsTO(proxySettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(ProxySettings, to, null);
 
       response.send(apiResponseBuilder.get());
     }, (err) => {
       if (err instanceof ValidationException) {
-        let apiResponseBuilder = new APIResponseBuilder(ProxySettings, null, null, err.formattedErrors);
+        let errors = messagesHelper.convertValidationException(err);
+
+        let apiResponseBuilder = new APIResponseBuilder(ProxySettings, null, { messages: { errors } });
 
         response.status(400).send(apiResponseBuilder.get());
       } else {

@@ -1,5 +1,7 @@
 <div class="InGrid">
-  <in-card [heading]="'Proxy Server Settings'" class="InGrid-item">
+  <in-card [heading]="'Proxy Server Settings'"
+           [messages]="proxySettingsMessages"
+           class="InGrid-item">
     <form *ngIf="proxySettingsResolved"
           (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
           #proxySettingsForm="ngForm">
@@ -20,6 +22,7 @@
   </in-card>
 
   <in-card [heading]="'Proxy Target Settings'"
+           [messages]="targetHostSettingsMessages"
            class="InGrid-item">
     <form *ngIf="targetHostSettingsResolved"
           (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"

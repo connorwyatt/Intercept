@@ -6,6 +6,7 @@ import { InApp } from './InApp';
 import { InHttp } from './services/InHttp';
 import { InSocket } from './services/InSocket';
 import { InRequestsHelper } from './services/InRequestsHelper';
+import { InMessagesHelper } from './services/InMessagesHelper';
 import 'es6-shim';
 import 'rxjs/Rx';
 
@@ -16,5 +17,6 @@ bootstrap(InApp, [
   provide(APP_BASE_HREF, { useValue: '/' }),
   InHttp,
   InSocket,
-  InRequestsHelper
+  InRequestsHelper,
+  InMessagesHelper
 ]);

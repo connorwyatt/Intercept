@@ -1,0 +1,5 @@
+<ul>
+  <li class="InMessage" [ngClass]="'InMessage--' + message.type" *ngFor="#message of messages">
+    {{ message.body }}
+  </li>
+</ul>

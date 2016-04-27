@@ -1,0 +1,15 @@
+@import '../../../styles/theme';
+
+.InMessage {
+  box-shadow: $shadow-light-inset;
+  color: $color-text-inverted;
+  padding: $grid-size * 2;
+
+  &--success {
+    background-color: $color-green;
+  }
+
+  &--error {
+    background-color: $color-red;
+  }
+}
