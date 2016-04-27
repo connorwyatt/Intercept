@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation, Input } from 'angular2/core';
+import { IInMessage } from '../../interfaces/IInMessage';
+import { InMessages } from '../InMessages/InMessages.component';
 
 declare const __moduleName: string;
 
@@ -10,12 +12,16 @@ declare const __moduleName: string;
     '../../styles/core.css',
     'InCard.css'
   ],
+  directives: [[InMessages]],
   encapsulation: ViewEncapsulation.None
 })
 export class InCard {
   @Input()
   private theme: string;
-  
+
   @Input()
   private heading: string;
+
+  @Input()
+  private messages: Array<IInMessage>;
 }

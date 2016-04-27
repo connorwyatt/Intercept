@@ -1,11 +1,10 @@
 'use strict';
 
 class APIResponseBuilder {
-  constructor(entityConstructor, transferObject, metadata, messages) {
+  constructor(entityConstructor, transferObject, metadata) {
     this.$entityConstructor = entityConstructor;
     this.$transferObject = transferObject;
     this.$metadata = metadata;
-    this.$messages = messages;
   }
 
   get() {
@@ -25,10 +24,6 @@ class APIResponseBuilder {
 
     if (this.$metadata) {
       response.meta = this.$metadata;
-    }
-
-    if (this.$messages) {
-      response.msg = this.$messages;
     }
 
     return response;

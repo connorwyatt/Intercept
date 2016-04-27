@@ -5,7 +5,8 @@ const express = require('express'),
   APIResponseBuilder = require('../../../services/apiResponseBuilder'),
   TargetHostSettings = require('../../../../shared/entities/targetHostSettings'),
   TargetHostSettingsTO = require('../../../transferObjects/targetHostSettingsTO'),
-  ValidationException = require('../../../../shared/throwables/validationException');
+  ValidationException = require('../../../../shared/throwables/validationException'),
+  messagesHelper = require('../../../services/messagesHelper');
 
 let targetHostSettingsRouter = express.Router();
 
@@ -17,7 +18,7 @@ targetHostSettingsRouter.route('')
 
       let to = new TargetHostSettingsTO(targetHostSettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null);
 
       response.send(apiResponseBuilder.get());
     }, () => {
@@ -33,12 +34,14 @@ targetHostSettingsRouter.route('')
 
       let to = new TargetHostSettingsTO(targetHostSettings);
 
-      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null, null);
+      let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, to, null);
 
       response.send(apiResponseBuilder.get());
     }, (err) => {
       if (err instanceof ValidationException) {
-        let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, null, null, err.formattedErrors);
+        let errors = messagesHelper.convertValidationException(err);
+
+        let apiResponseBuilder = new APIResponseBuilder(TargetHostSettings, null, { messages: { errors } });
 
         response.status(400).send(apiResponseBuilder.get());
       } else {
