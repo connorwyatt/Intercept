@@ -1,5 +1,6 @@
 <div class="InGrid">
   <in-card [heading]="isNew ? 'New Rule' : 'Edit Rule'"
+           [messages]="messages"
            *ngIf="ruleResolved"
            class="InGrid-item">
     <form (ngSubmit)="onSubmit(ruleDetailsForm)"

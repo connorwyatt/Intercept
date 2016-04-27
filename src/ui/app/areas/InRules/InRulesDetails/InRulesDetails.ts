@@ -2,9 +2,11 @@ import { Component, ViewEncapsulation } from 'angular2/core';
 import { RouteParams, OnActivate, Router } from 'angular2/router';
 import { InCard } from '../../../components/InCard/InCard.component';
 import { InHttp } from '../../../services/InHttp';
+import { InMessagesHelper } from '../../../services/InMessagesHelper';
 import { NgForm } from 'angular2/common';
 import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { IInSelectOption } from '../../../interfaces/IInSelectOption';
+import { IInMessage } from '../../../interfaces/IInMessage';
 
 declare const __moduleName: string;
 
@@ -26,7 +28,9 @@ export class InRulesDetails implements OnActivate {
   private http: InHttp;
   private router: Router;
   private routeParams: RouteParams;
+  private messagesHelper: InMessagesHelper;
   private rule: Object;
+  private messages: Array<IInMessage>;
   private ruleResolved: boolean;
   private methods: Array<IInSelectOption> = [
     { id: 'GET', value: 'GET' },
@@ -45,10 +49,12 @@ export class InRulesDetails implements OnActivate {
 
   constructor(http: InHttp,
               router: Router,
-              routeParams: RouteParams) {
+              routeParams: RouteParams,
+              messagesHelper: InMessagesHelper) {
     this.http = http;
     this.router = router;
     this.routeParams = routeParams;
+    this.messagesHelper = messagesHelper;
   }
 
   routerOnActivate() {
@@ -71,6 +77,7 @@ export class InRulesDetails implements OnActivate {
       this.http.put(`/rules/${this.routeParams.get('ruleId')}`, form.value)
         .subscribe((data) => {
           this.rule = data.data.Rule;
+          this.messages = this.messagesHelper.flattenMessages(this.messagesHelper.getSaveMessage());
         });
     }
   }
