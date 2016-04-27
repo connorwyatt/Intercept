@@ -10,6 +10,14 @@ $InInput-label-height: $grid-size * 2;
   }
 }
 
+:host(.ng-invalid.ng-touched) {
+  .InInput {
+    &-input {
+      border-color: mix($color-red, $color-white-smoke, 50%);
+    }
+  }
+}
+
 .InInput {
   &-container {
     padding-top: $InInput-label-height;

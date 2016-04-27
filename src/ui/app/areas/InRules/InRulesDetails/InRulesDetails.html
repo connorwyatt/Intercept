@@ -12,6 +12,7 @@
           <in-input type="text"
                     ngControl="url"
                     [(ngModel)]="rule.url"
+                    [inRequired]="true"
                     [field]="'url'"
                     [label]="'URL'"></in-input>
         </div>
@@ -20,6 +21,7 @@
           <in-input type="select"
                     ngControl="method"
                     [(ngModel)]="rule.method"
+                    [inRequired]="true"
                     [field]="'method'"
                     [label]="'Method'"
                     [options]="methods"></in-input>
@@ -50,6 +52,7 @@
           <in-input type="select"
                     ngControl="type"
                     [(ngModel)]="rule.type"
+                    [inRequired]="true"
                     [field]="'type'"
                     [label]="'Type'"
                     [options]="types"></in-input>
@@ -59,6 +62,7 @@
           <in-input type="number"
                     ngControl="statusCode"
                     [(ngModel)]="rule.statusCode"
+                    [inRequired]="true"
                     [field]="'statusCode'"
                     [label]="'Status Code'"></in-input>
         </div>

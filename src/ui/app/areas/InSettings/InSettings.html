@@ -9,6 +9,7 @@
         <in-input type="number"
                   ngControl="port"
                   [(ngModel)]="proxySettings.port"
+                  [inRequired]="true"
                   [field]="'port'"
                   [label]="'Port'"></in-input>
       </div>
@@ -31,6 +32,7 @@
         <in-input type="text"
                   ngControl="hostname"
                   [(ngModel)]="targetHostSettings.hostname"
+                  [inRequired]="true"
                   [field]="'hostname'"
                   [label]="'Hostname'"></in-input>
       </div>
@@ -39,6 +41,7 @@
         <in-input type="number"
                   ngControl="port"
                   [(ngModel)]="targetHostSettings.port"
+                  [inRequired]="true"
                   [field]="'port'"
                   [label]="'Port'"></in-input>
       </div>

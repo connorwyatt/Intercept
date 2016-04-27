@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { NgForm } from 'angular2/common';
 import { RouteParams, OnActivate, Router } from 'angular2/router';
 import { InCard } from '../../../components/InCard/InCard.component';
+import { IN_INPUTS } from '../../../components/InInput/InInputs';
+import { InRequiredValidator } from '../../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../../services/InHttp';
 import { InMessagesHelper } from '../../../services/InMessagesHelper';
-import { NgForm } from 'angular2/common';
-import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { IInSelectOption } from '../../../interfaces/IInSelectOption';
 import { IInMessage } from '../../../interfaces/IInMessage';
 
@@ -22,7 +23,7 @@ declare const __moduleName: string;
     '../../../components/InButton/InButton.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[IN_INPUTS, InCard]]
+  directives: [[IN_INPUTS, InCard, InRequiredValidator]]
 })
 export class InRulesDetails implements OnActivate {
   private http: InHttp;
