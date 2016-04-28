@@ -15,10 +15,11 @@
       </div>
 
       <div class="InForm-buttons">
-        <button class="InButton InButton--positive InForm-button" type="submit">Save</button>
+        <button class="InButton InButton--positive InForm-button"
+                [class.is-disabled]="!proxySettingsForm.valid"
+                type="submit"
+                [disabled]="!proxySettingsForm.valid">Save</button>
       </div>
-
-      <p *ngIf="proxySettingsSubmitting">Submitting...</p>
     </form>
   </in-card>
 
@@ -47,10 +48,11 @@
       </div>
 
       <div class="InForm-buttons">
-        <button class="InButton InButton--positive InForm-button" type="submit">Save</button>
+        <button class="InButton InButton--positive InForm-button"
+                [class.is-disabled]="!targetHostSettingsForm.valid"
+                type="submit"
+                [disabled]="!targetHostSettingsForm.valid">Save</button>
       </div>
-
-      <p *ngIf="targetHostSettingsSubmitting">Submitting...</p>
     </form>
   </in-card>
 </div>

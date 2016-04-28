@@ -1,15 +1,34 @@
 @import '../../../styles/theme';
 
 .InMessage {
-  box-shadow: $shadow-light-inset;
-  color: $color-text-inverted;
-  padding: $grid-size * 2;
+  &--form {
+    box-shadow: $shadow-light-inset;
+    color: $color-text-inverted;
+    padding: $grid-size * 2;
 
-  &--success {
-    background-color: $color-green;
+    &.InMessage {
+      &--success {
+        background-color: $color-green;
+      }
+
+      &--error {
+        background-color: $color-red;
+      }
+    }
   }
 
-  &--error {
-    background-color: $color-red;
+  &--input {
+    @include typography-label;
+    padding: $grid-size;
+
+    &.InMessage {
+      &--success {
+        color: $color-green;
+      }
+
+      &--error {
+        color: $color-red;
+      }
+    }
   }
 }

@@ -6,5 +6,6 @@
       <in-icon class="InButton-icon" [icon]="'attachFile'"></in-icon>
     </button>
   </div>
+  <in-messages type="input" *ngIf="isTouched" [messages]="errors | inValidationErrors"></in-messages>
 </div>
 <input class="InInput-filePicker" type="file" (change)="updateFile($event)" (blur)="onTouched()" #fileInput />

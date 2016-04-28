@@ -78,7 +78,9 @@
 
       <div class="InForm-buttons">
         <button class="InButton InButton--positive InForm-button"
-                type="submit">{{ isNew ? 'Create' : 'Save' }}</button>
+                [class.is-disabled]="!ruleDetailsForm.valid"
+                type="submit"
+                [disabled]="!ruleDetailsForm.valid">{{ isNew ? 'Create' : 'Save' }}</button>
         <button class="InButton InButton--negative InForm-button"
                 type="button"
                 *ngIf="!isNew"

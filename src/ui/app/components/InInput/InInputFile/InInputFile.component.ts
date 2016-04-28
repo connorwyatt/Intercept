@@ -1,16 +1,11 @@
-import { Component, Input, forwardRef, Provider, ViewEncapsulation, ViewChild } from 'angular2/core';
-import { NG_VALUE_ACCESSOR } from 'angular2/common';
+import { Component, Input, ViewEncapsulation, ViewChild, Self } from 'angular2/core';
 import { InInput } from '../InInput.component';
 import { InIcon } from '../../InIcon/InIcon.component';
+import { NgControl } from 'angular2/common';
+import { InValidationErrorsPipe } from '../../../pipes/InValidationErrors.pipe';
+import { InMessages } from '../../InMessages/InMessages.component';
 
 declare const __moduleName: string;
-
-const IN_INPUT_FILE_CONTROL_VALUE_ACCESSOR = new Provider(
-  NG_VALUE_ACCESSOR, {
-    useExisting: forwardRef(() => InInputFile),
-    multi: true
-  }
-);
 
 @Component({
   moduleId: __moduleName,
@@ -22,8 +17,8 @@ const IN_INPUT_FILE_CONTROL_VALUE_ACCESSOR = new Provider(
     '../InInput.css',
     'InInputFile.css'
   ],
-  directives: [InIcon],
-  providers: [IN_INPUT_FILE_CONTROL_VALUE_ACCESSOR],
+  directives: [[InIcon, InMessages]],
+  pipes: [InValidationErrorsPipe],
   encapsulation: ViewEncapsulation.Native
 })
 export class InInputFile extends InInput {
@@ -54,5 +49,9 @@ export class InInputFile extends InInput {
 
   private updateFile(event: Event): void {
     this.value = event.target.files[0].path;
+  }
+
+  constructor(@Self() control: NgControl) {
+    super(control);
   }
 }

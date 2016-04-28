@@ -1,15 +1,10 @@
-import { Component, Input, forwardRef, Provider, ViewEncapsulation } from 'angular2/core';
+import { Component, Input, ViewEncapsulation, Self } from 'angular2/core';
+import { NgControl } from 'angular2/common';
 import { InInput } from '../InInput.component';
-import { NG_VALUE_ACCESSOR } from 'angular2/common';
+import { InMessages } from '../../InMessages/InMessages.component';
+import { InValidationErrorsPipe } from '../../../pipes/InValidationErrors.pipe';
 
 declare const __moduleName: string;
-
-const IN_INPUT_NUMBER_CONTROL_VALUE_ACCESSOR = new Provider(
-  NG_VALUE_ACCESSOR, {
-    useExisting: forwardRef(() => InInputNumber),
-    multi: true
-  }
-);
 
 @Component({
   moduleId: __moduleName,
@@ -19,7 +14,8 @@ const IN_INPUT_NUMBER_CONTROL_VALUE_ACCESSOR = new Provider(
     '../../../styles/core.css',
     '../InInput.css'
   ],
-  providers: [IN_INPUT_NUMBER_CONTROL_VALUE_ACCESSOR],
+  directives: [[InMessages]],
+  pipes: [InValidationErrorsPipe],
   encapsulation: ViewEncapsulation.Native
 })
 export class InInputNumber extends InInput {
@@ -29,15 +25,25 @@ export class InInputNumber extends InInput {
   @Input()
   private label: string;
 
-  private get value(): string {
+  private get value(): number {
     return this.modelValue;
   }
 
-  private set value(newValue: string) {
+  private set value(newValue: number) {
     if (newValue !== this.modelValue) {
-      this.modelValue = newValue;
+      if (isNaN(newValue)) {
+        this.modelValue = null;
 
-      this.onChange(newValue);
+        this.onChange(null);
+      } else {
+        this.modelValue = newValue;
+
+        this.onChange(newValue);
+      }
     }
+  }
+
+  constructor(@Self() control: NgControl) {
+    super(control);
   }
 }

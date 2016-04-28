@@ -1,16 +1,11 @@
-import { Component, Input, forwardRef, Provider, ViewEncapsulation } from 'angular2/core';
-import { NG_VALUE_ACCESSOR } from 'angular2/common';
+import { Component, Input, ViewEncapsulation, Self } from 'angular2/core';
+import { NgControl } from 'angular2/common';
 import { InInput } from '../InInput.component';
+import { InMessages } from '../../InMessages/InMessages.component';
+import { InValidationErrorsPipe } from '../../../pipes/InValidationErrors.pipe';
 import { IInSelectOption } from '../../../interfaces/IInSelectOption';
 
 declare const __moduleName: string;
-
-const IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR = new Provider(
-  NG_VALUE_ACCESSOR, {
-    useExisting: forwardRef(() => InInputSelect),
-    multi: true
-  }
-);
 
 @Component({
   moduleId: __moduleName,
@@ -21,7 +16,8 @@ const IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR = new Provider(
     '../InInput.css',
     'InInputSelect.css'
   ],
-  providers: [IN_INPUT_SELECT_CONTROL_VALUE_ACCESSOR],
+  directives: [[InMessages]],
+  pipes: [InValidationErrorsPipe],
   encapsulation: ViewEncapsulation.Native
 })
 export class InInputSelect extends InInput {
@@ -44,5 +40,9 @@ export class InInputSelect extends InInput {
 
       this.onChange(newValue);
     }
+  }
+
+  constructor(@Self() control: NgControl) {
+    super(control);
   }
 }
