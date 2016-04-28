@@ -43,6 +43,11 @@ export class InRulesDetails implements OnActivate {
     { id: 'application/json', value: 'JSON' },
     { id: 'plain/text', value: 'Plain Text' }
   ];
+  private responseTypes: Array<IInSelectOption> = [
+    { id: 'file', value: 'Use File' },
+    { id: 'body', value: 'Use Text' }
+  ];
+  private responseType: string;
 
   private get isNew(): boolean {
     return this.routeParams.get('ruleId') === 'new';
@@ -65,7 +70,15 @@ export class InRulesDetails implements OnActivate {
       .subscribe((data) => {
         this.rule = data.data.Rule;
         this.ruleResolved = true;
+
+        this.responseType = this.rule.body ? 'body' : 'file';
       });
+  }
+
+  private clearResponseType(): void {
+    let field = this.responseType === 'file' ? 'body' : 'file';
+
+    this.rule[field] = null;
   }
 
   private onSubmit(form: NgForm): void {

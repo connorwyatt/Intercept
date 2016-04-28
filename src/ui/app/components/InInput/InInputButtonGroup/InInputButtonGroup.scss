@@ -1,0 +1,38 @@
+@import '../../../styles/theme';
+
+.InInput {
+  &-container {
+    display: flex;
+  }
+
+  &-button {
+    @include typography-button;
+    background-color: $color-white-steam;
+    border-radius: 0;
+    color: $color-text;
+    cursor: pointer;
+    flex: 1 1 0%;
+    padding: $grid-size;
+
+    &:hover {
+      background-color: $color-white-smoke;
+    }
+
+    &.is-selected {
+      background-color: $color-sky-blue;
+      color: $color-text-inverted;
+    }
+
+    & + & {
+      border-left: 0;
+    }
+
+    &:first-of-type {
+      border-radius: $border-radius-standard 0 0 $border-radius-standard;
+    }
+
+    &:last-of-type {
+      border-radius: 0 $border-radius-standard $border-radius-standard 0;
+    }
+  }
+}

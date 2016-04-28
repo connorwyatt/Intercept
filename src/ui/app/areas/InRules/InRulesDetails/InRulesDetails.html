@@ -32,20 +32,29 @@
         <h2 class="InForm-sectionHeading">Response</h2>
 
         <div class="InForm-item">
-          <in-input type="textarea"
-                    ngControl="body"
-                    [(ngModel)]="rule.body"
-                    [field]="'body'"
-                    [label]="'Body'"></in-input>
+          <in-input type="button-group"
+                    [ngModel]="responseType"
+                    (ngModelChange)="responseType = $event; clearResponseType()"
+                    [options]="responseTypes"></in-input>
         </div>
 
-        <div class="InForm-item">
+        <div class="InForm-item" *ngIf="responseType === 'file'">
           <in-input type="file"
                     ngControl="file"
                     [ngModel]="rule.file"
-                    (ngModelChange)="rule.file = $event; updateFileType($event)"
+                    (ngModelChange)="rule.file = $event"
+                    [inRequired]="true"
                     [field]="'file'"
                     [label]="'File'"></in-input>
+        </div>
+
+        <div class="InForm-item" *ngIf="responseType === 'body'">
+          <in-input type="textarea"
+                    ngControl="body"
+                    [(ngModel)]="rule.body"
+                    [inRequired]="true"
+                    [field]="'body'"
+                    [label]="'Text'"></in-input>
         </div>
 
         <div class="InForm-item">
