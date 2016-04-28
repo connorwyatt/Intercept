@@ -1,29 +1,23 @@
 import { Component, Input, ViewEncapsulation, Self } from 'angular2/core';
 import { NgControl } from 'angular2/common';
 import { InInput } from '../InInput.component';
-import { InMessages } from '../../InMessages/InMessages.component';
-import { InValidationErrorsPipe } from '../../../pipes/InValidationErrors.pipe';
+import { IInSelectOption } from '../../../interfaces/IInSelectOption';
 
 declare const __moduleName: string;
 
 @Component({
   moduleId: __moduleName,
-  selector: 'in-input[type=text][ngControl]',
-  templateUrl: 'InInputText.html',
+  selector: 'in-input[type=button-group]',
+  templateUrl: 'InInputButtonGroup.html',
   styleUrls: [
     '../../../styles/core.css',
-    '../InInput.css'
+    'InInputButtonGroup.css'
   ],
-  directives: [[InMessages]],
-  pipes: [InValidationErrorsPipe],
   encapsulation: ViewEncapsulation.Native
 })
-export class InInputText extends InInput {
+export class InInputButtonGroup extends InInput {
   @Input()
-  private field: string;
-
-  @Input()
-  private label: string;
+  private options: Array<IInSelectOption>;
 
   private get value(): string {
     return this.modelValue;
@@ -40,4 +34,5 @@ export class InInputText extends InInput {
   constructor(@Self() control: NgControl) {
     super(control);
   }
+
 }

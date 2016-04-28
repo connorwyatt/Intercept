@@ -20,10 +20,10 @@ $InButton-border-width: 1px;
   @include InButton-state-styles($color-grey-slate);
   @include typography-button;
   border-radius: $border-radius-standard;
-  border-bottom: 2px solid transparentize($color-black, .8);
+  border-bottom: 3px solid transparentize($color-black, .8);
   box-shadow: $shadow-light;
   color: $color-text-heading-inverted;
-  line-height: 1;
+  cursor: pointer;
   min-width: $grid-size * 16;
   padding: $grid-size $grid-size;
 
@@ -43,5 +43,19 @@ $InButton-border-width: 1px;
 
   &--neutral {
     @include InButton-state-styles($color-deep-sky-blue);
+  }
+
+  &.is-disabled {
+    background-color: $color-grey-aluminium;
+    cursor: default;
+
+    &:hover,
+    &:focus {
+      background-color: $color-grey-aluminium;
+    }
+
+    &:active {
+      background-color: $color-grey-aluminium;
+    }
   }
 }

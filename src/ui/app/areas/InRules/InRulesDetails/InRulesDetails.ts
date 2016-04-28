@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { NgForm } from 'angular2/common';
 import { RouteParams, OnActivate, Router } from 'angular2/router';
 import { InCard } from '../../../components/InCard/InCard.component';
+import { IN_INPUTS } from '../../../components/InInput/InInputs';
+import { InRequiredValidator } from '../../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../../services/InHttp';
 import { InMessagesHelper } from '../../../services/InMessagesHelper';
-import { NgForm } from 'angular2/common';
-import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { IInSelectOption } from '../../../interfaces/IInSelectOption';
 import { IInMessage } from '../../../interfaces/IInMessage';
 
@@ -22,7 +23,7 @@ declare const __moduleName: string;
     '../../../components/InButton/InButton.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[IN_INPUTS, InCard]]
+  directives: [[IN_INPUTS, InCard, InRequiredValidator]]
 })
 export class InRulesDetails implements OnActivate {
   private http: InHttp;
@@ -42,6 +43,11 @@ export class InRulesDetails implements OnActivate {
     { id: 'application/json', value: 'JSON' },
     { id: 'plain/text', value: 'Plain Text' }
   ];
+  private responseTypes: Array<IInSelectOption> = [
+    { id: 'file', value: 'Use File' },
+    { id: 'body', value: 'Use Text' }
+  ];
+  private responseType: string;
 
   private get isNew(): boolean {
     return this.routeParams.get('ruleId') === 'new';
@@ -64,7 +70,15 @@ export class InRulesDetails implements OnActivate {
       .subscribe((data) => {
         this.rule = data.data.Rule;
         this.ruleResolved = true;
+
+        this.responseType = this.rule.body ? 'body' : 'file';
       });
+  }
+
+  private clearResponseType(): void {
+    let field = this.responseType === 'file' ? 'body' : 'file';
+
+    this.rule[field] = null;
   }
 
   private onSubmit(form: NgForm): void {

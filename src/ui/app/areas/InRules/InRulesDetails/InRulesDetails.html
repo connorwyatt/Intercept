@@ -12,6 +12,7 @@
           <in-input type="text"
                     ngControl="url"
                     [(ngModel)]="rule.url"
+                    [inRequired]="true"
                     [field]="'url'"
                     [label]="'URL'"></in-input>
         </div>
@@ -20,6 +21,7 @@
           <in-input type="select"
                     ngControl="method"
                     [(ngModel)]="rule.method"
+                    [inRequired]="true"
                     [field]="'method'"
                     [label]="'Method'"
                     [options]="methods"></in-input>
@@ -30,26 +32,36 @@
         <h2 class="InForm-sectionHeading">Response</h2>
 
         <div class="InForm-item">
-          <in-input type="textarea"
-                    ngControl="body"
-                    [(ngModel)]="rule.body"
-                    [field]="'body'"
-                    [label]="'Body'"></in-input>
+          <in-input type="button-group"
+                    [ngModel]="responseType"
+                    (ngModelChange)="responseType = $event; clearResponseType()"
+                    [options]="responseTypes"></in-input>
         </div>
 
-        <div class="InForm-item">
+        <div class="InForm-item" *ngIf="responseType === 'file'">
           <in-input type="file"
                     ngControl="file"
                     [ngModel]="rule.file"
-                    (ngModelChange)="rule.file = $event; updateFileType($event)"
+                    (ngModelChange)="rule.file = $event"
+                    [inRequired]="true"
                     [field]="'file'"
                     [label]="'File'"></in-input>
+        </div>
+
+        <div class="InForm-item" *ngIf="responseType === 'body'">
+          <in-input type="textarea"
+                    ngControl="body"
+                    [(ngModel)]="rule.body"
+                    [inRequired]="true"
+                    [field]="'body'"
+                    [label]="'Text'"></in-input>
         </div>
 
         <div class="InForm-item">
           <in-input type="select"
                     ngControl="type"
                     [(ngModel)]="rule.type"
+                    [inRequired]="true"
                     [field]="'type'"
                     [label]="'Type'"
                     [options]="types"></in-input>
@@ -59,6 +71,7 @@
           <in-input type="number"
                     ngControl="statusCode"
                     [(ngModel)]="rule.statusCode"
+                    [inRequired]="true"
                     [field]="'statusCode'"
                     [label]="'Status Code'"></in-input>
         </div>
@@ -74,7 +87,9 @@
 
       <div class="InForm-buttons">
         <button class="InButton InButton--positive InForm-button"
-                type="submit">{{ isNew ? 'Create' : 'Save' }}</button>
+                [class.is-disabled]="!ruleDetailsForm.valid"
+                type="submit"
+                [disabled]="!ruleDetailsForm.valid">{{ isNew ? 'Create' : 'Save' }}</button>
         <button class="InButton InButton--negative InForm-button"
                 type="button"
                 *ngIf="!isNew"

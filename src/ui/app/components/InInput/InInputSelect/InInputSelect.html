@@ -8,4 +8,5 @@
       {{ option.value }}
     </option>
   </select>
+  <in-messages type="input" *ngIf="isTouched" [messages]="errors | inValidationErrors"></in-messages>
 </div>

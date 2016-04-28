@@ -10,6 +10,14 @@ $InInput-label-height: $grid-size * 2;
   }
 }
 
+:host(.ng-invalid.ng-touched) {
+  .InInput {
+    &-input {
+      border-color: mix($color-red, $color-white-smoke, 50%);
+    }
+  }
+}
+
 .InInput {
   &-container {
     padding-top: $InInput-label-height;
@@ -28,7 +36,7 @@ $InInput-label-height: $grid-size * 2;
   &-input {
     @include typography-normal;
     background-color: $color-white-steam;
-    border-bottom: 2px solid transparent;
+    border-bottom: 3px solid transparent;
     border-radius: $border-radius-standard;
     box-shadow: $shadow-light;
     color: $color-text;

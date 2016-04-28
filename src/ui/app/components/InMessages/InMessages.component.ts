@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from 'angular2/core';
+import { Component, Input, ViewEncapsulation, Attribute } from 'angular2/core';
 import { IInMessage } from '../../interfaces/IInMessage';
 
 declare const __moduleName: string;
@@ -16,4 +16,9 @@ declare const __moduleName: string;
 export class InMessages {
   @Input()
   private messages: Array<IInMessage>;
+  private type: string;
+
+  constructor(@Attribute('type') type: string) {
+    this.type = type || 'form';
+  }
 }

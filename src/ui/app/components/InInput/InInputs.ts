@@ -4,11 +4,13 @@ import { InInputNumber } from './InInputNumber/InInputNumber.component';
 import { InInputSelect } from './InInputSelect/InInputSelect.component';
 import { InInputTextarea } from './InInputTextarea/InInputTextarea.component';
 import { InInputFile } from './InInputFile/InInputFile.component';
+import { InInputButtonGroup } from './InInputButtonGroup/InInputButtonGroup.component';
 
 export const IN_INPUTS = CONST_EXPR([
   InInputText,
   InInputNumber,
   InInputSelect,
   InInputTextarea,
-  InInputFile
+  InInputFile,
+  InInputButtonGroup
 ]);

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from 'angular2/core';
 import { NgForm } from 'angular2/common';
 import { InCard } from '../../components/InCard/InCard.component';
+import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InMessagesHelper } from '../../services/InMessagesHelper';
@@ -20,7 +21,7 @@ declare const __moduleName: string;
     '../../components/InForm/InForm.css',
     '../../components/InButton/InButton.css'
   ],
-  directives: [[IN_INPUTS, InCard]],
+  directives: [[IN_INPUTS, InCard, InRequiredValidator]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {
