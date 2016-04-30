@@ -1,9 +1,9 @@
 @import '../../styles/theme';
 
 .InTable {
-  &-scrollContainer {
+  &-container {
     border-radius: $border-radius-standard;
-    overflow: auto;
+    overflow: hidden;
     width: 100%;
   }
 
@@ -51,14 +51,17 @@
     color: $color-white;
   }
 
-  &-cell {
+  &-cell,
+  &-headerCell {
     @include typography-paragraph;
     padding: $grid-size;
   }
 
+  &-cell {
+    word-break: break-word;
+  }
+
   &-headerCell {
-    @extend .InTable-cell;
     font-weight: 400;
-    white-space: nowrap;
   }
 }
