@@ -1,5 +1,5 @@
 .env
 .idea/
 .builds/
-.releases/
+releases/
 node_modules/

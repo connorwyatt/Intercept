@@ -53,11 +53,11 @@ gulp.task('production', () => {
 gulp.task('buildElectronApp', () => {
   return packager({
     dir: envConfig.paths.buildDirectory,
-    out: '.releases/',
+    out: envConfig.paths.releasesDirectory,
     arch: 'all',
     platform: 'darwin',
     asar: true,
-    icon: './icons/logo',
+    icon: envConfig.paths.iconLocation,
     overwrite: true
   }, (err) => {
     if (err) {

@@ -6,6 +6,8 @@ const buildPrefix = '.builds/';
 
 const defaults = {
   paths: {
+    iconLocation: 'icons/logo',
+    releasesDirectory: 'releases/',
     nodeNodeModulesFiles: 'src/@(node)/node_modules/**/*',
     uiNodeModulesFiles: 'src/@(ui)/node_modules/**/*',
     scssFiles: 'src/@(ui)/app/**/@(*.scss)',
