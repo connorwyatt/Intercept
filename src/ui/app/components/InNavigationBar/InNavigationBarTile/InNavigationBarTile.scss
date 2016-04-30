@@ -56,10 +56,11 @@ $InNavigationBarTile-popup-color: $color-grey-slate;
   }
 
   &-popup {
+    @include typography-normal;
     background-color: $InNavigationBarTile-popup-color;
     border-radius: $grid-size;
     box-shadow: $shadow-dark;
-    color: $color-white;
+    color: $color-text-inverted;
     padding: $grid-size;
 
     &:before {
