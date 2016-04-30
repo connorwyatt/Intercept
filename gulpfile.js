@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp'),
+  packageInfo = require('./package.json'),
   packager = require('electron-packager'),
   runSequence = require('run-sequence'),
   del = require('del'),
@@ -57,8 +58,10 @@ gulp.task('buildElectronApp', () => {
     arch: 'all',
     platform: 'darwin',
     asar: true,
+    'app-version': packageInfo.version,
     icon: envConfig.paths.iconLocation,
-    overwrite: true
+    overwrite: true,
+    version: envConfig.versions.electron
   }, (err) => {
     if (err) {
       console.error(err);

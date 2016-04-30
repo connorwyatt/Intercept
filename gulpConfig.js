@@ -14,6 +14,9 @@ const defaults = {
     staticFiles: 'src/**/!(*.ts|*.scss)',
     typescriptFiles: 'src/@(ui)/app/**/@(*.ts)',
     tsConfig: 'src/ui/tsconfig.json'
+  },
+  versions: {
+    electron: '0.37.8'
   }
 };
 
