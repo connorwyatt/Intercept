@@ -2,16 +2,16 @@
 
 @mixin typography-title() {
   font-size: $grid-size-text * 6;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 @mixin typography-heading() {
-  font-size: $grid-size-text * 6;
-  font-weight: 500;
+  font-size: $grid-size-text * 5;
+  font-weight: 600;
 }
 
 @mixin typography-subheading() {
-  font-size: $grid-size-text * 5;
+  font-size: $grid-size-text * 4;
   font-weight: 300;
 }
 
