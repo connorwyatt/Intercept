@@ -53,7 +53,7 @@
 
   &-cell {
     @include typography-paragraph;
-    padding: $grid-size-text * 2;
+    padding: $grid-size;
   }
 
   &-headerCell {

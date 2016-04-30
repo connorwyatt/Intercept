@@ -1,41 +1,48 @@
 @import 'layout';
 
+$font-sizes: (
+  x-large: 22px,
+  large: 16px,
+  regular: 14px,
+  small: 12px
+);
+
 @mixin typography-title() {
-  font-size: $grid-size-text * 6;
+  font-size: map_get($font-sizes, x-large);
   font-weight: 200;
 }
 
 @mixin typography-heading() {
-  font-size: $grid-size-text * 5;
+  font-size: map_get($font-sizes, large);
   font-weight: 600;
 }
 
 @mixin typography-subheading() {
-  font-size: $grid-size-text * 4;
+  font-size: map_get($font-sizes, regular);
   font-weight: 300;
 }
 
 @mixin typography-paragraph() {
-  font-size: $grid-size-text * 4;
+  font-size: map_get($font-sizes, regular);
   font-weight: 300;
 }
 
 @mixin typography-normal() {
-  font-size: $grid-size-text * 4;
+  font-size: map_get($font-sizes, regular);
   font-weight: 300;
 }
 
 @mixin typography-label() {
-  font-size: $grid-size-text * 3;
+  font-size: map_get($font-sizes, small);
   font-weight: 400;
 }
 
 @mixin typography-placeholder() {
-  font-size: $grid-size-text * 4;
+  font-size: map_get($font-sizes, regular);
   font-weight: 400;
 }
 
 @mixin typography-button() {
-  font-size: $grid-size-text * 4;
+  font-size: map_get($font-sizes, regular);
   font-weight: 400;
 }
