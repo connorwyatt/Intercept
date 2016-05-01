@@ -3,9 +3,7 @@
 const http = require('http'),
   express = require('express'),
   expressApp = require('./expressApp'),
-  logger = require('../shared/services/logger'),
-  ioAppManager = require('./services/ioAppManager'),
-  ioApp = require('./ioApp');
+  logger = require('../shared/services/logger');
 
 let server = http.createServer(expressApp);
 
@@ -28,10 +26,7 @@ function onListening() {
   let address = server.address();
 
   logger.info(`API server listening on port ${address.port}`);
-
-  ioAppManager.setServer(server);
-  ioApp.start();
-
+  
   if (process.env.NO_ELECTRON !== 'true') {
     require('../../ui/electron').startElectronApp(address.port);
   }
