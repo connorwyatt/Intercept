@@ -1,43 +1,59 @@
 import { Injectable } from 'angular2/core';
-import { InSocket } from './InSocket';
+import { BehaviorSubject } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
+import { InElectronCommunication } from './InElectronCommunication';
 import { IInRequest } from '../interfaces/IInRequest';
+import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
 
 @Injectable()
 export class InRequestsHelper {
-  private socket: InSocket;
+  private electronCommunication: InElectronCommunication;
   private requests: Array<IInRequest> = [];
+  private observable: Subject<Array<IInRequest>>;
 
-  constructor(socket: InSocket) {
-    this.socket = socket;
+  constructor(electronCommunication: InElectronCommunication) {
+    this.electronCommunication = electronCommunication;
 
     this.listenForRequests();
+
+    this.createObservable();
   }
 
   private listenForRequests(): void {
-    let connection = this.socket.connect('/requests');
+    let observable = this.electronCommunication.listen('requests');
 
-    connection.get('requestStart')
+    observable.filter((data: IInElectronCommunicationData<IInRequest>) => data.type === 'requestStart')
+      .map(data => data.message)
       .map((requestStart: IInRequest) => {
         requestStart.timestamp = new Date(<string> requestStart.timestamp);
 
         return requestStart;
       })
-      .subscribe((requestStart: IInRequest) => {
+      .subscribe(requestStart => {
         this.requests.push(requestStart);
+
+        this.observable.next(this.requests);
       });
 
-    connection.get('requestEnd')
+    observable.filter((data: IInElectronCommunicationData<IInRequest>) => data.type === 'requestEnd')
+      .map(data => data.message)
       .subscribe((requestEnd: IInRequest) => {
         let request = this.requests.find((request: IInRequest) => {
           return request.id === requestEnd.id;
         });
 
         Object.assign(request, requestEnd);
+
+        this.observable.next(this.requests);
       });
   }
 
-  public getRequests(): Array<IInRequest> {
-    return this.requests;
+  private createObservable(): void {
+    this.observable = new BehaviorSubject([]);
+  }
+
+  public getRequests(): Subject<Array<IInRequest>> {
+    return this.observable;
   }
 
   public clearRequests(): void {

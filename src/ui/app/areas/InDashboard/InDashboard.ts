@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from 'angular2/core';
+import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
 import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
@@ -26,8 +27,8 @@ declare const __moduleName: string;
   pipes: [InReversePipe]
 })
 export class InDashboard implements OnInit {
-  private requestsHelper: InRequestsHelper;
   private http: InHttp;
+  private requests: Observable<Array<IInRequest>>;
   private proxySettings: Object;
   private proxySettingsResolved: boolean;
   private targetHostSettings: Object;
@@ -37,10 +38,6 @@ export class InDashboard implements OnInit {
     { fieldname: 'statusCode', label: 'Status Code' },
     { fieldname: 'url', label: 'URL' }
   ];
-
-  private get requests(): Array<IInRequest> {
-    return this.requestsHelper.getRequests();
-  }
 
   private get proxyStatus(): InStatusIndication {
     let proxyStatus: InStatusIndication;
@@ -56,8 +53,9 @@ export class InDashboard implements OnInit {
 
   constructor(requestsHelper: InRequestsHelper,
               http: InHttp) {
-    this.requestsHelper = requestsHelper;
     this.http = http;
+
+    this.requests = requestsHelper.getRequests();
   }
 
   ngOnInit() {
@@ -85,7 +83,7 @@ export class InDashboard implements OnInit {
       });
   }
 
-  private requestsRowClass(model: Object): string {
+  private requestsRowClass(model: IInRequest): string {
     if (model.statusCode >= 400 && model.statusCode < 600) {
       return 'negative';
     } else {

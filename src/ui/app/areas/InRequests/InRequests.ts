@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from 'angular2/core';
+import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
@@ -26,7 +27,7 @@ declare const __moduleName: string;
 })
 export class InRequests {
   private datePipe: InDatePipe;
-  private requestsHelper: InRequestsHelper;
+  private requests: Observable<Array<IInRequest>>;
   private requestsFields: Array<IInTableField> = [
     {
       fieldname: 'timestamp', label: 'Time', getValue: (model: IInRequest) => {
@@ -39,14 +40,10 @@ export class InRequests {
     { fieldname: 'latency', label: 'Latency' }
   ];
 
-  private get requests(): Array<IInRequest> {
-    return this.requestsHelper.getRequests();
-  }
-
   constructor(datePipe: InDatePipe,
               requestsHelper: InRequestsHelper) {
     this.datePipe = datePipe;
-    this.requestsHelper = requestsHelper;
+    this.requests = requestsHelper.getRequests();
   }
 
   private requestsRowClass(model: IInRequest): string {

@@ -5,7 +5,7 @@ const electron = require('electron'),
   app = electron.app,
   BrowserWindow = electron.BrowserWindow;
 
-let mainWindow = null;
+let windows = {};
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
@@ -15,12 +15,13 @@ app.on('window-all-closed', function() {
 
 function startElectronApp(port) {
   app.on('ready', function() {
-    mainWindow = new BrowserWindow({
+    windows.mainWindow = new BrowserWindow({
       width: 1200,
       height: 900,
       titleBarStyle: 'hidden',
       webPreferences: {
-        nodeIntegration: false
+        nodeIntegration: false,
+        preload: __dirname + '/preload.js'
       }
     });
 
@@ -30,14 +31,15 @@ function startElectronApp(port) {
       port: port
     });
 
-    mainWindow.loadURL(uiUrl);
+    windows.mainWindow.loadURL(uiUrl);
 
-    mainWindow.on('closed', function() {
-      mainWindow = null;
+    windows.mainWindow.on('closed', function() {
+      windows.mainWindow = null;
     });
   });
 }
 
 module.exports = {
+  windows: windows,
   startElectronApp: startElectronApp
 };

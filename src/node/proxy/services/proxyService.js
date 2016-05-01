@@ -1,10 +1,10 @@
 'use strict';
 
 const http = require('http'),
+  windows = require('../../../ui/electron').windows,
   crypto = require('crypto'),
   settings = require('./settings'),
   logger = require('../../shared/services/logger'),
-  ioAppManager = require('../../api/services/ioAppManager'),
   autoResponder = require('../services/autoResponder'),
   RequestStartTO = require('../../api/transferObjects/requestStartTO'),
   RequestEndTO = require('../../api/transferObjects/requestEndTO');
@@ -19,7 +19,7 @@ class ProxyService {
 
         let requestStartTO = new RequestStartTO(request, targetHostSettings.hostname, targetHostSettings.port);
 
-        ioAppManager.getIoApp().of('/requests').emit('requestStart', JSON.stringify(requestStartTO));
+        windows.mainWindow.send('requests', 'requestStart', JSON.stringify(requestStartTO));
 
         let proxyRequest = http.request({
           hostname: targetHostSettings.hostname,
@@ -62,7 +62,7 @@ class ProxyService {
 
       let requestEndTO = new RequestEndTO(request, response);
 
-      ioAppManager.getIoApp().of('/requests').emit('requestEnd', JSON.stringify(requestEndTO));
+      windows.mainWindow.send('requests', 'requestEnd', JSON.stringify(requestEndTO));
     });
 
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
@@ -76,7 +76,7 @@ class ProxyService {
 
     let requestEndTO = new RequestEndTO(request, response);
 
-    ioAppManager.getIoApp().of('/requests').emit('requestEnd', JSON.stringify(requestEndTO));
+    windows.mainWindow.send('requests', 'requestEnd', JSON.stringify(requestEndTO));
   }
 
   static createServer() {
