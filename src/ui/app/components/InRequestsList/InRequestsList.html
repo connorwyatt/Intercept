@@ -9,7 +9,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="#request of requests | inReverse" [style.color]="hasError(request)">
+  <tr *ngFor="let request of requests | inReverse" [style.color]="hasError(request)">
     <td>{{ request.timestamp | date : 'short' }}</td>
     <td>{{ request.method }}</td>
     <td>{{ request.statusCode }}</td>

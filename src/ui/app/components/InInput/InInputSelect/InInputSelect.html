@@ -3,7 +3,7 @@
   <select class="InInput-input" [attr.id]="field"
           [(ngModel)]="value"
           (blur)="onTouched()">
-    <option *ngFor="#option of options"
+    <option *ngFor="let option of options"
             [value]="option.id">
       {{ option.value }}
     </option>

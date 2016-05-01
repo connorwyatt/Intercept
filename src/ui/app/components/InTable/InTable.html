@@ -3,7 +3,7 @@
     <thead>
     <tr class="InTable-headerRow">
       <th class="InTable-headerCell"
-          *ngFor="#field of fields">
+          *ngFor="let field of fields">
         {{ field.label }}
       </th>
     </tr>
@@ -12,10 +12,10 @@
     <tr class="InTable-row"
         [class.is-highlightable]="showHighlightStyles"
         [ngClass]="getRowClass(model)"
-        *ngFor="#model of data"
+        *ngFor="let model of data"
         (click)="onRowClick(model)">
       <td class="InTable-cell"
-          *ngFor="#field of fields">
+          *ngFor="let field of fields">
         {{ getFieldViewValue(field, model) }}
       </td>
     </tr>
