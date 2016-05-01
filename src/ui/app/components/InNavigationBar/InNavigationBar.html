@@ -1,5 +1,5 @@
 <div class="InNavigationBar-container">
-  <in-navigation-bar-tile *ngFor="#link of links"
+  <in-navigation-bar-tile *ngFor="let link of links"
                           class="InNavigationBar-tile"
                           [link]="link.link"
                           [label]="link.label"

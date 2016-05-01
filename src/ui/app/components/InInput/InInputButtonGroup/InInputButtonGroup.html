@@ -1,3 +1,3 @@
 <div>
-  <button class="InInput-button" [class.is-selected]="modelValue === option.id" (click)="value = option.id" *ngFor="#option of options">{{ option.value }}</button>
+  <button class="InInput-button" [class.is-selected]="modelValue === option.id" (click)="value = option.id" *ngFor="let option of options">{{ option.value }}</button>
 </div>
