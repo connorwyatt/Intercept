@@ -2,6 +2,8 @@
 
 .InInput {
   &-container {
+    border-radius: $border-radius-standard;
+    box-shadow: $shadow-light;
     display: flex;
   }
 
