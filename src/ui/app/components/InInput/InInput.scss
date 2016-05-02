@@ -18,6 +18,27 @@ $InInput-label-height: $grid-size * 2;
   }
 }
 
+:host(.InInput--dark) {
+  .InInput {
+    &-input {
+      background-color: $color-dark-blue;
+      color: $color-text-inverted;
+
+      &::-webkit-input-placeholder {
+        color: $color-text-label-inverted;
+      }
+    }
+  }
+}
+
+:host(.InInput--noBorder) {
+  .InInput {
+    &-input {
+      border-bottom: 0;
+    }
+  }
+}
+
 .InInput {
   &-label {
     @include typography-label;
@@ -42,6 +63,11 @@ $InInput-label-height: $grid-size * 2;
 
     &:focus {
       border-color: mix($color-deep-sky-blue, $color-white-smoke, 50%);
+    }
+
+    &::-webkit-input-placeholder {
+      @include typography-normal;
+      color: $color-text-label;
     }
   }
 }

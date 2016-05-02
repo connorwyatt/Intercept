@@ -1,7 +1,7 @@
 <div class="InInput-container">
   <label class="InInput-label" *ngIf="label" [attr.for]="field">{{ label }}</label>
   <div class="InInput-inputGroup">
-    <input class="InInput-input" [attr.id]="field" type="text" [(ngModel)]="value" (blur)="onTouched()" />
+    <input class="InInput-input" [attr.id]="field" type="text" placeholder="{{ placeholder }}" [(ngModel)]="value" (blur)="onTouched()" />
     <button class="InButton InButton--neutral InInput-button" (click)="fileButtonClick()">
       <in-icon class="InButton-icon" [icon]="'attachFile'"></in-icon>
     </button>

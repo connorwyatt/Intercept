@@ -4,9 +4,11 @@ import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InReversePipe } from '../../pipes/InReverse.pipe';
+import { InCollectionFilterPipe } from '../../pipes/InCollectionFilter.pipe';
 import { InDatePipe } from '../../pipes/InDate.pipe';
 import { IInTableField } from '../../components/InTable/IInTableField';
 import { IInRequest } from '../../interfaces/IInRequest';
+import { InInputText } from '../../components/InInput/InInputText/InInputText.component';
 
 declare const __moduleName: string;
 
@@ -21,13 +23,15 @@ declare const __moduleName: string;
     'InRequests.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InTable]],
-  pipes: [InReversePipe],
+  directives: [[InCard, InTable, InInputText]],
+  pipes: [InReversePipe, InCollectionFilterPipe],
   providers: [InDatePipe]
 })
 export class InRequests {
   private datePipe: InDatePipe;
   private requests: Observable<Array<IInRequest>>;
+  private filterValue: string = '';
+  private filterColumns: Array<string> = ['url'];
   private requestsFields: Array<IInTableField> = [
     {
       fieldname: 'timestamp', label: 'Time', getValue: (model: IInRequest) => {

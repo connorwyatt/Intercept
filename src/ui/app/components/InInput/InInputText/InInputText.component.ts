@@ -25,6 +25,9 @@ export class InInputText extends InInput {
   @Input()
   private label: string;
 
+  @Input()
+  private placeholder: string;
+
   private get value(): string {
     return this.modelValue;
   }

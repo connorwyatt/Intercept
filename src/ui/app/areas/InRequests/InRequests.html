@@ -1,8 +1,9 @@
 <div class="InGrid">
   <in-card [heading]="'Requests'"
            class="InGrid-item">
+    <in-input inCardHeader class="InRequests-filter InInput--dark InInput--noBorder" type="text" [(ngModel)]="filterValue" [placeholder]="'Filter requests'"></in-input>
     <in-table [fields]="requestsFields"
-              [data]="requests | async | inReverse"
+              [data]="requests | async | inCollectionFilter : filterValue : filterColumns | inReverse"
               [rowClass]="requestsRowClass"></in-table>
   </in-card>
 </div>

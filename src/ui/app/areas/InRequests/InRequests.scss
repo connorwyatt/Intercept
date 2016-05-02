@@ -1,9 +1,9 @@
 @import '../../styles/theme';
 
 .InRequests {
-  &-paragraph {
-    @include typography-paragraph;
-    color: $color-text;
-    line-height: 1.25;
+  &-filter {
+    display: block;
+    margin-left: auto;
+    max-width: $grid-size * 50;
   }
 }

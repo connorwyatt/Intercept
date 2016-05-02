@@ -28,6 +28,9 @@ export class InInputFile extends InInput {
   @Input()
   private label: string;
 
+  @Input()
+  private placeholder: string;
+
   @ViewChild('fileInput')
   private fileInput;
 

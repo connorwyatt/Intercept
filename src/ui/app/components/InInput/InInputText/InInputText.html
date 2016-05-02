@@ -1,5 +1,5 @@
 <div class="InInput-container">
   <label class="InInput-label" *ngIf="label" [attr.for]="field">{{ label }}</label>
-  <input class="InInput-input" [attr.id]="field" type="text" [(ngModel)]="value" (blur)="onTouched()"/>
+  <input class="InInput-input" [attr.id]="field" type="text" placeholder="{{ placeholder }}" [(ngModel)]="value" (blur)="onTouched()"/>
   <in-messages type="input" *ngIf="isTouched" [messages]="errors | inValidationErrors"></in-messages>
 </div>

@@ -20,13 +20,21 @@
   }
 
   &-header {
+    align-items: center;
     background-color: $color-deep-sky-blue;
+    display: flex;
     padding: $grid-size * 2;
+  }
+
+  &-headerContent {
+    flex: 1 1 0%;
+    padding-left: $grid-size * 2;
   }
 
   &-heading {
     @include typography-heading;
     color: $color-text-heading-inverted;
+    flex: 0 0 auto;
     line-height: 1;
   }
 

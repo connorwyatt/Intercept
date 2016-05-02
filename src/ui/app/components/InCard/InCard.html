@@ -2,6 +2,9 @@
   <header class="InCard-header"
           *ngIf="heading">
     <h2 class="InCard-heading">{{ heading }}</h2>
+    <div class="InCard-headerContent">
+      <ng-content select="[inCardHeader]"></ng-content>
+    </div>
   </header>
   <in-messages *ngIf="messages?.length"
                [messages]="messages"></in-messages>
