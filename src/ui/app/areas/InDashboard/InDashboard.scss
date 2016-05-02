@@ -28,7 +28,7 @@
   }
 
   &-paragraphBold {
-    font-weight: bolder;
+    @include typography-paragraph-bold;
   }
 
   &-statusParagraph {

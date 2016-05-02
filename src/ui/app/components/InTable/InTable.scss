@@ -53,15 +53,15 @@
 
   &-cell,
   &-headerCell {
-    @include typography-paragraph;
     padding: $grid-size;
   }
 
   &-cell {
+    @include typography-normal;
     word-break: break-word;
   }
 
   &-headerCell {
-    font-weight: 400;
+    @include typography-normal-bold;
   }
 }
