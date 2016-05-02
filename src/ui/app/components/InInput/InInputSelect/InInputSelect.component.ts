@@ -9,7 +9,7 @@ declare const __moduleName: string;
 
 @Component({
   moduleId: __moduleName,
-  selector: 'in-input[type=select][ngControl]',
+  selector: 'in-input[type=select]',
   templateUrl: 'InInputSelect.html',
   styleUrls: [
     '../../../styles/core.css',

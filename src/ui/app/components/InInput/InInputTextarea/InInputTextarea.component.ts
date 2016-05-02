@@ -8,7 +8,7 @@ declare const __moduleName: string;
 
 @Component({
   moduleId: __moduleName,
-  selector: 'in-input[type=textarea][ngControl]',
+  selector: 'in-input[type=textarea]',
   templateUrl: 'InInputTextarea.html',
   styleUrls: [
     '../../../styles/core.css',

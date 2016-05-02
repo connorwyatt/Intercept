@@ -19,18 +19,12 @@ $InInput-label-height: $grid-size * 2;
 }
 
 .InInput {
-  &-container {
-    padding-top: $InInput-label-height;
-    position: relative;
-  }
-
   &-label {
     @include typography-label;
     color: $color-text-label;
-    left: 0;
+    display: block;
     padding-left: $grid-size;
-    position: absolute;
-    top: 0;
+    padding-bottom: $grid-size;
   }
 
   &-input {

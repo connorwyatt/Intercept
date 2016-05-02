@@ -1,5 +1,5 @@
 <div class="InInput-container">
-  <label class="InInput-label" [attr.for]="field">{{ label }}</label>
+  <label class="InInput-label" *ngIf="label" [attr.for]="field">{{ label }}</label>
   <div class="InInput-inputGroup">
     <input class="InInput-input" [attr.id]="field" type="text" [(ngModel)]="value" (blur)="onTouched()" />
     <button class="InButton InButton--neutral InInput-button" (click)="fileButtonClick()">
