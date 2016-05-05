@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, ViewEncapsulation } from 'angular2/core';
-import { Http } from 'angular2/http';
+import { Component, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Http } from '@angular/http';
 
 declare const __moduleName: string;
 

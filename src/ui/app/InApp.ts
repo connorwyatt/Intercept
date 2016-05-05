@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from 'angular2/core';
-import { RouteConfig, RouterOutlet } from 'angular2/router';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { RouteConfig, RouterOutlet } from '@angular/router-deprecated';
 import { InHeaderBar } from './components/InHeaderBar/InHeaderBar.component';
 import { InNavigationBar } from './components/InNavigationBar/InNavigationBar.component';
 import { InDashboard } from './areas/InDashboard/InDashboard';

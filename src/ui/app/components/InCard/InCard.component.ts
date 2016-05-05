@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from 'angular2/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { IInMessage } from '../../interfaces/IInMessage';
 import { InMessages } from '../InMessages/InMessages.component';
 

@@ -1,5 +1,5 @@
-import { Component, Input, ViewEncapsulation } from 'angular2/core';
-import { Router } from 'angular2/router';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 import { InIcon } from '../../InIcon/InIcon.component';
 
 declare const __moduleName: string;

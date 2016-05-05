@@ -1,8 +1,8 @@
-import { bootstrap } from 'angular2/platform/browser';
-import { provide } from 'angular2/core';
-import { HTTP_PROVIDERS } from 'angular2/http';
-import { ROUTER_PROVIDERS } from 'angular2/router';
-import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from 'angular2/platform/common';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { provide } from '@angular/core';
+import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { InApp } from './InApp';
 import { InHttp } from './services/InHttp';
 import { InElectronCommunication } from './services/InElectronCommunication';

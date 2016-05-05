@@ -1,11 +1,13 @@
-import { forwardRef, Provider, Directive, Input, provide } from 'angular2/core';
-import { NG_VALIDATORS, Validator, AbstractControl, Validators } from 'angular2/common';
-import { CONST_EXPR } from 'angular2/src/facade/lang';
-import { ValidatorFn } from 'angular2/src/common/forms/directives/validators';
+import { forwardRef, Provider, Directive, Input, provide } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, Validators } from '@angular/common';
 import { IInMessage } from '../../interfaces/IInMessage';
 
-const IN_REQUIRED_VALIDATOR = CONST_EXPR(
-  new Provider(NG_VALIDATORS, { useExisting: forwardRef(() => InRequiredValidator), multi: true })
+const IN_REQUIRED_VALIDATOR = new Provider(
+  NG_VALIDATORS,
+  {
+    useExisting: forwardRef(() => InRequiredValidator),
+    multi: true
+  }
 );
 
 @Directive({
@@ -20,7 +22,7 @@ export class InRequiredValidator implements Validator {
   private isRequired: boolean;
   private validators;
 
-  private _validator: ValidatorFn = (control: AbstractControl): { [key: string]: IInMessage } => {
+  private _validator(control: AbstractControl): { [key: string]: IInMessage } {
     if (this.isRequired) {
       let errors = this.validators.required(control);
 

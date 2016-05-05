@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from 'angular2/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { InNavigationBarTile } from './InNavigationBarTile/InNavigationBarTile.component';
 import { IInLink } from '../../interfaces/IInLink';
 

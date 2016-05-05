@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from 'angular2/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { InIcon } from '../InIcon/InIcon.component';
 
 declare const __moduleName: string;

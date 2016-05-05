@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from 'angular2/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
 import { ElectronIPC } from './ElectronIpc';
