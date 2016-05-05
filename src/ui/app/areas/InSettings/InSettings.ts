@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from 'angular2/core';
-import { NgForm } from 'angular2/common';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgForm } from '@angular/common';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';

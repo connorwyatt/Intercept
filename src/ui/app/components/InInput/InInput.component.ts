@@ -1,4 +1,4 @@
-import { ControlValueAccessor, NgControl } from 'angular2/common';
+import { ControlValueAccessor, NgControl } from '@angular/common';
 
 export class InInput implements ControlValueAccessor {
   protected onChange = (_: any) => {};

@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Attribute } from 'angular2/core';
+import { Component, Input, ViewEncapsulation, Attribute } from '@angular/core';
 import { IInMessage } from '../../interfaces/IInMessage';
 
 declare const __moduleName: string;

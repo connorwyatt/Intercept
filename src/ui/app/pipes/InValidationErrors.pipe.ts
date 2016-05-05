@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from 'angular2/core';
+import { Pipe, PipeTransform } from '@angular/core';
 import { IInMessage } from '../interfaces/IInMessage';
 import { InMessagesHelper } from '../services/InMessagesHelper';
 

@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation } from 'angular2/core';
-import { NgForm } from 'angular2/common';
-import { RouteParams, OnActivate, Router } from 'angular2/router';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { NgForm } from '@angular/common';
+import { RouteParams, OnActivate, Router } from '@angular/router-deprecated';
 import { InCard } from '../../../components/InCard/InCard.component';
 import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { InRequiredValidator } from '../../../directives/InRequiredValidator/InRequiredValidator.directive';

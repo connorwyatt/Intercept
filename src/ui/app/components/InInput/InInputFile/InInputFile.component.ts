@@ -1,7 +1,7 @@
-import { Component, Input, ViewEncapsulation, ViewChild, Self } from 'angular2/core';
+import { Component, Input, ViewEncapsulation, ViewChild, Self } from '@angular/core';
 import { InInput } from '../InInput.component';
 import { InIcon } from '../../InIcon/InIcon.component';
-import { NgControl } from 'angular2/common';
+import { NgControl } from '@angular/common';
 import { InValidationErrorsPipe } from '../../../pipes/InValidationErrors.pipe';
 import { InMessages } from '../../InMessages/InMessages.component';
 
