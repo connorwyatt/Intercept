@@ -18,6 +18,8 @@ function startElectronApp(port) {
     windows.mainWindow = new BrowserWindow({
       width: 1200,
       height: 900,
+      minWidth: 600,
+      minHeight: 450,
       titleBarStyle: 'hidden',
       webPreferences: {
         nodeIntegration: false,
