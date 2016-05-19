@@ -1,7 +1,7 @@
 'use strict';
 
 const http = require('http'),
-  windows = require('../../../ui/electron').windows,
+  ipcHelper = require('../../shared/services/ipcHelper'),
   crypto = require('crypto'),
   settings = require('./settings'),
   logger = require('../../shared/services/logger'),
@@ -19,7 +19,7 @@ class ProxyService {
 
         let requestStartTO = new RequestStartTO(request, targetHostSettings.hostname, targetHostSettings.port);
 
-        windows.mainWindow.send('requests', 'requestStart', JSON.stringify(requestStartTO));
+        ipcHelper.sendThrottled('requests', 'requestStart', requestStartTO, 200);
 
         let proxyRequest = http.request({
           hostname: targetHostSettings.hostname,
@@ -62,7 +62,7 @@ class ProxyService {
 
       let requestEndTO = new RequestEndTO(request, response);
 
-      windows.mainWindow.send('requests', 'requestEnd', JSON.stringify(requestEndTO));
+      ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 200);
     });
 
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
@@ -76,7 +76,7 @@ class ProxyService {
 
     let requestEndTO = new RequestEndTO(request, response);
 
-    windows.mainWindow.send('requests', 'requestEnd', JSON.stringify(requestEndTO));
+    ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 200);
   }
 
   static createServer() {
