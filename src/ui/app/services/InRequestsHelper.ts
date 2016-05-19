@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { List, Map } from 'immutable';
 import { InElectronCommunication } from './InElectronCommunication';
 import { IInRequest } from '../interfaces/IInRequest';
 import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
@@ -24,32 +25,38 @@ export class InRequestsHelper {
 
     observable.filter((data: IInElectronCommunicationData<IInRequest>) => data.type === 'requestStart')
       .map(data => data.message)
-      .map((requestStart: IInRequest) => {
-        requestStart.timestamp = new Date(<string> requestStart.timestamp);
+      .map((requestStarts: Array<IInRequest>) => {
+        return requestStarts.map((requestStart: IInRequest) => {
+          requestStart.timestamp = new Date(<string> requestStart.timestamp);
 
-        return requestStart;
+          return requestStart;
+        }).reverse();
       })
-      .subscribe(requestStart => {
-        this.requests.push(requestStart);
+      .subscribe(requestStarts => {
+        this.requests = [...requestStarts, ...this.requests].slice(0, 5000);
 
-        this.observable.next(this.requests);
+        this.observable.next([...this.requests]);
       });
 
     observable.filter((data: IInElectronCommunicationData<IInRequest>) => data.type === 'requestEnd')
       .map(data => data.message)
-      .subscribe((requestEnd: IInRequest) => {
-        let request = this.requests.find((request: IInRequest) => {
-          return request.id === requestEnd.id;
+      .subscribe((requestEnds: Array<IInRequest>) => {
+        requestEnds.forEach((requestEnd: IInRequest) => {
+          let request = this.requests.find((request: IInRequest) => {
+            return request.id === requestEnd.id;
+          });
+
+          if (request) {
+            Object.assign(request, requestEnd);
+          }
         });
 
-        Object.assign(request, requestEnd);
-
-        this.observable.next(this.requests);
+        this.observable.next([...this.requests]);
       });
   }
 
   private createObservable(): void {
-    this.observable = new BehaviorSubject([]);
+    this.observable = new BehaviorSubject(this.requests);
   }
 
   public getRequests(): Subject<Array<IInRequest>> {

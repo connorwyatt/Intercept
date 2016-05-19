@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { IInTableField } from './IInTableField';
 
 declare const __moduleName: string;
@@ -11,7 +11,8 @@ declare const __moduleName: string;
     '../../styles/core.css',
     'InTable.css'
   ],
-  encapsulation: ViewEncapsulation.Native
+  encapsulation: ViewEncapsulation.Native,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InTable {
   @Input()
