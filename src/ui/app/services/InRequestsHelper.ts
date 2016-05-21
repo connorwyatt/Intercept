@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
-import { List, Map } from 'immutable';
 import { InElectronCommunication } from './InElectronCommunication';
 import { IInRequest } from '../interfaces/IInRequest';
 import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
