@@ -1,5 +1,5 @@
 {
-  "name": "interceptor",
+  "name": "intercept",
   "version": "1.2.0",
   "description": "An app for intercepting requests and modifying the response contents.",
   "scripts": {
@@ -7,10 +7,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/connorwyatt/interceptor.git"
+    "url": "git+ssh://git@bitbucket.org/connorwyatt/intercept.git"
   },
   "author": "Connor Wyatt <connorwyatt1@gmail.com>",
-  "homepage": "https://bitbucket.org/connorwyatt/interceptor#readme",
+  "homepage": "https://bitbucket.org/connorwyatt/intercept#readme",
   "dependencies": {},
   "devDependencies": {
     "del": "2.2.0",
