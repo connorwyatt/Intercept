@@ -16,7 +16,7 @@ const defaults = {
     tsConfig: 'src/ui/tsconfig.json'
   },
   versions: {
-    electron: '0.37.8'
+    electron: '1.1.0'
   }
 };
 
