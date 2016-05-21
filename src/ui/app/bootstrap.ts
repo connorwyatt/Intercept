@@ -9,6 +9,7 @@ import { InElectronCommunication } from './services/InElectronCommunication';
 import { InRequestsHelper } from './services/InRequestsHelper';
 import { InMessagesHelper } from './services/InMessagesHelper';
 import { ElectronIPC } from './services/ElectronIpc';
+import { InContentScrollService } from './services/InContentScrollService';
 import 'es6-shim';
 import 'rxjs/Rx';
 
@@ -23,5 +24,6 @@ bootstrap(InApp, [
   InHttp,
   InElectronCommunication,
   InRequestsHelper,
-  InMessagesHelper
+  InMessagesHelper,
+  InContentScrollService
 ]);

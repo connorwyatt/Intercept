@@ -2,6 +2,7 @@
 <header in-header-bar class="InApp-headerBar"></header>
 <nav in-navigation-bar [links]="links" class="InApp-navigationBar"></nav>
 
-<main class="InApp-mainView">
+<main class="InApp-mainView"
+      inContentScroll>
   <router-outlet></router-outlet>
 </main>

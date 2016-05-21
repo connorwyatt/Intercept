@@ -1,0 +1,34 @@
+@import '../../styles/theme';
+
+.InTooltip {
+  &-container {
+    position: fixed;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+  }
+
+  &-tooltip {
+    background-color: $color-white-steam;
+    border-radius: $border-radius-standard;
+    box-shadow: $shadow-standard;
+    color: $color-text;
+    margin-top: $grid-size;
+    padding: $grid-size;
+    position: relative;
+
+    &::before {
+      border-bottom: $grid-size solid $color-white-steam;
+      border-left: $grid-size solid transparent;
+      border-right: $grid-size solid transparent;
+      box-sizing: border-box;
+      content: '';
+      height: $grid-size * 2;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      top: -$grid-size * 2;
+      width: $grid-size * 2;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { RouteConfig, RouterOutlet } from '@angular/router-deprecated';
 import { InHeaderBar } from './components/InHeaderBar/InHeaderBar.component';
 import { InNavigationBar } from './components/InNavigationBar/InNavigationBar.component';
+import { InContentScroll } from './directives/InContentScroll/InContentScroll.directive';
 import { InDashboard } from './areas/InDashboard/InDashboard';
 import { InRequests } from './areas/InRequests/InRequests';
 import { InRules } from './areas/InRules/InRules';
@@ -19,7 +20,7 @@ declare const __moduleName: string;
     'InApp.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[RouterOutlet], [InHeaderBar, InNavigationBar]]
+  directives: [[RouterOutlet], [InHeaderBar, InNavigationBar, InContentScroll]]
 })
 @RouteConfig([
   { path: '/dashboard', name: 'Dashboard', component: InDashboard, useAsDefault: true },

@@ -1,17 +1,15 @@
 @import '../../styles/theme';
 
 .InStatusIndicator {
-  background-color: $color-grey-slate;
-  border-radius: 50%;
-  box-shadow: $shadow-standard;
-  height: 100%;
-  width: 100%;
-
-  &.is-positive {
-    background-color: $color-green;
+  &-indicator {
+    position: relative;
   }
 
-  &.is-negative {
-    background-color: $color-red;
+  &-tooltip {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
