@@ -1,6 +1,7 @@
 'use strict';
 
-const _ = require('lodash');
+const _ = require('lodash'),
+  packageInfo = require('./package.json');
 
 const buildPrefix = '.builds/';
 
@@ -16,7 +17,7 @@ const defaults = {
     tsConfig: 'src/ui/tsconfig.json'
   },
   versions: {
-    electron: '1.1.0'
+    electron: packageInfo.dependencies['electron-prebuilt']
   }
 };
 
