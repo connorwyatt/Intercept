@@ -58,7 +58,6 @@ export class InTooltip {
     this.scrollSubscription = this.scrollService.getObservable()
       .auditTime(1000/60)
       .subscribe(() => {
-        console.log('SCROLL');
         this.updateTooltipPosition();
       });
   }
