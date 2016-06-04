@@ -1,3 +1,6 @@
 <div class="InStatusIndicatorIndicator InStatusIndicator-indicator"
      [ngClass]="'is-' + status">
+  <in-tooltip class="InStatusIndicator-tooltip">
+    <p>Proxy server is {{ status === 'negative' ? 'not' : '' }} running.</p>
+  </in-tooltip>
 </div>

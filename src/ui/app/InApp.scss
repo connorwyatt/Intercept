@@ -8,7 +8,7 @@ $InApp-navigation-bar-width: $grid-size * 9;
     background-color: $color-grey-slate;
     height: $InApp-header-bar-height;
     left: 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: $InApp-navigation-bar-width;
     z-index: 90;
@@ -17,7 +17,7 @@ $InApp-navigation-bar-width: $grid-size * 9;
   &-headerBar {
     height: $InApp-header-bar-height;
     left: $InApp-navigation-bar-width;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: 100;
@@ -26,7 +26,7 @@ $InApp-navigation-bar-width: $grid-size * 9;
   &-navigationBar {
     bottom: 0;
     left: 0;
-    position: fixed;
+    position: absolute;
     top: $InApp-header-bar-height;
     width: $InApp-navigation-bar-width;
     z-index: 100;
@@ -36,7 +36,7 @@ $InApp-navigation-bar-width: $grid-size * 9;
     bottom: 0;
     left: $InApp-navigation-bar-width;
     overflow: auto;
-    position: fixed;
+    position: absolute;
     right: 0;
     top: $InApp-header-bar-height;
   }
