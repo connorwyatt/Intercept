@@ -2,8 +2,13 @@
   <in-card [heading]="'Requests'"
            class="InGrid-item">
     <in-input inCardHeader class="InRequests-filter InInput--dark InInput--noBorder" type="text" [(ngModel)]="filterValue" [placeholder]="'Filter requests'"></in-input>
-    <in-table [fields]="requestsFields"
+    <in-table *ngIf="(requests | async)?.length > 0"
+              [fields]="requestsFields"
               [data]="requests | async | inCollectionFilter : filterValue : filterColumns"
               [rowClass]="requestsRowClass"></in-table>
+    <p *ngIf="(requests | async)?.length === 0"
+       class="InRequests-paragraph">
+      There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.
+    </p>
   </in-card>
 </div>

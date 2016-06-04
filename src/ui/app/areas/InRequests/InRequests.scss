@@ -6,4 +6,10 @@
     margin-left: auto;
     max-width: $grid-size * 50;
   }
+
+  &-paragraph {
+    @include typography-paragraph;
+    color: $color-text;
+    line-height: 1.25;
+  }
 }
