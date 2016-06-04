@@ -8,7 +8,6 @@ import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { IInRequest } from '../../interfaces/IInRequest';
 import { IInTableField } from '../../components/InTable/IInTableField';
-import { InReversePipe } from '../../pipes/InReverse.pipe';
 
 declare const __moduleName: string;
 
@@ -23,8 +22,7 @@ declare const __moduleName: string;
     'InDashboard.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InStatusIndicator, InTable]],
-  pipes: [InReversePipe]
+  directives: [[InCard, InStatusIndicator, InTable]]
 })
 export class InDashboard implements OnInit {
   private http: InHttp;

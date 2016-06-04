@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
-import { InReversePipe } from '../../pipes/InReverse.pipe';
 import { InCollectionFilterPipe } from '../../pipes/InCollectionFilter.pipe';
 import { InDatePipe } from '../../pipes/InDate.pipe';
 import { IInTableField } from '../../components/InTable/IInTableField';
@@ -24,7 +23,7 @@ declare const __moduleName: string;
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[InCard, InTable, InInputText]],
-  pipes: [InReversePipe, InCollectionFilterPipe],
+  pipes: [InCollectionFilterPipe],
   providers: [InDatePipe]
 })
 export class InRequests {

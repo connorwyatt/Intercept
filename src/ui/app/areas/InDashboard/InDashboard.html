@@ -30,12 +30,14 @@
   <in-card [heading]="'Requests'"
            class="InGrid-item">
     <div class="InDashboard-tableContainer">
-      <in-table [fields]="requestsFields"
-                [data]="requests | async | inReverse | slice : 0 : 100"
+      <in-table *ngIf="(requests | async)?.length > 0"
+                [fields]="requestsFields"
+                [data]="requests | async | slice : 0 : 100"
                 [rowClass]="requestsRowClass"></in-table>
-      <!--<p class="InDashboard-paragraph">-->
-        <!--There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.-->
-      <!--</p>-->
+      <p *ngIf="(requests | async)?.length === 0"
+         class="InDashboard-paragraph">
+        There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.
+      </p>
     </div>
   </in-card>
 </div>
