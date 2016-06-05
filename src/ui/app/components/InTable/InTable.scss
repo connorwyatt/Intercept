@@ -59,6 +59,7 @@
 
   &-cell {
     @include typography-normal;
+    color: $color-text;
     word-break: break-word;
   }
 
