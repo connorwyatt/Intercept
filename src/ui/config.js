@@ -8,6 +8,7 @@
 
   let map = {
     '@angular': 'node_modules/@angular',
+    'lodash': 'node_modules/lodash/index',
     'rxjs': 'node_modules/rxjs',
     'es6-shim': 'node_modules/es6-shim/es6-shim',
     'socket.io': 'node_modules/socket.io-client/socket.io'

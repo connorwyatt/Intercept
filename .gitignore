@@ -3,3 +3,5 @@
 .builds/
 releases/
 node_modules/
+src/ui/typings/index.d.ts
+src/ui/typings/globals
