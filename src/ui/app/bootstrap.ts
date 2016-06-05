@@ -1,3 +1,5 @@
+import 'es6-shim';
+import 'rxjs/Rx';
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { provide } from '@angular/core';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -10,8 +12,6 @@ import { InRequestsHelper } from './services/InRequestsHelper';
 import { InMessagesHelper } from './services/InMessagesHelper';
 import { ElectronIPC } from './services/ElectronIpc';
 import { InContentScrollService } from './services/InContentScrollService';
-import 'es6-shim';
-import 'rxjs/Rx';
 
 declare const ELECTRON_IPC: ElectronIPC;
 
