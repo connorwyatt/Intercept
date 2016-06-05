@@ -1,6 +1,6 @@
 {
   "name": "intercept",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "An app for intercepting requests and modifying the response contents.",
   "scripts": {
     "installDependencies": "npm i && cd src/node/ && npm i && cd ../ui && npm i"
