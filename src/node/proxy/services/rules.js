@@ -53,7 +53,10 @@ class Rules {
 
   getMatchingRule(request) {
     return new Promise((resolve, reject) => {
-      this.$dataStore.findOne({ url: request.url }, (err, doc) => {
+      this.$dataStore.findOne({
+        url: request.url,
+        method: request.method
+      }, (err, doc) => {
         if (err) {
           logger.error(err);
           reject(err);
