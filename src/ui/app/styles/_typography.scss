@@ -24,19 +24,19 @@ $font-sizes: (
 
 @mixin typography-paragraph() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.25;
 }
 
 @mixin typography-paragraph-bold() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
 }
 
 @mixin typography-normal() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 @mixin typography-normal-bold() {
