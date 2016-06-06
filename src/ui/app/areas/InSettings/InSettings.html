@@ -2,6 +2,18 @@
   <in-card [heading]="'Proxy Server Settings'"
            [messages]="proxySettingsMessages"
            class="InGrid-item">
+    <div inCardHeader>
+      <div class="InSettings-help">
+        <in-icon class="InSettings-helpIcon"
+                 [icon]="'help'"
+                 (mouseover)="proxyServerTooltip.open()"
+                 (mouseout)="proxyServerTooltip.close()"></in-icon>
+        <in-tooltip #proxyServerTooltip="tooltip">
+          <p>Set the port to use for the proxy server.</p>
+          <p>You can then use http://localhost:{PORT} to intercept requests.</p>
+        </in-tooltip>
+      </div>
+    </div>
     <form *ngIf="proxySettingsResolved"
           (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
           #proxySettingsForm="ngForm">
@@ -26,6 +38,18 @@
   <in-card [heading]="'Proxy Target Settings'"
            [messages]="targetHostSettingsMessages"
            class="InGrid-item">
+    <div inCardHeader>
+      <div class="InSettings-help">
+        <in-icon class="InSettings-helpIcon"
+                 [icon]="'help'"
+                 (mouseover)="proxyTargetTooltip.open()"
+                 (mouseout)="proxyTargetTooltip.close()"></in-icon>
+        <in-tooltip #proxyTargetTooltip="tooltip">
+          <p>Set the hostname and port number to proxy.</p>
+          <p>For example, if you want to intercept requests from localhost on port 8080, set the hostname to 'localhost' and the port number to '8080'.</p>
+        </in-tooltip>
+      </div>
+    </div>
     <form *ngIf="targetHostSettingsResolved"
           (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
           #targetHostSettingsForm="ngForm">

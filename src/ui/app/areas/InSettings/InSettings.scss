@@ -1,0 +1,15 @@
+@import '../../styles/theme';
+
+.InSettings {
+  &-help {
+    height: 28px;
+    margin-left: auto;
+    position: relative;
+    width: 28px;
+  }
+
+  &-helpIcon {
+    color: $color-text-heading-inverted;
+    display: block;
+  }
+}

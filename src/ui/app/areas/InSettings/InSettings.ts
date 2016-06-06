@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { InCard } from '../../components/InCard/InCard.component';
+import { InIcon } from '../../components/InIcon/InIcon.component';
+import { InTooltip } from '../../components/InTooltip/InTooltip.component';
 import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
@@ -15,13 +17,14 @@ declare const __moduleName: string;
   selector: 'in-settings',
   templateUrl: 'InSettings.html',
   styleUrls: [
+    'InSettings.css',
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
     '../../components/InGrid/InGrid.css',
     '../../components/InForm/InForm.css',
     '../../components/InButton/InButton.css'
   ],
-  directives: [[IN_INPUTS, InCard, InRequiredValidator]],
+  directives: [[IN_INPUTS, InCard, InIcon, InTooltip, InRequiredValidator]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {

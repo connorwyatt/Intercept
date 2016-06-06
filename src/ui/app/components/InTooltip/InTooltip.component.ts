@@ -26,7 +26,8 @@ interface ITooltipPositionStyles {
   host: {
     '[class.is-open]': 'isOpen',
     '(window:resize)': 'updateTooltipPosition()'
-  }
+  },
+  exportAs: 'tooltip'
 })
 export class InTooltip {
   @Input()
