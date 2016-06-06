@@ -1,0 +1,9 @@
+@import '../../styles/theme';
+
+.InSettings {
+  &-container {
+    margin: 0 auto;
+    max-width: $application-max-width;
+    padding: $grid-size * 3;
+  }
+}

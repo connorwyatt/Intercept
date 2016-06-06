@@ -1,43 +1,48 @@
-<div class="InGrid">
-  <in-card [theme]="'color'"
-           [heading]="'Information'"
-           class="InGrid-item"
-           *ngIf="proxySettingsResolved && targetHostSettingsResolved">
-    <div class="InDashboard-columns">
-      <div class="InDashboard-columnHalfWidth">
-        <h3 class="InDashboard-subheading">Proxy Server</h3>
-        <div class="InDashboard-statusParagraph">
-          <in-status-indicator class="InDashboard-status"
-                               [status]="proxyStatus"></in-status-indicator>
-          <p *ngIf="proxySettings.port"
-             class="InDashboard-paragraphInverted">Proxy is running on port <span class="InDashboard-paragraphBold">{{ proxySettings.port }}</span>.</p>
-          <p *ngIf="!proxySettings.port"
-             class="InDashboard-paragraphInverted">Proxy is not currently running.</p>
+<div class="InDashboard-container">
+  <div inGrid>
+    <in-card inGridItem
+             [theme]="'color'"
+             [heading]="'Information'"
+             *ngIf="proxySettingsResolved && targetHostSettingsResolved">
+      <div class="InDashboard-columns">
+        <div class="InDashboard-columnHalfWidth">
+          <h3 class="InDashboard-subheading">Proxy Server</h3>
+          <div class="InDashboard-statusParagraph">
+            <in-status-indicator class="InDashboard-status"
+                                 [status]="proxyStatus"></in-status-indicator>
+            <p *ngIf="proxySettings.port"
+               class="InDashboard-paragraphInverted">Proxy is running on port <span class="InDashboard-paragraphBold">{{ proxySettings.port }}</span>.
+            </p>
+            <p *ngIf="!proxySettings.port"
+               class="InDashboard-paragraphInverted">Proxy is not currently running.</p>
+          </div>
+        </div>
+        <div class="InDashboard-columnHalfWidth">
+          <h3 class="InDashboard-subheading">Proxy Target</h3>
+          <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
+             class="InDashboard-paragraphInverted">Proxy target is <span class="InDashboard-paragraphBold">{{ targetHostSettings.hostname }}</span>
+            on port <span class="InDashboard-paragraphBold">{{ targetHostSettings.port }}</span>.
+          </p>
+          <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
+             class="InDashboard-paragraphInverted">Proxy target has not been set.
+          </p>
         </div>
       </div>
-      <div class="InDashboard-columnHalfWidth">
-        <h3 class="InDashboard-subheading">Proxy Target</h3>
-        <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
-           class="InDashboard-paragraphInverted">Proxy target is <span class="InDashboard-paragraphBold">{{ targetHostSettings.hostname }}</span> on port <span class="InDashboard-paragraphBold">{{ targetHostSettings.port }}</span>.
-        </p>
-        <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
-           class="InDashboard-paragraphInverted">Proxy target has not been set.
+    </in-card>
+
+    <in-card inGridItem
+             [heading]="'Requests'">
+      <div class="InDashboard-tableContainer">
+        <in-table *ngIf="(requests | async)?.length > 0"
+                  [fields]="requestsFields"
+                  [data]="requests | async | slice : 0 : 100"
+                  [rowClass]="requestsRowClass"></in-table>
+        <p *ngIf="(requests | async)?.length === 0"
+           class="InDashboard-paragraph">
+          There are currently no requests to show. Once the proxy server begins to receive requests they will appear
+          here.
         </p>
       </div>
-    </div>
-  </in-card>
-
-  <in-card [heading]="'Requests'"
-           class="InGrid-item">
-    <div class="InDashboard-tableContainer">
-      <in-table *ngIf="(requests | async)?.length > 0"
-                [fields]="requestsFields"
-                [data]="requests | async | slice : 0 : 100"
-                [rowClass]="requestsRowClass"></in-table>
-      <p *ngIf="(requests | async)?.length === 0"
-         class="InDashboard-paragraph">
-        There are currently no requests to show. Once the proxy server begins to receive requests they will appear here.
-      </p>
-    </div>
-  </in-card>
+    </in-card>
+  </div>
 </div>

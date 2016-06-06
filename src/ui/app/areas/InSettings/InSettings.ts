@@ -7,6 +7,8 @@ import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InMessagesHelper } from '../../services/InMessagesHelper';
 import { IN_INPUTS } from '../../components/InInput/InInputs';
 import { IInMessage } from '../../interfaces/IInMessage';
+import { InGrid } from '../../components/InGrid/InGrid';
+import { InGridItem } from '../../components/InGrid/InGridItem/InGridItem';
 
 declare const __moduleName: string;
 
@@ -15,13 +17,13 @@ declare const __moduleName: string;
   selector: 'in-settings',
   templateUrl: 'InSettings.html',
   styleUrls: [
+    'InSettings.css',
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
-    '../../components/InGrid/InGrid.css',
     '../../components/InForm/InForm.css',
     '../../components/InButton/InButton.css'
   ],
-  directives: [[IN_INPUTS, InCard, InRequiredValidator]],
+  directives: [[IN_INPUTS, InGrid, InGridItem, InCard, InRequiredValidator]],
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {

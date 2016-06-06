@@ -1,58 +1,60 @@
-<div class="InGrid">
-  <in-card [heading]="'Proxy Server Settings'"
-           [messages]="proxySettingsMessages"
-           class="InGrid-item">
-    <form *ngIf="proxySettingsResolved"
-          (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
-          #proxySettingsForm="ngForm">
-      <div class="InForm-item">
-        <in-input type="number"
-                  ngControl="port"
-                  [(ngModel)]="proxySettings.port"
-                  [inRequired]="true"
-                  [field]="'port'"
-                  [label]="'Port'"></in-input>
-      </div>
+<div class="InSettings-container">
+  <div inGrid>
+    <in-card inGridItem
+             [heading]="'Proxy Server Settings'"
+             [messages]="proxySettingsMessages">
+      <form *ngIf="proxySettingsResolved"
+            (ngSubmit)="onSubmitProxySettings(proxySettingsForm)"
+            #proxySettingsForm="ngForm">
+        <div class="InForm-item">
+          <in-input type="number"
+                    ngControl="port"
+                    [(ngModel)]="proxySettings.port"
+                    [inRequired]="true"
+                    [field]="'port'"
+                    [label]="'Port'"></in-input>
+        </div>
 
-      <div class="InForm-buttons">
-        <button class="InButton InButton--positive InForm-button"
-                [class.is-disabled]="!proxySettingsForm.valid"
-                type="submit"
-                [disabled]="!proxySettingsForm.valid">Save</button>
-      </div>
-    </form>
-  </in-card>
+        <div class="InForm-buttons">
+          <button class="InButton InButton--positive InForm-button"
+                  [class.is-disabled]="!proxySettingsForm.valid"
+                  type="submit"
+                  [disabled]="!proxySettingsForm.valid">Save</button>
+        </div>
+      </form>
+    </in-card>
 
-  <in-card [heading]="'Proxy Target Settings'"
-           [messages]="targetHostSettingsMessages"
-           class="InGrid-item">
-    <form *ngIf="targetHostSettingsResolved"
-          (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
-          #targetHostSettingsForm="ngForm">
-      <div class="InForm-item">
-        <in-input type="text"
-                  ngControl="hostname"
-                  [(ngModel)]="targetHostSettings.hostname"
-                  [inRequired]="true"
-                  [field]="'hostname'"
-                  [label]="'Hostname'"></in-input>
-      </div>
+    <in-card inGridItem
+             [heading]="'Proxy Target Settings'"
+             [messages]="targetHostSettingsMessages">
+      <form *ngIf="targetHostSettingsResolved"
+            (ngSubmit)="onSubmitTargetHostSettings(targetHostSettingsForm)"
+            #targetHostSettingsForm="ngForm">
+        <div class="InForm-item">
+          <in-input type="text"
+                    ngControl="hostname"
+                    [(ngModel)]="targetHostSettings.hostname"
+                    [inRequired]="true"
+                    [field]="'hostname'"
+                    [label]="'Hostname'"></in-input>
+        </div>
 
-      <div class="InForm-item">
-        <in-input type="number"
-                  ngControl="port"
-                  [(ngModel)]="targetHostSettings.port"
-                  [inRequired]="true"
-                  [field]="'port'"
-                  [label]="'Port'"></in-input>
-      </div>
+        <div class="InForm-item">
+          <in-input type="number"
+                    ngControl="port"
+                    [(ngModel)]="targetHostSettings.port"
+                    [inRequired]="true"
+                    [field]="'port'"
+                    [label]="'Port'"></in-input>
+        </div>
 
-      <div class="InForm-buttons">
-        <button class="InButton InButton--positive InForm-button"
-                [class.is-disabled]="!targetHostSettingsForm.valid"
-                type="submit"
-                [disabled]="!targetHostSettingsForm.valid">Save</button>
-      </div>
-    </form>
-  </in-card>
+        <div class="InForm-buttons">
+          <button class="InButton InButton--positive InForm-button"
+                  [class.is-disabled]="!targetHostSettingsForm.valid"
+                  type="submit"
+                  [disabled]="!targetHostSettingsForm.valid">Save</button>
+        </div>
+      </form>
+    </in-card>
+  </div>
 </div>

@@ -1,6 +1,12 @@
 @import '../../styles/theme';
 
 .InDashboard {
+  &-container {
+    margin: 0 auto;
+    max-width: $application-max-width;
+    padding: $grid-size * 3;
+  }
+
   &-columns {
     display: flex;
   }

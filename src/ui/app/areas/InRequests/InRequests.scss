@@ -1,6 +1,12 @@
 @import '../../styles/theme';
 
 .InRequests {
+  &-container {
+    margin: 0 auto;
+    max-width: $application-max-width;
+    padding: $grid-size * 3;
+  }
+
   &-filter {
     display: block;
     margin-left: auto;
@@ -10,6 +16,5 @@
   &-paragraph {
     @include typography-paragraph;
     color: $color-text;
-    line-height: 1.25;
   }
 }

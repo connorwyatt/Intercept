@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { InGrid } from '../../components/InGrid/InGrid';
+import { InGridItem } from '../../components/InGrid/InGridItem/InGridItem';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
 import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
@@ -18,11 +20,10 @@ declare const __moduleName: string;
   styleUrls: [
     '../../styles/core.css',
     '../../components/InCard/InCard.css',
-    '../../components/InGrid/InGrid.css',
     'InDashboard.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InStatusIndicator, InTable]]
+  directives: [[InGrid, InGridItem,InCard, InStatusIndicator, InTable]]
 })
 export class InDashboard implements OnInit {
   private http: InHttp;
