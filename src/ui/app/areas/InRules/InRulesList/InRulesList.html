@@ -1,19 +1,21 @@
-<div class="InGrid">
-  <in-card [heading]="'Rules'"
-           *ngIf="rulesResolved"
-           class="InGrid-item">
-    <in-table *ngIf="rules.length > 0"
-              [fields]="rulesFields"
-              [data]="rules"
-              [showHighlightStyles]="true"
-              (rowClick)="navigateToRule($event)"></in-table>
-    <div *ngIf="rules.length === 0">
-      <p class="InRulesList-paragraph">
-        There are currently no rules to show.
-      </p>
-    </div>
-    <div class="InRulesList-buttons">
-      <button class="InButton InButton--positive" (click)="navigateToRule()">New rule</button>
-    </div>
-  </in-card>
+<div class="InRulesList-container">
+  <div inGrid [maxColumns]="1">
+    <in-card inGridItem
+             [heading]="'Rules'"
+             *ngIf="rulesResolved">
+      <in-table *ngIf="rules.length > 0"
+                [fields]="rulesFields"
+                [data]="rules"
+                [showHighlightStyles]="true"
+                (rowClick)="navigateToRule($event)"></in-table>
+      <div *ngIf="rules.length === 0">
+        <p class="InRulesList-paragraph">
+          There are currently no rules to show.
+        </p>
+      </div>
+      <div class="InRulesList-buttons">
+        <button class="InButton InButton--positive" (click)="navigateToRule()">New rule</button>
+      </div>
+    </in-card>
+  </div>
 </div>

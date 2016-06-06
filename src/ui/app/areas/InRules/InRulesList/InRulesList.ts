@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import { InGrid } from '../../../components/InGrid/InGrid';
+import { InGridItem } from '../../../components/InGrid/InGridItem/InGridItem';
 import { InCard } from '../../../components/InCard/InCard.component';
 import { InTable } from '../../../components/InTable/InTable.component';
 import { InHttp } from '../../../services/InHttp';
@@ -19,7 +21,7 @@ declare const __moduleName: string;
     'InRulesList.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InTable]]
+  directives: [[InGrid, InGridItem, InCard, InTable]]
 })
 export class InRulesList implements OnInit {
   private http: InHttp;

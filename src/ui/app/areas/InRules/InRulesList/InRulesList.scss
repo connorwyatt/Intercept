@@ -1,6 +1,12 @@
 @import '../../../styles/theme';
 
 .InRulesList {
+  &-container {
+    margin: 0 auto;
+    max-width: $application-max-width;
+    padding: $grid-size * 3;
+  }
+
   &-paragraph {
     @include typography-paragraph;
     color: $color-text;

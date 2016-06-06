@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { InGrid } from '../../components/InGrid/InGrid';
+import { InGridItem } from '../../components/InGrid/InGridItem/InGridItem';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
@@ -22,7 +24,7 @@ declare const __moduleName: string;
     'InRequests.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InTable, InInputText]],
+  directives: [[InGrid, InGridItem, InCard, InTable, InInputText]],
   pipes: [InCollectionFilterPipe],
   providers: [InDatePipe]
 })
