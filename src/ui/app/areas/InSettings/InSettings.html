@@ -5,10 +5,11 @@
     <div inCardHeader>
       <div class="InSettings-help">
         <in-icon class="InSettings-helpIcon"
-                 [icon]="'help'"
-                 (mouseover)="proxyServerTooltip.open()"
-                 (mouseout)="proxyServerTooltip.close()"></in-icon>
-        <in-tooltip #proxyServerTooltip="tooltip">
+                 [icon]="'help'"></in-icon>
+        <in-tooltip #proxyServerTooltip="tooltip"
+                    (mouseover)="proxyServerTooltip.open()"
+                    (mouseout)="proxyServerTooltip.close()"
+                    class="InSettings-helpTooltip">
           <p>Set the port to use for the proxy server.</p>
           <p>You can then use http://localhost:{PORT} to intercept requests.</p>
         </in-tooltip>
@@ -41,10 +42,11 @@
     <div inCardHeader>
       <div class="InSettings-help">
         <in-icon class="InSettings-helpIcon"
-                 [icon]="'help'"
-                 (mouseover)="proxyTargetTooltip.open()"
-                 (mouseout)="proxyTargetTooltip.close()"></in-icon>
-        <in-tooltip #proxyTargetTooltip="tooltip">
+                 [icon]="'help'"></in-icon>
+        <in-tooltip #proxyTargetTooltip="tooltip"
+                    (mouseover)="proxyTargetTooltip.open()"
+                    (mouseout)="proxyTargetTooltip.close()"
+                    class="InSettings-helpTooltip">
           <p>Set the hostname and port number to proxy.</p>
           <p>For example, if you want to intercept requests from localhost on port 8080, set the hostname to 'localhost' and the port number to '8080'.</p>
         </in-tooltip>
