@@ -8,9 +8,7 @@ const electron = require('electron'),
 let windows = {};
 
 app.on('window-all-closed', function() {
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
+  app.quit();
 });
 
 function startElectronApp(port) {
