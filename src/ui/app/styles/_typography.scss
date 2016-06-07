@@ -15,7 +15,7 @@ $font-sizes: (
 
 @mixin typography-heading() {
   font-size: map_get($font-sizes, x-large);
-  font-weight: 600;
+  font-weight: 400;
 }
 
 @mixin typography-subheading() {
