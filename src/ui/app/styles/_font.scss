@@ -16,8 +16,8 @@ $font-definitions: (
 @each $weight-name, $weight in $font-definitions {
   @font-face {
     font-family: $font-name;
-    src: url('#{$font-base-location}/#{$font-name}/#{$weight-name}.woff2') format('woff2');
-    font-weight: $weight;
     font-style: normal;
+    font-weight: $weight;
+    src: url('#{$font-base-location}/#{$font-name}/#{$weight-name}.woff2') format('woff2');
   }
 }
