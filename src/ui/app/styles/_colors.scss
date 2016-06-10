@@ -12,7 +12,7 @@ $color-cyan: rgb(25, 251, 255);
 $color-red: rgb(195, 25, 70);
 $color-green: rgb(90, 185, 45);
 
-$color-text-heading: $color-black;
+$color-text-heading: transparentize($color-black, .1);
 $color-text-heading-inverted: $color-white;
 $color-text: transparentize($color-black, .2);
 $color-text-inverted: transparentize($color-white, .2);
