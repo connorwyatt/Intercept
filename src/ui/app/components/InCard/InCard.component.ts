@@ -9,7 +9,6 @@ declare const __moduleName: string;
   selector: 'in-card',
   templateUrl: 'InCard.html',
   styleUrls: [
-    '../../styles/core.css',
     'InCard.css'
   ],
   directives: [[InMessages]],

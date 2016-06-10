@@ -4,58 +4,68 @@ $font-sizes: (
   xx-large: 28px,
   x-large: 22px,
   large: 18px,
-  regular: 14px,
-  small: 12px
+  regular: 16px,
+  small: 14px
 );
 
 @mixin typography-title() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, xx-large);
-  font-weight: 200;
+  font-weight: 100;
 }
 
 @mixin typography-heading() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, x-large);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 @mixin typography-subheading() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, large);
   font-weight: 300;
 }
 
 @mixin typography-paragraph() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.25;
 }
 
 @mixin typography-paragraph-bold() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.25;
 }
 
 @mixin typography-normal() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 @mixin typography-normal-bold() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 @mixin typography-label() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, small);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 @mixin typography-placeholder() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
-  font-weight: 400;
+  font-weight: 300;
 }
 
 @mixin typography-button() {
+  font-family: 'Work Sans';
   font-size: map_get($font-sizes, regular);
   font-weight: 400;
 }
