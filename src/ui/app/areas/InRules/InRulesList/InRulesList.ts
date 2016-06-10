@@ -13,7 +13,6 @@ declare const __moduleName: string;
   templateUrl: 'InRulesList.html',
   styleUrls: [
     '../../../styles/core.css',
-    '../../../components/InCard/InCard.css',
     '../../../components/InGrid/InGrid.css',
     '../../../components/InButton/InButton.css',
     'InRulesList.css'

@@ -17,7 +17,6 @@ declare const __moduleName: string;
   templateUrl: 'InRequests.html',
   styleUrls: [
     '../../styles/core.css',
-    '../../components/InCard/InCard.css',
     '../../components/InGrid/InGrid.css',
     'InRequests.css'
   ],
