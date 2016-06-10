@@ -14,6 +14,8 @@
   }
 
   &-row {
+    color: $color-text;
+
     &:nth-child(odd) {
       background-color: $color-white-steam;
 
@@ -59,7 +61,6 @@
 
   &-cell {
     @include typography-normal;
-    color: $color-text;
     word-break: break-word;
   }
 

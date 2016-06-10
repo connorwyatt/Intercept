@@ -83,7 +83,7 @@ export class InDashboard implements OnInit {
   private requestsRowClass(model: IInRequest): string {
     if (model.statusCode >= 400 && model.statusCode < 600) {
       return 'negative';
-    } else {
+    } else if (model.statusCode >= 200 && model.statusCode < 400) {
       return 'positive';
     }
   }

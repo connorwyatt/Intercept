@@ -19,7 +19,7 @@ class ProxyService {
 
         let requestStartTO = new RequestStartTO(request, targetHostSettings.hostname, targetHostSettings.port);
 
-        ipcHelper.sendThrottled('requests', 'requestStart', requestStartTO, 1000);
+        ipcHelper.sendThrottled('requests', 'requestStart', requestStartTO, 80);
 
         let proxyRequest = http.request({
           hostname: targetHostSettings.hostname,
@@ -62,7 +62,7 @@ class ProxyService {
 
       let requestEndTO = new RequestEndTO(request, response);
 
-      ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 1000);
+      ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 80);
     });
 
     response.writeHead(proxyResponse.statusCode, proxyResponse.headers);
@@ -76,7 +76,7 @@ class ProxyService {
 
     let requestEndTO = new RequestEndTO(request, response);
 
-    ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 1000);
+    ipcHelper.sendThrottled('requests', 'requestEnd', requestEndTO, 80);
   }
 
   static createServer() {

@@ -12,7 +12,7 @@
     <tr class="InTable-row"
         [class.is-highlightable]="showHighlightStyles"
         [ngClass]="getRowClass(model)"
-        *ngFor="let model of data"
+        *ngFor="let model of data; trackBy:identity"
         (click)="onRowClick(model)">
       <td class="InTable-cell"
           *ngFor="let field of fields">

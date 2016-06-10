@@ -4,7 +4,7 @@
     <in-input inCardHeader class="InRequests-filter InInput--dark InInput--noBorder" type="text" [(ngModel)]="filterValue" [placeholder]="'Filter requests'"></in-input>
     <in-table *ngIf="(requests | async)?.length > 0"
               [fields]="requestsFields"
-              [data]="requests | async | inCollectionFilter : filterValue : filterColumns"
+              [data]="requests | async | inCollectionFilter : filterValue : filterColumns | slice : 0 : 100"
               [rowClass]="requestsRowClass"></in-table>
     <p *ngIf="(requests | async)?.length === 0"
        class="InRequests-paragraph">

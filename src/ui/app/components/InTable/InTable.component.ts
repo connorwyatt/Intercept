@@ -50,4 +50,8 @@ export class InTable {
   private onRowClick(model: Object) {
     this.rowClick.emit(model);
   }
+
+  private identity(index, item) {
+    return item.id;
+  }
 }
