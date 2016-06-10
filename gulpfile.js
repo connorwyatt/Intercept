@@ -54,7 +54,7 @@ gulp.task('production', () => {
 gulp.task('buildElectronApp', () => {
   return packager({
     dir: envConfig.paths.buildDirectory,
-    out: envConfig.paths.releasesDirectory,
+    out: envConfig.paths.releasesDirectory + packageInfo.version + '/',
     arch: 'all',
     platform: 'darwin',
     asar: true,

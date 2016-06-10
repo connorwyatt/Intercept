@@ -59,7 +59,7 @@ function startElectronApp(port) {
       }
     ];
 
-    // electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(menuTemplate));
+    electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(menuTemplate));
   });
 }
 
