@@ -10,6 +10,7 @@
 
   &-sectionHeading {
     @include typography-subheading;
+    color: $color-text-heading;
   }
 
   &-item,
