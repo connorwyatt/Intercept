@@ -31,9 +31,9 @@ export class InDashboard implements OnInit {
   private targetHostSettings: Object;
   private targetHostSettingsResolved: boolean;
   private requestsFields: Array<IInTableField> = [
-    { fieldname: 'method', label: 'Method' },
-    { fieldname: 'statusCode', label: 'Status Code' },
-    { fieldname: 'url', label: 'URL' }
+    { fieldname: 'method', label: 'Method', width: '25%', centred: true },
+    { fieldname: 'statusCode', label: 'Status Code', width: '25%', centred: true },
+    { fieldname: 'url', label: 'URL', width: '50%' }
   ];
 
   private get proxyStatus(): InStatusIndication {

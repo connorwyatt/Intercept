@@ -1,9 +1,12 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { InCard } from '../../../components/InCard/InCard.component';
+import { InIcon } from '../../../components/InIcon/InIcon.component';
 import { InTable } from '../../../components/InTable/InTable.component';
 import { InHttp } from '../../../services/InHttp';
 import { IInTableField } from '../../../components/InTable/IInTableField';
+import { InCollectionFilterPipe } from '../../../pipes/InCollectionFilter.pipe';
 
 declare const __moduleName: string;
 
@@ -18,32 +21,17 @@ declare const __moduleName: string;
     'InRulesList.css'
   ],
   encapsulation: ViewEncapsulation.Native,
-  directives: [[InCard, InTable]]
+  directives: [[IN_INPUTS, InCard, InIcon, InTable]],
+  pipes: [InCollectionFilterPipe]
 })
 export class InRulesList implements OnInit {
   private http: InHttp;
   private router: Router;
   private rulesFields: Array<IInTableField> = [
-    {
-      fieldname: 'url',
-      label: 'URL'
-    },
-    {
-      fieldname: 'method',
-      label: 'Method'
-    },
-    {
-      fieldname: 'file',
-      label: 'Filename'
-    },
-    {
-      fieldname: 'latency',
-      label: 'Latency'
-    },
-    {
-      fieldname: 'statusCode',
-      label: 'Status Code'
-    }
+    { fieldname: 'url', label: 'URL', width: '55%' },
+    { fieldname: 'method', label: 'Method', width: '15%', centred: true },
+    { fieldname: 'latency', label: 'Latency', width: '15%', centred: true },
+    { fieldname: 'statusCode', label: 'Status Code', width: '15%', centred: true }
   ];
   private rules: Array<Object>;
   private rulesResolved: boolean;

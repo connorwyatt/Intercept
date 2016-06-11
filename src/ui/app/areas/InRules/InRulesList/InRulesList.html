@@ -1,19 +1,23 @@
 <div class="InGrid">
   <in-card [heading]="'Rules'"
+           [noPadding]="rules.length > 0"
            *ngIf="rulesResolved"
            class="InGrid-item">
+    <div inCardHeader class="InRulesList-header">
+      <in-input class="InInput--dark InInput--noBorder InRulesList-headerFilter" type="text" [(ngModel)]="filterValue" [placeholder]="'Filter rules'"></in-input>
+      <button class="InButton InButton--positive InButton--icon InRulesList-headerButton" (click)="navigateToRule()">
+        <in-icon [icon]="'add'" class="InButton-icon"></in-icon>
+      </button>
+    </div>
     <in-table *ngIf="rules.length > 0"
               [fields]="rulesFields"
-              [data]="rules"
+              [data]="rules | inCollectionFilter : filterValue : ['url', 'method', 'statusCode']"
               [showHighlightStyles]="true"
               (rowClick)="navigateToRule($event)"></in-table>
     <div *ngIf="rules.length === 0">
       <p class="InRulesList-paragraph">
         There are currently no rules to show.
       </p>
-    </div>
-    <div class="InRulesList-buttons">
-      <button class="InButton InButton--positive" (click)="navigateToRule()">New rule</button>
     </div>
   </in-card>
 </div>

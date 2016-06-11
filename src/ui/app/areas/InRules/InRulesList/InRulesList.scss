@@ -1,12 +1,25 @@
 @import '../../../styles/theme';
 
 .InRulesList {
+  &-header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    &Button {
+      flex: 0 0 auto;
+      margin-left: $grid-size * 2;
+    }
+
+    &Filter {
+      flex: 1 1 auto;
+      display: inline-block;
+      max-width: $grid-size * 50;
+    }
+  }
+
   &-paragraph {
     @include typography-paragraph;
     color: $color-text;
-  }
-
-  &-buttons {
-    margin-top: $grid-size * 2;
   }
 }

@@ -1,10 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InCollectionFilterPipe } from '../../pipes/InCollectionFilter.pipe';
-import { InDatePipe } from '../../pipes/InDate.pipe';
 import { IInTableField } from '../../components/InTable/IInTableField';
 import { IInRequest } from '../../interfaces/IInRequest';
 import { InInputText } from '../../components/InInput/InInputText/InInputText.component';
@@ -22,29 +24,18 @@ declare const __moduleName: string;
   ],
   encapsulation: ViewEncapsulation.Native,
   directives: [[InCard, InTable, InInputText]],
-  pipes: [InCollectionFilterPipe],
-  providers: [InDatePipe]
+  pipes: [InCollectionFilterPipe]
 })
 export class InRequests {
-  private datePipe: InDatePipe;
   private requests: Observable<Array<IInRequest>>;
-  private filterValue: string = '';
-  private filterColumns: Array<string> = ['url'];
   private requestsFields: Array<IInTableField> = [
-    {
-      fieldname: 'timestamp', label: 'Time', getValue: (model: IInRequest) => {
-        return this.datePipe.transform(<Date> model.timestamp);
-      }
-    },
-    { fieldname: 'method', label: 'Method' },
-    { fieldname: 'statusCode', label: 'Status Code' },
-    { fieldname: 'url', label: 'URL' },
-    { fieldname: 'latency', label: 'Latency' }
+    { fieldname: 'method', label: 'Method', width: '15%', centred: true },
+    { fieldname: 'statusCode', label: 'Status Code', width: '15%', centred: true },
+    { fieldname: 'url', label: 'URL', width: '55%' },
+    { fieldname: 'latency', label: 'Latency', width: '15%', centred: true }
   ];
 
-  constructor(datePipe: InDatePipe,
-              requestsHelper: InRequestsHelper) {
-    this.datePipe = datePipe;
+  constructor(requestsHelper: InRequestsHelper) {
     this.requests = requestsHelper.getRequests();
   }
 

@@ -1,24 +1,21 @@
 <div class="InTable-container">
-  <table class="InTable-table">
-    <thead>
-    <tr class="InTable-headerRow">
-      <th class="InTable-headerCell"
-          *ngFor="let field of fields">
-        {{ field.label }}
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="InTable-row"
-        [class.is-highlightable]="showHighlightStyles"
-        [ngClass]="getRowClass(model)"
-        *ngFor="let model of data; trackBy:identity"
-        (click)="onRowClick(model)">
-      <td class="InTable-cell"
-          *ngFor="let field of fields">
+  <div class="InTable-headerRow">
+    <div class="InTable-headerCell"
+         [style.width]="field.width"
+         *ngFor="let field of fields">{{ field.label }}</div>
+  </div>
+  <div class="InTable-body">
+    <div class="InTable-row"
+         [class.is-highlightable]="showHighlightStyles"
+         [ngClass]="getRowClass(model)"
+         *ngFor="let model of data; trackBy:identity"
+         (click)="onRowClick(model)">
+      <div class="InTable-cell"
+           *ngFor="let field of fields"
+           [class.is-centred]="field.centred"
+           [style.width]="field.width">
         {{ getFieldViewValue(field, model) }}
-      </td>
-    </tr>
-    </tbody>
-  </table>
+      </div>
+    </div>
+  </div>
 </div>

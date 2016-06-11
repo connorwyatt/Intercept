@@ -45,6 +45,20 @@ $InButton-border-width: 1px;
     @include InButton-state-styles($color-deep-sky-blue);
   }
 
+  &--icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    min-width: 0;
+
+    .InButton {
+      &-icon {
+        height: $grid-size * 2;
+        width: $grid-size * 2;
+      }
+    }
+  }
+
   &.is-disabled {
     background-color: $color-grey-aluminium;
     cursor: default;

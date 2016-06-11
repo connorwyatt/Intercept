@@ -8,7 +8,7 @@
   </header>
   <in-messages *ngIf="messages?.length"
                [messages]="messages"></in-messages>
-  <div class="InCard-content">
+  <div [class.InCard-content]="!noPadding">
     <ng-content></ng-content>
   </div>
 </article>

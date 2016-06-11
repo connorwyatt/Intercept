@@ -2,19 +2,12 @@
 
 .InTable {
   &-container {
-    border-radius: $border-radius-standard;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  &-table {
-    border-collapse: collapse;
-    table-layout: fixed;
     width: 100%;
   }
 
   &-row {
     color: $color-text;
+    width: 100%;
 
     &:nth-child(odd) {
       background-color: $color-white-steam;
@@ -50,21 +43,29 @@
   }
 
   &-headerRow {
-    background-color: $color-sky-blue;
+    background-color: $color-dark-blue;
     color: $color-white;
   }
 
   &-cell,
   &-headerCell {
+    display: inline-block;
     padding: $grid-size;
   }
 
   &-cell {
-    @include typography-normal;
-    word-break: break-word;
+    @include typography-small;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &.is-centred {
+      text-align: center;
+    }
   }
 
   &-headerCell {
     @include typography-normal-bold;
+    text-align: center;
   }
 }
