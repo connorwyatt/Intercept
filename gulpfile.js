@@ -5,6 +5,7 @@ const gulp = require('gulp'),
   packager = require('electron-packager'),
   runSequence = require('run-sequence'),
   del = require('del'),
+  removeCode = require('gulp-remove-code'),
   changed = require('gulp-changed'),
   sourcemaps = require('gulp-sourcemaps'),
   sass = require('gulp-sass'),
@@ -102,6 +103,7 @@ gulp.task('compileTypescript', () => {
 gulp.task('moveStaticFiles', () => {
   return gulp.src([envConfig.paths.staticFiles, '!' + envConfig.paths.nodeNodeModulesFiles, '!' + envConfig.paths.uiNodeModulesFiles])
     .pipe(changed(envConfig.paths.buildDirectory))
+    .pipe(removeCode(envConfig.removeCode))
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
