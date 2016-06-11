@@ -8,6 +8,7 @@
 
   let map = {
     '@angular': 'node_modules/@angular',
+    '@ngrx': 'node_modules/@ngrx',
     'rxjs': 'node_modules/rxjs',
     'es6-shim': 'node_modules/es6-shim/es6-shim',
     'socket.io': 'node_modules/socket.io-client/socket.io'
@@ -23,7 +24,9 @@
     '@angular/router',
     '@angular/router-deprecated',
     '@angular/testing',
-    '@angular/upgrade'
+    '@angular/upgrade',
+    '@ngrx/core',
+    '@ngrx/store'
   ];
 
   packageNames.forEach((packageName) => {
