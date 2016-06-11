@@ -30,6 +30,9 @@ const DEVELOPMENT = {
 const PRODUCTION = {
   paths: {
     buildDirectory: `${buildPrefix}prod/`
+  },
+  removeCode: {
+    production: true
   }
 };
 
