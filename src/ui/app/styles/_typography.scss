@@ -1,11 +1,11 @@
 @import 'layout';
 
 $font-sizes: (
-  xx-large: 32px,
-  x-large: 22px,
-  large: 18px,
-  regular: 16px,
-  small: 14px
+  xx-large: 28px,
+  x-large: 20px,
+  large: 16px,
+  regular: 14px,
+  small: 12px
 );
 
 @mixin typography-title() {
@@ -15,12 +15,12 @@ $font-sizes: (
 
 @mixin typography-heading() {
   font-size: map_get($font-sizes, x-large);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 @mixin typography-subheading() {
   font-size: map_get($font-sizes, large);
-  font-weight: 300;
+  font-weight: 600;
 }
 
 @mixin typography-paragraph() {
