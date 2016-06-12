@@ -60,7 +60,7 @@ gulp.task('buildElectronApp', () => {
     dir: envConfig.paths.buildDirectory,
     out: envConfig.paths.releasesDirectory + packageInfo.version + '/',
     arch: 'all',
-    platform: 'darwin',
+    platform: 'all',
     asar: true,
     'app-version': packageInfo.version,
     icon: envConfig.paths.iconLocation,
