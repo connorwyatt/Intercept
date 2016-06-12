@@ -12,6 +12,7 @@ const defaults = {
     nodeNodeModulesFiles: 'src/@(node)/node_modules/**/*',
     uiNodeModulesFiles: 'src/@(ui)/node_modules/**/*',
     scssFiles: 'src/@(ui)/app/**/@(*.scss)',
+    binaryFiles: 'src/**/@(*.woff2)',
     staticFiles: 'src/**/!(*.ts|*.scss)',
     typescriptFiles: 'src/@(ui)/app/**/@(*.ts)',
     tsConfig: 'src/ui/tsconfig.json'
@@ -24,6 +25,9 @@ const defaults = {
 const DEVELOPMENT = {
   paths: {
     buildDirectory: `${buildPrefix}dev/`
+  },
+  removeCode: {
+    development: true
   }
 };
 

@@ -1,7 +1,7 @@
 import 'es6-shim';
 import 'rxjs/Rx';
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { provide } from '@angular/core';
+import { provide, enableProdMode } from '@angular/core';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
@@ -14,6 +14,11 @@ import { ElectronIPC } from './services/ElectronIpc';
 import { InContentScrollService } from './services/InContentScrollService';
 
 declare const ELECTRON_IPC: ElectronIPC;
+
+//removeIf(development)
+enableProdMode();
+alert('TEST');
+//endRemoveIf(development)
 
 bootstrap(InApp, [
   HTTP_PROVIDERS,
