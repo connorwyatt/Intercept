@@ -4,13 +4,13 @@
 
 body {
   background-color: $color-white-smoke;
-  font-family: 'Work Sans', sans-serif;
+  font-family: $font-name, sans-serif;
 }
 
 input {
-  font-family: 'Work Sans', sans-serif;
+  font-family: $font-name, sans-serif;
 }
 
 ::-webkit-input-placeholder {
-  font-family: 'Work Sans', sans-serif;
+  font-family: $font-name, sans-serif;
 }
