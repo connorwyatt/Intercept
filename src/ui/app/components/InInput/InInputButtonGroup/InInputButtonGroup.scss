@@ -16,13 +16,19 @@
     flex: 1 1 0%;
     padding: $grid-size;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $color-white-smoke;
     }
 
     &.is-selected {
       background-color: $color-sky-blue;
       color: $color-text-inverted;
+
+      &:hover,
+      &:focus {
+        background-color: $color-deep-sky-blue;
+      }
     }
 
     & + & {
