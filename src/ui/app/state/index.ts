@@ -1,5 +1,9 @@
-import { requestsReducer } from './reducers/index';
+import {
+  requestsReducer,
+  rulesReducer
+} from './reducers/index';
 
 export const STATE = {
-  requests: requestsReducer
+  requests: requestsReducer,
+  rules: rulesReducer
 };

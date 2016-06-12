@@ -2,7 +2,8 @@
   <in-card [heading]="'Requests'"
            [noPadding]="(requests | async)?.length > 0"
            class="InGrid-item">
-    <in-input inCardHeader class="InRequests-filter InInput--dark InInput--noBorder" type="text" [(ngModel)]="filterValue" [placeholder]="'Filter requests'"></in-input>
+    <in-input inCardHeader class="InRequests-filter InInput--dark InInput--noBorder" *ngIf="(requests | async)?.length > 0"
+              type="text" [(ngModel)]="filterValue" [placeholder]="'Filter requests'"></in-input>
     <in-table *ngIf="(requests | async)?.length > 0"
               [fields]="requestsFields"
               [data]="requests | async | inCollectionFilter : filterValue : ['url'] | slice : 0 : 100"

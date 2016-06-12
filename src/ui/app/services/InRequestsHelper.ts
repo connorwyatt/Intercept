@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InElectronCommunication } from './InElectronCommunication';
-import { IInRequest } from '../interfaces/IInRequest';
-import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
 import {
   NEW_REQUEST_STARTS,
   NEW_REQUEST_ENDS
 } from '../state/actions/requestActions';
+import { InElectronCommunication } from './InElectronCommunication';
+import { IInRequest } from '../interfaces/IInRequest';
+import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';
 
 @Injectable()
 export class InRequestsHelper {

@@ -16,15 +16,13 @@ export const requestsReducer: ActionReducer<IInRequest[]> = (state: IInRequest[]
   }
 };
 
-function newRequestStarts(state: IInRequest[], action: Action): IInRequest[] {
+actionHandlerMap.set(NEW_REQUEST_STARTS, (state: IInRequest[], action: Action): IInRequest[] => {
   let { payload } = action;
 
   return [...payload, ...state].slice(0, 50000);
-}
+});
 
-actionHandlerMap.set(NEW_REQUEST_STARTS, newRequestStarts);
-
-function newRequestEnds(state: IInRequest[], action: Action): IInRequest[] {
+actionHandlerMap.set(NEW_REQUEST_ENDS, (state: IInRequest[], action: Action): IInRequest[] => {
   let { payload } = action;
 
   payload.forEach((requestEnd: IInRequest) => {
@@ -40,12 +38,8 @@ function newRequestEnds(state: IInRequest[], action: Action): IInRequest[] {
   });
 
   return state;
-}
+});
 
-actionHandlerMap.set(NEW_REQUEST_ENDS, newRequestEnds);
-
-function clearRequests(): IInRequest[] {
-  return [];
-}
-
-actionHandlerMap.set(CLEAR_REQUESTS, clearRequests);
+actionHandlerMap.set(CLEAR_REQUESTS, (): IInRequest[] => {
+  return []
+});

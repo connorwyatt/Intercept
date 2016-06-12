@@ -28,12 +28,9 @@ declare const __moduleName: string;
   directives: [[InCard, InStatusIndicator, InTable]]
 })
 export class InDashboard implements OnInit {
-  private http: InHttp;
   private requests: Observable<Array<IInRequest>>;
   private proxySettings: IInProxySettings;
-  private proxySettingsResolved: boolean;
   private targetHostSettings: IInTargetHostSettings;
-  private targetHostSettingsResolved: boolean;
   private requestsFields: Array<IInTableField> = [
     { fieldname: 'method', label: 'Method', width: '25%', centred: true },
     { fieldname: 'statusCode', label: 'Status Code', width: '25%', centred: true },
@@ -52,10 +49,8 @@ export class InDashboard implements OnInit {
     return proxyStatus;
   }
 
-  constructor(http: InHttp,
+  constructor(private _http: InHttp,
               store: Store) {
-    this.http = http;
-
     this.requests = store.select('requests');
   }
 
@@ -65,20 +60,18 @@ export class InDashboard implements OnInit {
   }
 
   private getProxySettings() {
-    this.http.get('/settings/proxy')
+    this._http.get('/settings/proxy')
       .subscribe((data: IInAPIData<IInProxySettings>) => {
         this.proxySettings = data.data['ProxySettings'];
-        this.proxySettingsResolved = true;
       }, (error) => {
         console.error(error);
       });
   }
 
   private getTargetHostSettings() {
-    this.http.get('/settings/targetHost')
+    this._http.get('/settings/targetHost')
       .subscribe((data: IInAPIData<IInTargetHostSettings>) => {
         this.targetHostSettings = data.data['TargetHostSettings'];
-        this.targetHostSettingsResolved = true;
       }, (error) => {
         console.error(error);
       });

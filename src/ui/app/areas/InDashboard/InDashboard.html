@@ -1,19 +1,19 @@
 <div class="InGrid">
   <in-card [theme]="'color'"
            [heading]="'Information'"
-           class="InGrid-item"
-           *ngIf="proxySettingsResolved && targetHostSettingsResolved">
+           class="InGrid-item">
     <div class="InDashboard-columns">
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Server</h3>
         <div class="InDashboard-statusParagraph">
           <in-status-indicator class="InDashboard-status"
+                               *ngIf="proxySettings?.port"
                                [status]="proxyStatus"></in-status-indicator>
-          <p *ngIf="proxySettings.port"
+          <p *ngIf="proxySettings?.port"
              class="InDashboard-paragraphInverted">
-            Proxy is running on port <span class="InDashboard-paragraphBold">{{ proxySettings.port }}</span>.
+            Proxy is running on port <span class="InDashboard-paragraphBold">{{ proxySettings?.port }}</span>.
           </p>
-          <p *ngIf="!proxySettings.port"
+          <p *ngIf="!proxySettings?.port"
              class="InDashboard-paragraphInverted">
             Proxy is not currently running.
           </p>
@@ -21,11 +21,11 @@
       </div>
       <div class="InDashboard-columnHalfWidth">
         <h3 class="InDashboard-subheading">Proxy Target</h3>
-        <p *ngIf="targetHostSettings.hostname && targetHostSettings.port"
+        <p *ngIf="targetHostSettings?.hostname && targetHostSettings?.port"
            class="InDashboard-paragraphInverted">
-          Proxy target is <span class="InDashboard-paragraphBold">{{ targetHostSettings.hostname }}</span> on port <span class="InDashboard-paragraphBold">{{ targetHostSettings.port }}</span>.
+          Proxy target is <span class="InDashboard-paragraphBold">{{ targetHostSettings?.hostname }}</span> on port <span class="InDashboard-paragraphBold">{{ targetHostSettings?.port }}</span>.
         </p>
-        <p *ngIf="!targetHostSettings.hostname || !targetHostSettings.port"
+        <p *ngIf="!targetHostSettings?.hostname || !targetHostSettings?.port"
            class="InDashboard-paragraphInverted">
           Proxy target has not been set.
         </p>

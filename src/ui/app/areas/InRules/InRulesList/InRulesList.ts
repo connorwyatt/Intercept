@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router-deprecated';
+import { Store } from '@ngrx/store';
+import { GET_RULES_SUCCESS } from '../../../state/actions/rulesActions';
+import { Observable } from 'rxjs/Rx';
 import { IN_INPUTS } from '../../../components/InInput/InInputs';
 import { InCard } from '../../../components/InCard/InCard.component';
 import { InIcon } from '../../../components/InIcon/InIcon.component';
@@ -27,36 +30,32 @@ declare const __moduleName: string;
   pipes: [InCollectionFilterPipe]
 })
 export class InRulesList implements OnInit {
-  private http: InHttp;
-  private router: Router;
   private rulesFields: Array<IInTableField> = [
     { fieldname: 'url', label: 'URL', width: '55%' },
     { fieldname: 'method', label: 'Method', width: '15%', centred: true },
     { fieldname: 'latency', label: 'Latency', width: '15%', centred: true },
     { fieldname: 'statusCode', label: 'Status Code', width: '15%', centred: true }
   ];
-  private rules: Array<IInRule>;
-  private rulesResolved: boolean;
+  private rules: Observable<IInRule[]>;
 
-  constructor(http: InHttp,
-              router: Router) {
-    this.http = http;
-    this.router = router;
+  constructor(private _http: InHttp,
+              private _router: Router,
+              private _store: Store) {
+    this.rules = this._store.select('rules');
   }
 
   ngOnInit() {
-    this.http.get('/rules')
+    this._http.get('/rules')
       .subscribe((data: IInAPIData<IInRule[]>) => {
-        this.rules = data.data['Rule'];
-        this.rulesResolved = true;
+        this._store.dispatch({ type: GET_RULES_SUCCESS, payload: data.data['Rule'] });
       });
   }
 
   private navigateToRule(rule?: IInRule) {
     let ruleId: string = rule ? rule.id : 'new';
 
-    let instruction = this.router.generate(['Details', { ruleId }]);
+    let instruction = this._router.generate(['Details', { ruleId }]);
 
-    this.router.navigateByInstruction(instruction);
+    this._router.navigateByInstruction(instruction);
   }
 }
