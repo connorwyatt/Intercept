@@ -26,12 +26,14 @@ gulp.task('development', () => {
       'compileScss',
       'compileTypescript',
       'moveStaticFiles',
+      'moveBinaryFiles',
       'moveDependencies'
     ],
     [
       'compileScssWatch',
       'compileTypescriptWatch',
-      'moveStaticFilesWatch'
+      'moveStaticFilesWatch',
+      'moveBinaryFilesWatch'
     ]
   );
 });
@@ -45,6 +47,7 @@ gulp.task('production', () => {
       'compileScss',
       'compileTypescript',
       'moveStaticFiles',
+      'moveBinaryFiles',
       'moveDependencies'
     ], [
       'buildElectronApp'
@@ -93,6 +96,7 @@ gulp.task('compileTypescript', () => {
       'src/node_modules/angular2/typings/browser.d.ts'
     ])
     .pipe(changed(envConfig.paths.buildDirectory, { extension: '.js' }))
+    .pipe(removeCode(envConfig.removeCode))
     .pipe(sourcemaps.init())
     .pipe(typescript(tsConfig))
     .js
@@ -101,9 +105,15 @@ gulp.task('compileTypescript', () => {
 });
 
 gulp.task('moveStaticFiles', () => {
-  return gulp.src([envConfig.paths.staticFiles, '!' + envConfig.paths.nodeNodeModulesFiles, '!' + envConfig.paths.uiNodeModulesFiles])
+  return gulp.src([envConfig.paths.staticFiles, '!' + envConfig.paths.binaryFiles, '!' + envConfig.paths.nodeNodeModulesFiles, '!' + envConfig.paths.uiNodeModulesFiles])
     .pipe(changed(envConfig.paths.buildDirectory))
     .pipe(removeCode(envConfig.removeCode))
+    .pipe(gulp.dest(envConfig.paths.buildDirectory));
+});
+
+gulp.task('moveBinaryFiles', () => {
+  return gulp.src([envConfig.paths.binaryFiles])
+    .pipe(changed(envConfig.paths.buildDirectory))
     .pipe(gulp.dest(envConfig.paths.buildDirectory));
 });
 
@@ -127,4 +137,8 @@ gulp.task('compileTypescriptWatch', () => {
 
 gulp.task('moveStaticFilesWatch', () => {
   return gulp.watch(envConfig.paths.staticFiles, { interval: 1000 }, ['moveStaticFiles']);
+});
+
+gulp.task('moveBinaryFilesWatch', () => {
+  return gulp.watch(envConfig.paths.binaryFiles, { interval: 5000 }, ['moveBinaryFiles']);
 });
