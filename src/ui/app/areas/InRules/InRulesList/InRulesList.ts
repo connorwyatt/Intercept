@@ -5,8 +5,10 @@ import { InCard } from '../../../components/InCard/InCard.component';
 import { InIcon } from '../../../components/InIcon/InIcon.component';
 import { InTable } from '../../../components/InTable/InTable.component';
 import { InHttp } from '../../../services/InHttp';
-import { IInTableField } from '../../../components/InTable/IInTableField';
 import { InCollectionFilterPipe } from '../../../pipes/InCollectionFilter.pipe';
+import { IInTableField } from '../../../components/InTable/IInTableField';
+import { IInAPIData } from '../../../interfaces/IInAPIData';
+import { IInRule } from '../../../interfaces/IInRule';
 
 declare const __moduleName: string;
 
@@ -33,7 +35,7 @@ export class InRulesList implements OnInit {
     { fieldname: 'latency', label: 'Latency', width: '15%', centred: true },
     { fieldname: 'statusCode', label: 'Status Code', width: '15%', centred: true }
   ];
-  private rules: Array<Object>;
+  private rules: Array<IInRule>;
   private rulesResolved: boolean;
 
   constructor(http: InHttp,
@@ -44,16 +46,16 @@ export class InRulesList implements OnInit {
 
   ngOnInit() {
     this.http.get('/rules')
-      .subscribe((data) => {
-        this.rules = data.data.Rule;
+      .subscribe((data: IInAPIData<IInRule[]>) => {
+        this.rules = data.data['Rule'];
         this.rulesResolved = true;
       });
   }
 
-  private navigateToRule(model?: Object) {
-    let ruleId: string = model ? model.id : 'new';
+  private navigateToRule(rule?: IInRule) {
+    let ruleId: string = rule ? rule.id : 'new';
 
-    let instruction = this.router.generate(['Details', { ruleId: ruleId }]);
+    let instruction = this.router.generate(['Details', { ruleId }]);
 
     this.router.navigateByInstruction(instruction);
   }

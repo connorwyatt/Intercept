@@ -5,13 +5,16 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { CLEAR_REQUESTS } from '../../state/actions/requestActions';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';
 import { InMessagesHelper } from '../../services/InMessagesHelper';
 import { IN_INPUTS } from '../../components/InInput/InInputs';
 import { IInMessage } from '../../interfaces/IInMessage';
-import { CLEAR_REQUESTS } from '../../state/actions/requestActions';
+import { IInAPIData } from '../../interfaces/IInAPIData';
+import { IInTargetHostSettings } from '../../interfaces/IInTargetHostSettings';
+import { IInProxySettings } from '../../interfaces/IInProxySettings';
 
 declare const __moduleName: string;
 
@@ -29,10 +32,10 @@ declare const __moduleName: string;
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {
-  private proxySettings: Object;
+  private proxySettings: IInProxySettings;
   private proxySettingsResolved: Boolean;
   private proxySettingsMessages: Array<IInMessage>;
-  private targetHostSettings: Object;
+  private targetHostSettings: IInTargetHostSettings;
   private targetHostSettingsResolved: Boolean;
   private targetHostSettingsMessages: Array<IInMessage>;
   private proxySettingsSubmitting: Boolean;
@@ -50,8 +53,8 @@ export class InSettings implements OnInit {
 
   private getProxySettings() {
     this._http.get('/settings/proxy')
-      .subscribe((data) => {
-        this.proxySettings = data.data.ProxySettings;
+      .subscribe((data: IInAPIData<IInProxySettings>) => {
+        this.proxySettings = data.data['ProxySettings'];
         this.proxySettingsResolved = true;
       }, (error) => {
         console.error(error);
@@ -60,8 +63,8 @@ export class InSettings implements OnInit {
 
   private getTargetHostSettings() {
     this._http.get('/settings/targetHost')
-      .subscribe((data) => {
-        this.targetHostSettings = data.data.TargetHostSettings;
+      .subscribe((data: IInAPIData<IInTargetHostSettings>) => {
+        this.targetHostSettings = data.data['TargetHostSettings'];
         this.targetHostSettingsResolved = true;
       }, (error) => {
         console.error(error);
@@ -72,12 +75,12 @@ export class InSettings implements OnInit {
     this.proxySettingsSubmitting = true;
 
     this._http.put('/settings/proxy', form.value)
-      .subscribe((data) => {
-        this.proxySettings = data.data.ProxySettings;
+      .subscribe((data: IInAPIData<IInProxySettings>) => {
+        this.proxySettings = data.data['ProxySettings'];
         this.proxySettingsMessages = this._messagesHelper.flattenMessages(this._messagesHelper.getSaveMessage());
         this._store.dispatch({ type: CLEAR_REQUESTS });
       }, (err) => {
-        let errors = err.json();
+        let errors: IInAPIData<IInProxySettings> = err.json();
 
         this.proxySettingsMessages = this._messagesHelper.flattenMessages(errors.meta.messages);
 
@@ -91,12 +94,12 @@ export class InSettings implements OnInit {
     this.targetHostSettingsSubmitting = true;
 
     this._http.put('/settings/targetHost', form.value)
-      .subscribe((data) => {
-        this.targetHostSettings = data.data.TargetHostSettings;
+      .subscribe((data: IInAPIData<IInTargetHostSettings>) => {
+        this.targetHostSettings = data.data['TargetHostSettings'];
         this.targetHostSettingsMessages = this._messagesHelper.flattenMessages(this._messagesHelper.getSaveMessage());
         this._store.dispatch({ type: CLEAR_REQUESTS });
       }, (err) => {
-        let errors = err.json();
+        let errors: IInAPIData<IInTargetHostSettings> = err.json();
 
         this.targetHostSettingsMessages = this._messagesHelper.flattenMessages(errors.meta.messages);
 

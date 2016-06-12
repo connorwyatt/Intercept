@@ -8,6 +8,10 @@ import { InTable } from '../../components/InTable/InTable.component';
 import { InHttp } from '../../services/InHttp';
 import { IInRequest } from '../../interfaces/IInRequest';
 import { IInTableField } from '../../components/InTable/IInTableField';
+import { IInRequest } from '../../interfaces/IInRequest';
+import { IInAPIData } from '../../interfaces/IInAPIData';
+import { IInProxySettings } from '../../interfaces/IInProxySettings';
+import { IInTargetHostSettings } from '../../interfaces/IInTargetHostSettings';
 
 declare const __moduleName: string;
 
@@ -26,9 +30,9 @@ declare const __moduleName: string;
 export class InDashboard implements OnInit {
   private http: InHttp;
   private requests: Observable<Array<IInRequest>>;
-  private proxySettings: Object;
+  private proxySettings: IInProxySettings;
   private proxySettingsResolved: boolean;
-  private targetHostSettings: Object;
+  private targetHostSettings: IInTargetHostSettings;
   private targetHostSettingsResolved: boolean;
   private requestsFields: Array<IInTableField> = [
     { fieldname: 'method', label: 'Method', width: '25%', centred: true },
@@ -62,8 +66,8 @@ export class InDashboard implements OnInit {
 
   private getProxySettings() {
     this.http.get('/settings/proxy')
-      .subscribe((data) => {
-        this.proxySettings = data.data.ProxySettings;
+      .subscribe((data: IInAPIData<IInProxySettings>) => {
+        this.proxySettings = data.data['ProxySettings'];
         this.proxySettingsResolved = true;
       }, (error) => {
         console.error(error);
@@ -72,8 +76,8 @@ export class InDashboard implements OnInit {
 
   private getTargetHostSettings() {
     this.http.get('/settings/targetHost')
-      .subscribe((data) => {
-        this.targetHostSettings = data.data.TargetHostSettings;
+      .subscribe((data: IInAPIData<IInTargetHostSettings>) => {
+        this.targetHostSettings = data.data['TargetHostSettings'];
         this.targetHostSettingsResolved = true;
       }, (error) => {
         console.error(error);
