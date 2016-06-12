@@ -1,15 +1,12 @@
-$font-name: 'Work Sans';
+$font-name: 'Source Sans Pro';
 $font-base-location: '/resources/fonts';
 
 $font-definitions: (
-  Thin: 100,
   ExtraLight: 200,
   Light: 300,
   Regular: 400,
-  Medium: 500,
   Semibold: 600,
   Bold: 700,
-  ExtraBold: 800,
   Black: 900
 );
 
@@ -19,5 +16,12 @@ $font-definitions: (
     font-style: normal;
     font-weight: $weight;
     src: url('#{$font-base-location}/#{$font-name}/#{$weight-name}.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: $font-name;
+    font-style: italic;
+    font-weight: $weight;
+    src: url('#{$font-base-location}/#{$font-name}/#{$weight-name}-Italic.woff2') format('woff2');
   }
 }

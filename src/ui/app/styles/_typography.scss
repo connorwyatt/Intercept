@@ -10,7 +10,7 @@ $font-sizes: (
 
 @mixin typography-title() {
   font-size: map_get($font-sizes, xx-large);
-  font-weight: 100;
+  font-weight: 200;
 }
 
 @mixin typography-heading() {
@@ -25,29 +25,29 @@ $font-sizes: (
 
 @mixin typography-paragraph() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.25;
 }
 
 @mixin typography-paragraph-bold() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.25;
 }
 
 @mixin typography-normal() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 @mixin typography-normal-bold() {
   font-size: map_get($font-sizes, regular);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 @mixin typography-small() {
   font-size: map_get($font-sizes, small);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 @mixin typography-label() {
