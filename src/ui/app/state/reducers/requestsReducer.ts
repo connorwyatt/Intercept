@@ -1,14 +1,27 @@
-import { Action, ActionReducer } from '@ngrx/store';
+import {
+  Action,
+  ActionReducer
+} from '@ngrx/store';
+import { Observable } from 'rxjs/Rx';
 import {
   NEW_REQUEST_STARTS,
   NEW_REQUEST_ENDS,
   CLEAR_REQUESTS
-} from '../actions/requestActions';
+} from '../actions/requestsActions';
+import { AppState } from '../index';
 import { IInRequest } from '../../interfaces/IInRequest';
 
-const actionHandlerMap: Map<string, ActionReducer<IInRequest[]>> = new Map();
+export interface RequestsState {
+  list: IInRequest[];
+}
 
-export const requestsReducer: ActionReducer<IInRequest[]> = (state: IInRequest[] = [], action: Action): IInRequest[] => {
+const initialState: RequestsState = {
+  list: []
+};
+
+const actionHandlerMap: Map<string, ActionReducer<RequestsState>> = new Map();
+
+export const requestsReducer: ActionReducer<RequestsState> = (state: RequestsState = initialState, action: Action): RequestsState => {
   if (actionHandlerMap.has(action.type)) {
     return actionHandlerMap.get(action.type)(state, action);
   } else {
@@ -16,30 +29,46 @@ export const requestsReducer: ActionReducer<IInRequest[]> = (state: IInRequest[]
   }
 };
 
-actionHandlerMap.set(NEW_REQUEST_STARTS, (state: IInRequest[], action: Action): IInRequest[] => {
+actionHandlerMap.set(NEW_REQUEST_STARTS, (state: RequestsState, action: Action): RequestsState => {
   let { payload } = action;
 
-  return [...payload, ...state].slice(0, 50000);
+  return Object.assign(
+    {},
+    state,
+    { list: [...payload, ...state.list].slice(0, 5000) }
+  );
 });
 
-actionHandlerMap.set(NEW_REQUEST_ENDS, (state: IInRequest[], action: Action): IInRequest[] => {
+actionHandlerMap.set(NEW_REQUEST_ENDS, (state: RequestsState, action: Action): RequestsState => {
+  let newState = Object.assign({}, state);
   let { payload } = action;
 
   payload.forEach((requestEnd: IInRequest) => {
-    let requestStartIndex = state.findIndex((request: IInRequest) => {
-      return request.id === requestEnd.id;
+    let newList = state.list.map((request: IInRequest) => {
+      if (request.id === requestEnd.id) {
+        return Object.assign({}, request, requestEnd);
+      }
     });
 
-    let requestStart = state[requestStartIndex];
-
-    let newRequest = Object.assign({}, requestStart, requestEnd);
-
-    state.splice(requestStartIndex, 1, newRequest);
+    newState = Object.assign(
+      {},
+      newState,
+      { list: newList }
+    );
   });
 
-  return state;
+  return newState;
 });
 
-actionHandlerMap.set(CLEAR_REQUESTS, (): IInRequest[] => {
-  return []
+actionHandlerMap.set(CLEAR_REQUESTS, (state: RequestsState): RequestsState => {
+  return Object.assign(
+    {},
+    state,
+    { list: [] }
+  );
 });
+
+export function getAllRequests() {
+  return (stateObservable: Observable<AppState>) => stateObservable
+    .select((state: AppState): IInRequest[] => state.requests.list);
+}

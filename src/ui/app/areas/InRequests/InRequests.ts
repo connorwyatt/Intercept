@@ -3,6 +3,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { getAllRequests } from '../../state/reducers/requestsReducer';
 import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
@@ -36,7 +37,7 @@ export class InRequests {
   ];
 
   constructor(store: Store) {
-    this.requests = store.select('requests');
+    this.requests = store.let(getAllRequests());
   }
 
   private requestsRowClass(model: IInRequest): string {

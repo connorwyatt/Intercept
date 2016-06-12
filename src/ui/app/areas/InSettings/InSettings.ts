@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { CLEAR_REQUESTS } from '../../state/actions/requestActions';
+import { CLEAR_REQUESTS } from '../../state/actions/requestsActions';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';

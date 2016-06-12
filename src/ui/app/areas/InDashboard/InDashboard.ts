@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { getAllRequests } from '../../state/reducers/requestsReducer';
 import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
@@ -51,7 +52,7 @@ export class InDashboard implements OnInit {
 
   constructor(private _http: InHttp,
               store: Store) {
-    this.requests = store.select('requests');
+    this.requests = store.let(getAllRequests());
   }
 
   ngOnInit() {

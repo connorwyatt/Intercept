@@ -15,20 +15,11 @@ declare const __moduleName: string;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InTable {
-  @Input()
-  private fields: Array<IInTableField>;
-
-  @Input()
-  private data: Array<Object>;
-
-  @Input()
-  private showHighlightStyles: boolean;
-
-  @Input()
-  private rowClass: (model: Object) => string;
-
-  @Output()
-  private rowClick: EventEmitter<Object> = new EventEmitter<Object>();
+  @Input() private fields: Array<IInTableField>;
+  @Input() private data: Array<Object>;
+  @Input() private showHighlightStyles: boolean;
+  @Input() private rowClass: (model: Object) => string;
+  @Output() private rowClick: EventEmitter<Object> = new EventEmitter<Object>();
 
   private getRowClass(model: Object): string {
     if (typeof this.rowClass === 'function') {

@@ -1,6 +1,11 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  OnInit
+} from '@angular/core';
 import { Router } from '@angular/router-deprecated';
 import { Store } from '@ngrx/store';
+import { getAllRules } from '../../../state/reducers/rulesReducer';
 import { GET_RULES_SUCCESS } from '../../../state/actions/rulesActions';
 import { Observable } from 'rxjs/Rx';
 import { IN_INPUTS } from '../../../components/InInput/InInputs';
@@ -41,7 +46,7 @@ export class InRulesList implements OnInit {
   constructor(private _http: InHttp,
               private _router: Router,
               private _store: Store) {
-    this.rules = this._store.select('rules');
+    this.rules = this._store.let(getAllRules());
   }
 
   ngOnInit() {

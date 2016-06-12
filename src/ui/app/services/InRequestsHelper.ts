@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import {
   NEW_REQUEST_STARTS,
   NEW_REQUEST_ENDS
-} from '../state/actions/requestActions';
+} from '../state/actions/requestsActions';
 import { InElectronCommunication } from './InElectronCommunication';
 import { IInRequest } from '../interfaces/IInRequest';
 import { IInElectronCommunicationData } from '../interfaces/IInElectronCommunicationData';

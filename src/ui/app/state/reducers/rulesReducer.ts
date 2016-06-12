@@ -2,12 +2,22 @@ import {
   Action,
   ActionReducer
 } from '@ngrx/store';
-import { IInRule } from '../../interfaces/IInRule';
+import { Observable } from 'rxjs/Rx';
 import { GET_RULES_SUCCESS } from '../actions/rulesActions';
+import { AppState } from '../index';
+import { IInRule } from '../../interfaces/IInRule';
 
-const actionHandlerMap: Map<string, ActionReducer<IInRule[]>> = new Map();
+export interface RulesState {
+  list: IInRule[];
+}
 
-export const rulesReducer: ActionReducer<IInRule[]> = (state: IInRule[] = [], action: Action): IInRule[] => {
+const initialState: RulesState = {
+  list: []
+};
+
+const actionHandlerMap: Map<string, ActionReducer<RulesState>> = new Map();
+
+export const rulesReducer: ActionReducer<RulesState> = (state: RulesState = initialState, action: Action): RulesState => {
   if (actionHandlerMap.has(action.type)) {
     return actionHandlerMap.get(action.type)(state, action);
   } else {
@@ -15,6 +25,17 @@ export const rulesReducer: ActionReducer<IInRule[]> = (state: IInRule[] = [], ac
   }
 };
 
-actionHandlerMap.set(GET_RULES_SUCCESS, (state: IInRule[], action: Action): IInRule[] => {
-  return action.payload;
+actionHandlerMap.set(GET_RULES_SUCCESS, (state: RulesState, action: Action): RulesState => {
+  let { payload } = action;
+
+  return Object.assign(
+    {},
+    state,
+    { list: payload }
+  );
 });
+
+export function getAllRules() {
+  return (stateObservable: Observable<AppState>) => stateObservable
+    .select((state: AppState): IInRule[] => state.rules.list);
+}

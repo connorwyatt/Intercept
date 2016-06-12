@@ -1,1 +1,1 @@
-export const GET_RULES_SUCCESS = 'GET_RULES_SUCCESS';
+export const GET_RULES_SUCCESS = '[Rules] Successfully got rules';
