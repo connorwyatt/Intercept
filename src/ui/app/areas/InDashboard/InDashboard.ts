@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InStatusIndicator } from '../../components/InStatusIndicator/InStatusIndicator.component';
 import { InStatusIndication } from '../../components/InStatusIndicator/InStatusIndication';
 import { InTable } from '../../components/InTable/InTable.component';
 import { InHttp } from '../../services/InHttp';
-import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { IInRequest } from '../../interfaces/IInRequest';
 import { IInTableField } from '../../components/InTable/IInTableField';
 
@@ -48,11 +48,11 @@ export class InDashboard implements OnInit {
     return proxyStatus;
   }
 
-  constructor(requestsHelper: InRequestsHelper,
-              http: InHttp) {
+  constructor(http: InHttp,
+              store: Store) {
     this.http = http;
 
-    this.requests = requestsHelper.getRequests();
+    this.requests = store.select('requests');
   }
 
   ngOnInit() {
@@ -81,10 +81,12 @@ export class InDashboard implements OnInit {
   }
 
   private requestsRowClass(model: IInRequest): string {
-    if (model.statusCode >= 400 && model.statusCode < 600) {
-      return 'negative';
-    } else if (model.statusCode >= 200 && model.statusCode < 400) {
-      return 'positive';
+    if (model.statusCode) {
+      if (model.statusCode >= 400 && model.statusCode < 600) {
+        return 'negative';
+      } else {
+        return 'positive';
+      }
     }
   }
 }

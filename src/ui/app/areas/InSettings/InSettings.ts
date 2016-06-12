@@ -1,12 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { NgForm } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InRequiredValidator } from '../../directives/InRequiredValidator/InRequiredValidator.directive';
 import { InHttp } from '../../services/InHttp';
-import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InMessagesHelper } from '../../services/InMessagesHelper';
 import { IN_INPUTS } from '../../components/InInput/InInputs';
 import { IInMessage } from '../../interfaces/IInMessage';
+import { CLEAR_REQUESTS } from '../../state/actions/requestActions';
 
 declare const __moduleName: string;
 
@@ -24,9 +29,6 @@ declare const __moduleName: string;
   encapsulation: ViewEncapsulation.Native
 })
 export class InSettings implements OnInit {
-  private http: InHttp;
-  private requestsHelper: InRequestsHelper;
-  private messagesHelper: InMessagesHelper;
   private proxySettings: Object;
   private proxySettingsResolved: Boolean;
   private proxySettingsMessages: Array<IInMessage>;
@@ -36,12 +38,9 @@ export class InSettings implements OnInit {
   private proxySettingsSubmitting: Boolean;
   private targetHostSettingsSubmitting: Boolean;
 
-  constructor(http: InHttp,
-              requestsHelper: InRequestsHelper,
-              messagesHelper: InMessagesHelper) {
-    this.http = http;
-    this.requestsHelper = requestsHelper;
-    this.messagesHelper = messagesHelper;
+  constructor(private _http: InHttp,
+              private _store: Store,
+              private _messagesHelper: InMessagesHelper) {
   }
 
   ngOnInit() {
@@ -50,7 +49,7 @@ export class InSettings implements OnInit {
   }
 
   private getProxySettings() {
-    this.http.get('/settings/proxy')
+    this._http.get('/settings/proxy')
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
         this.proxySettingsResolved = true;
@@ -60,7 +59,7 @@ export class InSettings implements OnInit {
   }
 
   private getTargetHostSettings() {
-    this.http.get('/settings/targetHost')
+    this._http.get('/settings/targetHost')
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
         this.targetHostSettingsResolved = true;
@@ -72,15 +71,15 @@ export class InSettings implements OnInit {
   private onSubmitProxySettings(form: NgForm) {
     this.proxySettingsSubmitting = true;
 
-    this.http.put('/settings/proxy', form.value)
+    this._http.put('/settings/proxy', form.value)
       .subscribe((data) => {
         this.proxySettings = data.data.ProxySettings;
-        this.proxySettingsMessages = this.messagesHelper.flattenMessages(this.messagesHelper.getSaveMessage());
-        this.requestsHelper.clearRequests();
+        this.proxySettingsMessages = this._messagesHelper.flattenMessages(this._messagesHelper.getSaveMessage());
+        this._store.dispatch({ type: CLEAR_REQUESTS });
       }, (err) => {
         let errors = err.json();
 
-        this.proxySettingsMessages = this.messagesHelper.flattenMessages(errors.meta.messages);
+        this.proxySettingsMessages = this._messagesHelper.flattenMessages(errors.meta.messages);
 
         this.proxySettingsSubmitting = false;
       }, () => {
@@ -91,15 +90,15 @@ export class InSettings implements OnInit {
   private onSubmitTargetHostSettings(form: NgForm) {
     this.targetHostSettingsSubmitting = true;
 
-    this.http.put('/settings/targetHost', form.value)
+    this._http.put('/settings/targetHost', form.value)
       .subscribe((data) => {
         this.targetHostSettings = data.data.TargetHostSettings;
-        this.targetHostSettingsMessages = this.messagesHelper.flattenMessages(this.messagesHelper.getSaveMessage());
-        this.requestsHelper.clearRequests();
+        this.targetHostSettingsMessages = this._messagesHelper.flattenMessages(this._messagesHelper.getSaveMessage());
+        this._store.dispatch({ type: CLEAR_REQUESTS });
       }, (err) => {
         let errors = err.json();
 
-        this.targetHostSettingsMessages = this.messagesHelper.flattenMessages(errors.meta.messages);
+        this.targetHostSettingsMessages = this._messagesHelper.flattenMessages(errors.meta.messages);
 
         this.targetHostSettingsSubmitting = false;
       }, () => {

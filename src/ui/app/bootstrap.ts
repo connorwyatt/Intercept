@@ -5,6 +5,8 @@ import { provide, enableProdMode } from '@angular/core';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
+import { provideStore } from '@ngrx/store';
+import { STATE } from './state/index';
 import { InApp } from './InApp';
 import { InHttp } from './services/InHttp';
 import { InElectronCommunication } from './services/InElectronCommunication';
@@ -20,6 +22,7 @@ enableProdMode();
 //endRemoveIf(development)
 
 bootstrap(InApp, [
+  provideStore(STATE),
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
   provide(LocationStrategy, { useClass: HashLocationStrategy }),

@@ -2,10 +2,10 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { InCard } from '../../components/InCard/InCard.component';
 import { InTable } from '../../components/InTable/InTable.component';
-import { InRequestsHelper } from '../../services/InRequestsHelper';
 import { InCollectionFilterPipe } from '../../pipes/InCollectionFilter.pipe';
 import { IInTableField } from '../../components/InTable/IInTableField';
 import { IInRequest } from '../../interfaces/IInRequest';
@@ -35,8 +35,8 @@ export class InRequests {
     { fieldname: 'latency', label: 'Latency', width: '15%', centred: true }
   ];
 
-  constructor(requestsHelper: InRequestsHelper) {
-    this.requests = requestsHelper.getRequests();
+  constructor(store: Store) {
+    this.requests = store.select('requests');
   }
 
   private requestsRowClass(model: IInRequest): string {

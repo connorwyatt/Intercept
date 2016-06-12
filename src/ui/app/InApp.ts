@@ -1,8 +1,15 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { RouteConfig, RouterOutlet } from '@angular/router-deprecated';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
+import {
+  RouteConfig,
+  RouterOutlet
+} from '@angular/router-deprecated';
 import { InHeaderBar } from './components/InHeaderBar/InHeaderBar.component';
 import { InNavigationBar } from './components/InNavigationBar/InNavigationBar.component';
 import { InContentScroll } from './directives/InContentScroll/InContentScroll.directive';
+import { InRequestsHelper } from './services/InRequestsHelper';
 import { InDashboard } from './areas/InDashboard/InDashboard';
 import { InRequests } from './areas/InRequests/InRequests';
 import { InRules } from './areas/InRules/InRules';
@@ -51,4 +58,8 @@ export class InApp {
       icon: 'settings'
     }
   ];
+
+  constructor(requestsHelper: InRequestsHelper) {
+    requestsHelper.init();
+  }
 }
