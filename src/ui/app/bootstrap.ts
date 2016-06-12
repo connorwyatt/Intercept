@@ -17,7 +17,6 @@ declare const ELECTRON_IPC: ElectronIPC;
 
 //removeIf(development)
 enableProdMode();
-alert('TEST');
 //endRemoveIf(development)
 
 bootstrap(InApp, [
