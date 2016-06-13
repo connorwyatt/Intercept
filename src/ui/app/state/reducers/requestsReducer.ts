@@ -40,22 +40,26 @@ actionHandlerMap.set(NEW_REQUEST_STARTS, (state: RequestsState, action: Action):
 });
 
 actionHandlerMap.set(NEW_REQUEST_ENDS, (state: RequestsState, action: Action): RequestsState => {
-  let newState = Object.assign({}, state);
+  let newList = [...state.list];
   let { payload } = action;
 
   payload.forEach((requestEnd: IInRequest) => {
-    let requestStartIndex = state.list.findIndex((request: IInRequest) => {
+    let requestStartIndex = newList.findIndex((request: IInRequest) => {
       return request.id === requestEnd.id;
     });
 
-    let requestStart = state.list[requestStartIndex];
+    let requestStart = newList[requestStartIndex];
 
     let newRequest = Object.assign({}, requestStart, requestEnd);
 
-    state.list.splice(requestStartIndex, 1, newRequest);
+    newList.splice(requestStartIndex, 1, newRequest);
   });
 
-  return newState;
+  return Object.assign(
+    {},
+    state,
+    { list: newList }
+  );
 });
 
 actionHandlerMap.set(CLEAR_REQUESTS, (state: RequestsState): RequestsState => {
