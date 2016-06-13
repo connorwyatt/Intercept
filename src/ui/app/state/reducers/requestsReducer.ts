@@ -44,17 +44,15 @@ actionHandlerMap.set(NEW_REQUEST_ENDS, (state: RequestsState, action: Action): R
   let { payload } = action;
 
   payload.forEach((requestEnd: IInRequest) => {
-    let newList = state.list.map((request: IInRequest) => {
-      if (request.id === requestEnd.id) {
-        return Object.assign({}, request, requestEnd);
-      }
+    let requestStartIndex = state.list.findIndex((request: IInRequest) => {
+      return request.id === requestEnd.id;
     });
 
-    newState = Object.assign(
-      {},
-      newState,
-      { list: newList }
-    );
+    let requestStart = state.list[requestStartIndex];
+
+    let newRequest = Object.assign({}, requestStart, requestEnd);
+
+    state.list.splice(requestStartIndex, 1, newRequest);
   });
 
   return newState;
@@ -69,6 +67,9 @@ actionHandlerMap.set(CLEAR_REQUESTS, (state: RequestsState): RequestsState => {
 });
 
 export function getAllRequests() {
-  return (stateObservable: Observable<AppState>) => stateObservable
-    .select((state: AppState): IInRequest[] => state.requests.list);
+  return (stateObservable: Observable<AppState>) => {
+    return stateObservable.select((state: AppState): IInRequest[] => {
+      return state.requests.list;
+    });
+  };
 }
