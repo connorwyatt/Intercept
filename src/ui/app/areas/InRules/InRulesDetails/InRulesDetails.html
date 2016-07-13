@@ -77,6 +77,15 @@
         </div>
 
         <div class="InForm-item">
+          <in-input type="multiKeyValue"
+                    ngControl="headers"
+                    [(ngModel)]="rule.headers"
+                    [field]="'headers'"
+                    [label]="'Headers'"></in-input>
+        </div>
+
+
+        <div class="InForm-item">
           <in-input type="number"
                     ngControl="latency"
                     [(ngModel)]="rule.latency"

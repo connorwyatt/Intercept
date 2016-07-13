@@ -6,6 +6,7 @@ class RuleTO {
     this.url = rule.url || null;
     this.method = rule.method || null;
     this.statusCode = rule.statusCode || null;
+    this.headers = rule.headers || [];
     this.body = rule.body || null;
     this.file = rule.file || null;
     this.type = rule.type || null;

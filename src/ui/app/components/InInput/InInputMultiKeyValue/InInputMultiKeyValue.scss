@@ -1,0 +1,49 @@
+@import "../../../styles/theme";
+
+:host(.ng-valid.ng-touched) {
+  .InInput {
+    &-input {
+      border-color: transparent;
+    }
+  }
+}
+
+:host(.ng-invalid.ng-touched) {
+  .InInput {
+    &-input {
+      border-color: transparent;
+    }
+  }
+}
+
+.InInput {
+  &-container {
+    position: relative;
+  }
+
+  &-addButton {
+    @include typography-label;
+    color: $color-text-label;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &-keyValuePair {
+    display: flex;
+
+    & + & {
+      margin-top: $grid-size * 2;
+    }
+  }
+
+  &-input {
+    border-color: transparent;
+    flex: 1 1 auto;
+    margin-right: $grid-size * 2;
+  }
+
+  &-removeButton {
+    flex: 0 0 auto;
+  }
+}

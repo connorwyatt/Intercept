@@ -1,0 +1,13 @@
+<div class="InInput-container">
+  <label class="InInput-label" *ngIf="label" [attr.for]="field">{{ label }}</label>
+  <button class="InInput-addButton" (click)="addNew()">Add</button>
+  <div class="InInput-keyValuePair"
+       *ngFor="let header of value; let i = index">
+    <input class="InInput-input" [attr.id]="field" type="text" placeholder="{{ placeholder }}" [value]="value[i].key" (change)="changed(i, 'key', $event.target.value)" (blur)="onTouched()"/>
+    <input class="InInput-input" [attr.id]="field" type="text" placeholder="{{ placeholder }}" [value]="value[i].value" (change)="changed(i, 'value', $event.target.value)" (blur)="onTouched()"/>
+    <button class="InButton InButton--negative InButton--icon InInput-removeButton" (click)="remove(i)">
+      <in-icon class="InButton-icon" [icon]="'delete'"></in-icon>
+    </button>
+  </div>
+  <in-messages type="input" *ngIf="isTouched" [messages]="errors | inValidationErrors"></in-messages>
+</div>

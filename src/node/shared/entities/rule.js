@@ -8,9 +8,20 @@ const BaseEntity = require('./baseEntity'),
 class Rule extends BaseEntity {
   constructor(data) {
     super();
+
+    if (data.headers) {
+      data.headers = data.headers.reduce((accumulatedHeaders, header) => {
+        if (header.key !== null && header.value !== null && header.key !== undefined && header.value !== undefined) {
+          accumulatedHeaders.push(header);
+        }
+
+        return accumulatedHeaders;
+      }, []);
+    }
+
     Object.assign(this, data);
   }
-  
+
   getConstraints() {
     return ruleConstraints;
   }
@@ -37,7 +48,11 @@ class Rule extends BaseEntity {
   }
 
   getHeaders() {
-    let headers = Object.assign({}, this.headers);
+    let headers = this.headers.reduce((accumulatedHeaders, header) => {
+      accumulatedHeaders[header.key] = header.value;
+
+      return accumulatedHeaders;
+    }, {});
 
     if (this.type) {
       headers['Content-Type'] = this.type;
