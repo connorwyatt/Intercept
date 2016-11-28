@@ -56,8 +56,9 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #159957;
-  background-image: linear-gradient(120deg, #155799, #159957); }
+  background-color: #11b6b9;
+  background-image: linear-gradient(120deg, #183c99, #11b6b9);
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.25); }
 
 @media screen and (min-width: 64em) {
   .page-header {
@@ -104,15 +105,22 @@ a {
   .project-tagline {
     font-size: 1rem; } }
 
+.project-name,
+.project-tagline {
+  text-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.25); }
+
 .main-content :first-child {
   margin-top: 0; }
 .main-content img {
   max-width: 100%; }
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
   margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
   font-weight: normal;
-  color: #159957; }
+  color: #11b6b9; }
+.main-content h2 {
+  border-bottom: 1px solid rgba(24,60,153, .25); }
 .main-content p {
   margin-bottom: 1em; }
 .main-content code {
@@ -243,3 +251,13 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+.image {
+  border-radius: 0.2rem;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.25); }
+
+.logo {
+  border-radius: 50%;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.15);
+  height: 10rem;
+  width: 10rem; }
