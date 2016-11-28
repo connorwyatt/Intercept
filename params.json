@@ -1,0 +1,6 @@
+{
+  "name": "Intercept",
+  "tagline": "An app for proxying network requests and mocking responses. Built with Electron :)",
+  "body": "## What does it do?\r\n\r\nThis app allows you to proxy network requests and mock responses based on rule sets.\r\n\r\n## Why would you want to use it?\r\n\r\nIf you are working with APIs that are not built, or need to modify a response from an API to preview how changes to the API will affect the UI, this is the tool for you.\r\n\r\nIt is also open source and free!",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
